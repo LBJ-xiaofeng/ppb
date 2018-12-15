@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>常见问题</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			/*background-color: #fff;*/
+		}
+		body{
+			background-color: #fff;
+		}
+		.cj_ul1{
+			overflow: hidden;
+			padding: 10px 5%;
+			    background: #fff;
+			    margin-bottom: 5px;
+}
+		.cj_ul1 li span:first-child{
+			float: left;
+			color: #ffbfc6;
+			    font-size: 18px;
+		}
+		.cj_ul1 li span:last-child{
+			float: right;
+		}
+		.cj_ul1 li{
+			clear: both;
+			overflow: hidden;
+			margin-bottom: 10px;
+		}
+		.cj_ul1 li p{
+			text-indent: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="wenti">
+	</div>
+<p style="margin-bottom: 100px;text-align: center;font-size: 14px;color: gray;" class="more"> 查看更多</p>
+<script type="text/javascript" src="/ppb/js/jquery.min.js"></script>
+<script type="text/javascript">
+	 var page=1;
+var number;
+	$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/index/Information', //目标地址
+		 async: false,//同步
+		dataType: 'JSON', //数据格式:JSON
+		data: {page:page,type:2},
+		success: function(data) {
+			number=data.data.countPage;
+       var html='';
+       for(var i=0;i<data.data.data.length;i++){
+       	      html+=`
+			 <ul class="cj_ul1">
+	<li><span>${data.data.data[i].title}</span><span class="aa"></span></li>
+	<li class="disnone">
+		<p style="font-size: 14px;">${data.data.data[i].content}</p>
+	</li>
+</ul>
+       	      `
+
+       }
+       $(".wenti").html(html);
+
+
+		}
+	})
+	$('.more').click(function(){
+      page++;
+        console.log(page,number);
+    if(page>number){
+      $('.more').html('已无更多数据');
+    }else{
+$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/index/Information', //目标地址
+		 async: false,//同步
+		dataType: 'JSON', //数据格式:JSON
+		data: {page:page,type:2},
+		success: function(data) {
+			number=data.data.countPage;
+       var html='';
+      for(var i=0;i<data.data.data.length;i++){
+       	      html+=`
+			 <ul class="cj_ul1">
+	<li><span>${data.data.data[i].title}</span><span class="aa"></span></li>
+	<li class="disnone">
+		<p style="font-size: 14px;">${data.data.data[i].content}</p>
+	</li>
+</ul>
+       	      `
+
+       }
+       $(".wenti").append(html);
+         
+		}
+	})
+    }
+   
+    
+   })
+	$(".cj_ul1").click(function(){
+		$(this).children().siblings(".disnone").toggle();
+	})
+</script>
+</body>
+</html>

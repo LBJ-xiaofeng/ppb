@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>分类管理</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		
+        .one{   margin: 0;
+        		padding: 0;
+                color: #121212;
+                background-color: transparent;
+        	    border:1px solid #FD9D13;
+			    width: 100%;
+			    padding: 10px 0;
+			    font-size: 16px;
+                border-radius: 8px;
+                margin-top: 33px;
+                width: 95%;
+                margin-left: 2.5%;
+        }
+        .active{
+            background-color: #FD9D13;
+            color: #fff;
+        }
+
+</style>
+</head>
+<body>
+<div style="margin-top: 50px;">
+   <a href="{:U('ppb/ppb/gj_wpgl')}"><button class="one active">分类管理</button></a>
+   <a href="{:U('ppb/ppb/gj_czgl')}"><button class="one active">种类管理</button></a>
+   <a href="{:U('ppb/ppb/gj_ppgl')}"><button class="one active">品牌管理</button></a>
+</div>    	 
+           
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$.ajax({
+	type:"get",
+	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/categoryList",
+	dataType: 'JSON', //数据格式:JSON
+	data: {},
+	success: function(data) {
+		console.log(data)
+		var fenlei="";
+		for (var i=0;i<data.data.length;i++) {
+			fenlei+=`
+				<button class="one active tiaofenlei" zhongleiid="${data.data[i].id}">${data.data[i].mobile_name}</button>
+			`
+			$(".fenlei").html(fenlei);
+		}
+	}
+		
+	
+});
+</script>
+</html>

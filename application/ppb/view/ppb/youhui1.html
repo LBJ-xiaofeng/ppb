@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的钱包</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		 body{
+            background-color: #fff;
+        }
+		.you_ul1{
+			overflow: hidden;
+		}
+		.you_ul1 li{
+			float: left;
+		    text-align: center;
+		    width: 49%;
+		    padding: 10px 0;
+		  
+		}
+		.you_ul1 li:first-child{
+			  border-right:  1px solid #CFCFCF;
+		}
+		.you_ul1 li img{
+			display: inline-block;
+			width: 18%;
+		}
+		.hui{
+			display: inline-block;
+    width: 100%;
+		}
+		.you_div1{
+			border-top:1px solid #cfcfcf;
+			
+			
+		}
+		.you_div1 ul{
+			overflow: hidden;
+			margin-top: 20px;
+			height: 96px;
+			width: 95%;
+			margin-left: 2.5%;
+			background-image: url("/ppb/image/qian (2).jpg");
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		.you_div1 ul li{
+			float: left;	
+		}
+		.you_div1 ul li:first-child{
+			width: 70%;
+			text-align: center;
+			line-height: 29px;
+			margin-top: 2px;
+		}
+		.you_div1 ul li p{
+			color: #969494;
+			font-size: 14px;
+		}
+		.you_div1 ul li:first-child span:first-child{
+			color: #FB4343;
+			font-size: 12px;
+		}
+		.you_div1 ul li:first-child span:nth-child(2){
+			color: #FB4343;
+			font-size: 30px;
+		}
+		.you_div1 ul li:first-child span:last-child{
+			color: #969494;
+			font-size: 14px;
+		}
+		.you_div1 ul li:last-child{
+			    width: 30%;
+    text-align: center;
+    line-height: 96px;
+    color: #fff;
+		}
+		.active{
+			color: #ffbfc6;
+		}
+		 .btn{
+    background-color: #ffbfc6;
+    border: 0px;
+    width: 100%;
+    color: white;
+    padding: 12px 0px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+}
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0,0,0,0.3);
+	height: 100%;
+	display: none;
+}
+.content{
+	    background-color: #fff;
+    width: 70%;
+    padding: 5%;
+    margin-left: 10%;
+    margin-top: 54%;
+    border-radius: 8px;
+
+}
+.content p{
+	color: #909090;
+	text-align: center;
+}
+.content input{
+	    width: 80%;
+    padding: 10px 0 10px 4%;
+    border-radius: 8px;
+    margin: 16px 0 35px 7%;
+    border: 1px solid #DADADA;
+    }
+.mask_p span{
+       text-align: center;
+    display: inline-block;
+    width: 48%;
+}
+.mask_p span:last-child{
+   color: #ffbfc6;
+}
+a{
+	color: #121212;
+}
+
+	</style>
+
+</head>
+<body>
+<ul class="you_ul1">
+	<a href="{:U('ppb/ppb/youhui1')}"><li>
+		<span><img src="/ppb/image/bao (1).jpg"></span>
+		<br>
+		<span class="active">优惠券</span>
+	</li>
+     </a>
+     <a href="{:U('ppb/ppb/yue')}">
+	<li style="border: 0 !important;">
+		<span><img src="/ppb/image/bao (2).jpg"></span>
+		<br>
+		<span>余额</span>
+	</li>
+</a>
+</ul>
+<img src="/ppb/image/qian (3).jpg" class="hui">
+<ul class="you_ul1">
+	<a href="{:U('ppb/ppb/youhui1')}"><li  class="active" style="border-left: 1px solid #CFCFCF!important;">
+		未使用
+	</li>
+	</a>
+	<a href="{:U('ppb/ppb/shixiao')}"><li style="border: 0 !important;">
+		已失效
+	</li>
+	</a>
+</ul>
+<div class="you_div1">
+	
+</div>
+<button class="btn djdh"> + 优惠券兑换</button>
+<div class="mask">
+        	<div class="content">
+        		<p>优惠券兑换</p>
+        		<input type="" name="duihuanma" class="duihuanma" placeholder="输入兑换码">
+        		<p class="mask_p">
+        			<span class="close">取消</span>
+        			<span class="duihaun">兑换</span>
+        		</p>
+        	</div>
+        </div>
+</body>
+<script src="/ppb/js/jquery.min.js"></script>
+<script type='text/javascript'>
+	$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/order/myCoupon', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {user_id:localStorage.getItem('user_id')},
+		success: function(data) {
+			console.log(data.data.length);
+			if(data.data.length==0){
+				$('.you_div1').html('暂无数据');
+				$('.you_div1').css('textAlign','center');
+				$('.you_div1').css('padding-top','20px');
+			}else{
+				var html='';
+				for(var i=0;i<data.data.normal.length;i++){
+					html+=`
+						<ul>
+		<li>
+			<p><span>¥</span><span>50</span>       <span>满${data.data.normal[i].money}可使用</span></p>
+			<p>使用期限</p>
+			<p>${data.data.normal[i].use_end_time}</p>
+		</li>
+		<li>
+			去使用
+		</li>
+	</ul>
+					` 
+
+				}
+				$('.you_div1').html(html);
+
+			}
+		}
+	})
+
+		$("body").on("click",".djdh",function(){
+			$(".mask").css("display","block");
+		})
+			
+		$("body").on("click",".close",function(){
+			$(".mask").css("display","none");
+		})
+		$("body").on("click",".duihaun",function(){
+			
+			var duihuanma= $(".duihuanma").val()
+			$.ajax({
+				type:"get",
+				url:"http://ppb.dhxdrawing.top/index.php/ppb/Order/cartCouponExchange",
+				dataType: 'JSON', //数据格式:JSON
+				data: {user_id:localStorage.getItem('user_id'),coupon_code:duihuanma},
+				success: function(data) {
+					if (data.status==0) {
+						alert(data.msg);
+						$(".mask").css("display","none");
+						$(".duihuanma").val("")
+					} else{
+						alert(data.msg);
+						$(".mask").css("display","none");
+						location.reload();
+					}
+					
+				}
+			});
+		})
+</script>
+</html>

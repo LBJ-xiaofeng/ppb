@@ -1,0 +1,87 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:56:"E:\phpstudy\WWW\ppb/application/ppb\view\ppb\login2.html";i:1539338014;}*/ ?>
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="/ppb/css/index.css"/>
+		<style type="text/css">
+			.login_div1 {
+    text-align: center;
+    margin-bottom: 0px!important;
+}
+		</style>
+	</head>
+	<body>
+	<div class="login_div1" style="margin-top: 20%;">
+		<a href="<?php echo U('ppb/ppb/login'); ?>"><img src="/ppb/image/logo.png"></a>
+		
+	</div>
+	<div style="width: 100%;text-align: center;font-size: 15px;color: #fff;margin-bottom: 15%;">工匠端</div>
+	<div class="boos-boos">
+	<div class="boos">
+		 <div class="sjh">
+		 	<span><img src="/ppb/image/tel.png"></span>
+		 	<input type="text" name="tel" id="" placeholder="请输入账号" class="tel" />
+		 	
+		 </div>
+		 <div class="sjh">
+		 	<span><img src="/ppb/image/pwd.png"></span>
+		 	<input type="password" name="pwd" id="" placeholder="请输入密码"  class="pwd"/>
+		 	
+		 	
+		 </div>
+		<div class="sjh" style="border:none;">
+		  	<!--<a href="zhuce.html" style="color: #fff;font-size: 12px;text-decoration: none;float: left;">没有账号，立即注册</a>
+		  	<a href="wjmm.html" style="color: #fff;font-size: 12px;text-decoration: none;float: right;">忘记密码</a>-->
+		  </div>
+		 <div class="but">
+		 	<button class="btn">登录</button>
+		 </div>
+		 
+		<div style="height: 200px;"></div>
+		  <!--<div  class="qita2">
+<span><img src="image/fenge.png"  style="display: inline-block;width: 80%"></span>		 	
+		 </div>
+		 <div class="tubiao-2">
+		 	<img src="image/wei.png" class="sanfang">
+		 </div>-->
+	</div>
+	</body>
+		<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$('.but').click(function(){
+		var pwd=$('.pwd').val();
+		var tel=$('.tel').val();
+       $.ajax({
+		type: 'post', //用POST方式传输
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/admin/adminLogin', //目标地址	
+		dataType: 'JSON', //数据格式:JSON
+		data: {username:tel,password:pwd},
+		success: function(data) {
+           console.log(data);
+          
+           		if(data.status==1){
+           			 if (data.data.role_id==16 || data.data.role_id==17  || data.data.role_id==1) {
+           	localStorage.setItem('admin_id',data.data.admin_id);
+           	localStorage.setItem('role_id',data.data.role_id);
+           		alert("登录成功")
+           	window.location.href="<?php echo U('ppb/ppb/gj_index'); ?>";
+           	} else{
+           	 alert("暂无权限")
+           }
+           }else{
+           	alert(data.msg);
+           }
+           
+           
+		},
+		error: function(data) {
+				alert('网络错误');
+		}
+		
+	});
+	})
+</script>
+</html>

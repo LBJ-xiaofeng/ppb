@@ -1,0 +1,117 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:54:"E:\phpstudy\WWW\ppb/application/ppb\view\ppb\yyxd.html";i:1540519961;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约下单</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <style type="text/css">
+        body,div,p,ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        body{
+            background-color: #fff;
+        }
+        
+        .all{
+            overflow: hidden;
+            padding: 30px 5%;
+        }
+        .all p{
+                font-size: 19px;
+    text-align: center
+        }
+        .type{
+                width: 80%;
+                height: 40px;
+                background: url("/ppb/image/tj (1).jpg");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                text-align: center;
+                margin-left: 10%;
+                margin-bottom: 30px;
+                color: #ffbfc6;
+                line-height: 40px;
+        }
+        .active{
+           background: url("/ppb/image/tj (2).png");
+           background-size: 100% 100%;
+           background-repeat: no-repeat;
+           color: #fff;
+        }
+        footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .one{   margin: 0;
+                padding: 0;
+                background-color: #ffbfc6;
+                width: 100%;
+                color: #fff;
+                padding: 15px 0;
+                border: none;
+                font-size: 16px;
+        }
+</style>
+</head>
+<body>
+     
+<div class="all">
+   <p>选择类型</p>
+</div>
+<div class="leixing" style="margin-bottom: 60px;">
+   </div>
+    <footer>
+                <button class="one xiayibu">下一步</button>
+            </footer>
+</body>
+
+            <script type="text/javascript" src="/ppb/js/jquery.min.js"></script>
+<script type="text/javascript">
+	localStorage.removeItem('leixing');
+	localStorage.removeItem('yuyuename');
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/index/bookingOrder",
+		dataType: 'JSON', //数据格式:JSON
+		// data: {id:localStorage.getItem('ddid')},
+        data: {id1:1,id2:2},   
+		async:false,
+		success: function(data){
+		var leixing="";
+		for(var i=0; i<data.data.length;i++) {
+			leixing+=`
+				 <div class="type"  id2="${data.data[i].id}" name="${data.data[i].mobile_name}">${data.data[i].mobile_name}</div>
+			`
+			
+		}
+			$(".leixing").html(leixing);
+			
+			$(".type").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+	localStorage.removeItem('leixing');
+	localStorage.removeItem('yuyuename');
+    localStorage.setItem("leixing",$(this).attr("id2"));
+    localStorage.setItem("yuyuename",$(this).attr("name"));
+   
+})
+		}
+	});
+	
+	$("body").on("click",".xiayibu",function(){
+	var leiid=localStorage.getItem('leixing');
+	if (leiid ==null) {
+		alert("请选择类型");
+	} else{
+//		alert(leiid)
+		window.location.href = "<?php echo U('ppb/ppb/yyxd2'); ?>";
+	
+		
+	}
+})
+</script>
+</html>

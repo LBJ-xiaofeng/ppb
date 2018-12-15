@@ -1,0 +1,88 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: url(../img/shop.png) no-repeat;
+	background-size: 100%;
+}
+#content2{
+	margin-top: 20px;
+	overflow: hidden;
+}
+.header{
+	background-color: #32B859;
+}
+.header h1{
+	color: white;
+}
+.list-inset li{
+	float: left;
+
+}
+.list-inset .imgs{
+	clear: both;
+	width: 30%;
+}
+.list-inset img{
+	height: 87px;
+}
+.item-icon-right{
+	width: 100%;
+	padding: 0 5%;
+	    line-height: 27px;
+}
+.dfk_p1{
+	margin-bottom: 20px;
+	padding-left: 5%;
+	padding-right: 5%;
+	overflow: hidden;
+}
+.names{
+	font-size: 17px;
+    font-weight: bold;
+    color: #242424;
+
+}
+.prices{
+	float: right;
+	color: red;
+	font-size: 17px;
+}
+.intro{
+	float: left;
+	font-size: 17px;
+	    display: inline-block;
+    width: 73%;
+    overflow: hidden;
+white-space: nowrap; 
+text-overflow:ellipsis;
+}
+.num{
+	float: right;
+}
+.btn{
+	float: right;
+    margin-right: 5%;
+    background: transparent;
+    color: gray;
+    padding: 0px 12px;
+    border-radius: 5px;
+        margin-top: 5px;
+}
+.content{
+	margin-top: 20px;
+}
+.content p{
+	padding: 0 5%;
+	clear: both;
+	font-size: 16px;
+}
+.content p:first-child{
+	font-size: 17px;
+	font-weight: bold;
+	color: #414141;
+}
+.mine-ul1 a{
+	color: #121212;
+}

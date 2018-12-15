@@ -1,0 +1,3 @@
+<?php
+//000000000001{"withdrawal_off":"1","reg_integral":"\u6821\u9a8c\u5ba1\u6838","file_size":"1","default_storage":"\u96d5\u523b\u7f8e\u5316","warning_storage":"1","tax":"10","is_remind":"\u88c5\u9970\u914d\u4ef6","order_finish_time":"","order_cancel_time":"","hot_keywords":"\u624b\u673a|\u5c0f\u7c73|iphone|\u4e09\u661f|\u534e\u4e3a|\u51b0\u7bb1","app_test":"\u6253\u78e8\u55b7\u6f06","need":"\u6728\u5de5\u5236\u4f5c","min":"100","order_point":"5","invite":"1","invite_integral":"10","sign_on_off":"1","sign_integral":"11","sign_signcount":"5","sign_award":"10"}
+?>

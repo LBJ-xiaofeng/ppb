@@ -1,0 +1,213 @@
+<include file="public/layout" />
+<style>
+    .ncm-goods-gift {
+        text-align: left;
+    }
+    .ncm-goods-gift ul {
+        display: inline-block;
+        font-size: 0;
+        vertical-align: middle;
+    }
+    .ncm-goods-gift li {
+        display: inline-block;
+        letter-spacing: normal;
+        margin-right: 4px;
+        vertical-align: top;
+        word-spacing: normal;
+    }
+    .ncm-goods-gift li a {
+        background-color: #fff;
+        display: table-cell;
+        height: 30px;
+        line-height: 0;
+        overflow: hidden;
+        text-align: center;
+        vertical-align: middle;
+        width: 30px;
+    }
+    .ncm-goods-gift li a img {
+        max-height: 30px;
+        max-width: 30px;
+    }
+
+    a.green{
+
+        background: #fff none repeat scroll 0 0;
+        border: 1px solid #f5f5f5;
+        border-radius: 4px;
+        color: #999;
+        cursor: pointer !important;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: normal;
+        height: 20px;
+        letter-spacing: normal;
+        line-height: 20px;
+        margin: 0 5px 0 0;
+        padding: 1px 6px;
+        vertical-align: top;
+    }
+
+    a.green:hover { color: #FFF; background-color: #1BBC9D; border-color: #16A086; }
+
+    .ncap-order-style .ncap-order-details{
+        margin:20px auto;
+    }
+    .contact-info h3,.contact-info .form_class{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .form_class i.fa{
+        vertical-align: text-bottom;
+    }
+    .displaywl{
+        display: none;
+    }
+</style>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.go(-1)" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>订单发货</h3>
+                <h5>订单发货编辑</h5>
+            </div>
+            <div class="no-print" style="width:62%">
+                <a href="javascript:printDiv();" style="float:right;margin-right:10px" class="ncap-btn-big ncap-btn-green" ><i class="fa fa-print"></i>打印配货单</a>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="ncap-order-style">
+        <div class="titile">
+            <h3></h3>
+        </div>
+        <form id="delivery-form" action="{:U('Admin/order/apply_detail')}" method="post">
+            <foreach name="orders" item="order">
+                <input type="hidden" name="rec_id" value="{$order.rec_id}"/>
+            <div class="ncap-order-details" style="margin: 40px auto;">
+                <div class="tabs-panels">
+                    <div class="misc-info">
+                        <h3>基本信息</h3>
+                        <dl>
+                            <dt>订单号：</dt>
+                            <dd>{$order.goods_sn}</dd>
+                            <dt>下单时间：</dt>
+                            <dd>{$order.add_time|date='Y-m-d H:i',###}</dd>
+                        </dl>
+                        <dl>
+                            <dt>配送单号：</dt>
+                            <dd><input class="input-txt" name="shipping_code" id="shipping_code" value="{$order.shipping_code}" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"><if condition ="$order.shipping_code gt 0"><a href="javascript:void();" id="blockwl">查看物流</a></if></dd>
+                            <dt></dt>
+                            <dd></dd>
+                        </dl>
+                        <div style="border: 1px solid deepskyblue;background: #fff;height:auto; position:absolute;left:5%;top:5%;;z-index:999;" id="wl" class="displaywl">
+                            <div style="width: 25px;position: absolute;right: 0px;cursor: pointer;" id="nonewl">关闭</div>
+                            <div>
+                                <span>快递类型：{$Courier->expName}</span><br/>
+                                <span>快递官网：{$Courier->expSite}</span><br/>
+                                <span>快递电话：{$Courier->expPhone}</span><br/>
+                                <span>快递状态：{$Courier->deliverystatus}</span><br/>
+                                <hr/>
+                                <span>快递物流</span><br/>
+                                <foreach name="Courierlist" item="val">
+                                    <span>{$val->time}&nbsp;&nbsp;&nbsp;{$val->status}</span><br/>
+                                </foreach>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addr-note">
+                        <h4>收货信息</h4>
+                        <dl>
+                            <dt>收货人：</dt>
+                            <dd>{$order.nickname}</dd>
+                        </dl>
+                        <dl>
+                            <dt>收货地址：</dt>
+                            <dd>{$order.province}{$order.city}{$order.twon}{$order.address}</dd>
+                        </dl>
+                        <dl>
+                            <dt>联系方式：</dt>
+                            <dd>{$order.mobile}</dd>
+                        </dl>
+                    </div>
+
+
+                    <div class="goods-info">
+                        <h4>商品信息</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="2">商品</th>
+                                <th>商品单价</th>
+                                <th>发货状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="w30"><div class="goods-thumb"><img width="40px" height="30px" alt="" src="{$order.original_img}" /></div></td>
+                                    <td style="text-align: left;">{$order.goods_name}</td>
+                                    <td class="w100">{$order.shop_price}</td>
+                                    <td class="w60">
+                                        <if condition="$order['is_shipping'] eq 1">
+                                            已发货
+                                            <else />
+                                            待发货
+                                        </if>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                    <div class="contact-info"  style="margin-top:10px;">
+                        <dl class="row">
+                            <dd class="opt" style="margin-left:10px">
+                                <if condition="$order['is_shipping'] < 1">
+                                    <a class="ncap-btn-big ncap-btn-green"  onclick="dosubmit()">确认发货</a>
+                                </if>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            </foreach>
+        </form>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $('#blockwl').click(function(){
+        $('#wl').removeClass('displaywl');
+    })
+    $('#nonewl').click(function(){
+        $('#wl').addClass('displaywl');
+    })
+    $('#wl').click(function(){
+        $('#wl').addClass('displaywl');
+    })
+    function dosubmit(){
+        var shipping = $('input[name="shipping_code"]').val();
+        if ($('#invoice_no').val() == '') {
+            layer.alert('请输入配送单号', {icon: 2});  // alert('请输入配送单号');
+            return;
+        }
+        $('#delivery-form').submit();
+    }
+
+    function set_shipping_name(){
+        var shipping_name = $("#shipping_code").find("option:selected").text();
+        $('#shipping_name').val(shipping_name);
+    }
+    function printDiv()
+    {
+        var oldStr = document.body.innerHTML;
+        $('.no-print').hide();
+        $('#blockwl').css('display','none');
+        $('#shipping_code').css('border','none');
+        window.print();
+        document.body.innerHTML = oldStr;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\phpstudy\WWW\ppb/application/ppb\view\ppb\ddxiang.html";i:1537426830;}*/ ?>
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>皮皮班</title>
+    <meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+
+    <script src="/ppb/static123/js/jquery.min.js"></script>
+    <!--<script src="/ppb/static/js/swiper.jquery.min.js"></script>-->
+    <script type="text/javascript" src="/ppb/static123/js/swiper-3.4.0.jquery.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="/ppb/static/css/swiper.min.css">-->
+    <link rel="stylesheet" href="/ppb/static123/css/swiper-3.2.7.min.css" />
+    <link rel="stylesheet" type="text/css" href="/ppb/css/mui.css"/>
+    <link rel="stylesheet" href="/ppb/static123/css/dingdan.css">
+    <link rel="stylesheet" href="/ppb/static123/css/mui.css">
+    <style type="text/css">
+   .ddlist{
+
+    	display: block;
+  
+		overflow: hidden; 
+		  
+		text-overflow: ellipsis; 
+		    
+		-o-text-overflow: ellipsis;
+		
+		white-space:nowrap;
+		   
+		width:200px;
+		      
+		height:24px;
+		 
+		display:block;
+ 	} 
+    </style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav" >
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: black;"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title" >预约下单</h1>
+	  </header>
+    <div class="container" style="margin-top: 45px;">
+        <div class="swiper-container swiper1 swipe-top">
+            <div class="swiper-wrapper">
+
+            </div>
+        </div>
+        <div class="swiper-container swiper2">
+            <div class="swiper-wrapper list1">
+
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="botom-top"><img src="/ppb/img/gwc.png" style="line-height: 50px;" /></div>
+            <div class="center">
+                <div>预估价格：<span class="center-span">¥0.00</span></div>
+                <div >到了之后确定价格再进行支付</div>
+            </div>
+            <div class="xiadan">预约下单</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    	
+ 
+		        
+            	$.ajax({
+	type:"get",
+	url:"http://ppb.dhxdrawing.top/index.php/ppb/index/cleanClick",
+	dataType: 'JSON', //数据格式:JSON
+	data: {id:localStorage.getItem('indexid')},
+	success: function(data) {
+		var top="";
+		var botm="";
+//顶部		
+		top+=`
+				<div class="swiper-wrapper">
+			`
+		for (var i=0;i<data.data.category.length;i++) {
+			
+			top+=`
+			
+                <div class="swiper-slide diyi" data="${data.data.category[i].id}">${data.data.category[i].mobile_name}</div>
+
+			`
+		}
+		top+=`
+			 </div>
+			`
+			$(".swipe-top").html(top);
+//下面内容		
+		botm+=`
+			        <div class="swiper-slide swiper-no-swiping">
+                    <div style="width: 100%;height: 100%;background-color: #fff;">
+                     `
+                     for (var i=0;i<data.data.goods.length;i++) {
+                     	
+                    
+                     botm+=`
+                        <div>
+                            <ul class="mui-table-view list1">
+                                <li class="mui-table-view-cell mui-hidden">cared
+                                    <div id="M_Toggle" class="mui-switch mui-active">
+                                        <div class="mui-switch-handle"></div>
+                                    </div>
+                                </li>
+
+
+                                <li class="mui-table-view-cell mui-media " goods="${data.data.goods[i].goods_id}">
+                                    <a href="#">
+                                        <img class="mui-media-object mui-pull-left left-img jinxiangqing" goods="${data.data.goods[i].goods_id}"  src="${data.data.goods[0].original_img}">
+                                        <div class="mui-media-body title jinxiangqing" goods="${data.data.goods[i].goods_id}">
+                                            <span style="display: block;float: left;">${data.data.goods[i].goods_name}</span>
+                                            <p class='mui-ellipsis list-p ddlist' style="float: left;">${data.data.goods[i].goods_remark}</p>
+                                        </div>
+                                        <span class="qian jinxiangqing" goods="${data.data.goods[i].goods_id}">¥${data.data.goods[i].shop_price}</span>
+                                        <div class="jinnongchang">
+                                            <div class="div_right">
+                                                <div class="jian" goods="${data.data.goods[i].goods_id}" qian="${data.data.goods[i].shop_price}">-</div>
+                                                <span class="zi">0</span>
+                                                <input type="hidden" value="84">
+                                                <div class="jia" goods="${data.data.goods[i].goods_id}" qian="${data.data.goods[i].shop_price}">+</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                      `
+                       } 
+                botm+=`
+                    </div>
+                </div>
+		
+		`
+		
+		$(".list1").html(botm);
+		
+//点击获取内容		
+	$(".diyi").click(function(){
+		var daid = $(this).attr('data');
+		console.log(daid);
+		$.ajax({
+			type:"get",
+			url:"http://ppb.dhxdrawing.top/index.php/ppb/index/cateClick",
+			async:true,
+			dataType: 'JSON', //数据格式:JSON
+			data: {id:localStorage.getItem('indexid'),cat_id:daid},
+			success: function(data) {
+				$(".list1").html("");
+				var botm2="";
+				
+				
+					botm2+=`
+			        <div class="swiper-slide swiper-no-swiping">
+                    <div style="width: 100%;height: 100%;background-color: #fff;">
+                     `
+                     for (var i=0;i<data.data.goods.length;i++) {
+ 
+                    botm2+=`
+                        <div>
+                            <ul class="mui-table-view list1">
+                                <li class="mui-table-view-cell mui-hidden">cared
+                                    <div id="M_Toggle" class="mui-switch mui-active">
+                                        <div class="mui-switch-handle"></div>
+                                    </div>
+                                </li>
+
+
+                                <li class="mui-table-view-cell mui-media" goods="${data.data.goods[i].goods_id}">
+                                    <a href="#">
+                                        <img class="mui-media-object mui-pull-left left-img jinxiangqing" src="${data.data.goods[0].original_img}" goods="${data.data.goods[i].goods_id}">
+                                        <div class="mui-media-body title jinxiangqing" goods="${data.data.goods[i].goods_id}">
+                                            <span style="display: block;float: left;">${data.data.goods[i].goods_name}</span>
+                                            <p class='mui-ellipsis list-p ddlist' style="float: left;">${data.data.goods[i].goods_remark}</p>
+                                        </div>
+                                        <span class="qian jinxiangqing" goods="${data.data.goods[i].goods_id}">¥${data.data.goods[i].shop_price}</span>
+                                        <div class="jinnongchang">
+                                            <div class="div_right" goods="${data.data.goods[i].goods_id}">
+                                                <div class="jian" goods="${data.data.goods[i].goods_id}" qian="${data.data.goods[i].shop_price}">-</div>
+                                                <span class="zi">0</span>
+                                                <input type="hidden" value="84">
+                                                <div class="jia" goods="${data.data.goods[i].goods_id}" qian="${data.data.goods[i].shop_price}">+</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                      `
+                       } 
+                botm2+=`
+                    </div>
+                </div>
+		
+		`
+			$(".list1").append(botm2);	
+			}
+		});
+		
+	})
+		
+//插件的点击变样式，包括切换tab	
+
+
+		$(".diyi").first().addClass("selected");
+		 function setCurrentSlide(ele, index) {
+                $(".swiper1 .swiper-slide").removeClass("selected");
+                ele.addClass("selected");
+                //swiper1.initialSlide=index;
+            }
+
+            var swiper1 = new Swiper('.swiper1', {
+                //					设置slider容器能够同时显示的slides数量(carousel模式)。
+                //					可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+                //					loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+                slidesPerView: 4.2,
+                paginationClickable: true, //此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+                spaceBetween: 10, //slide之间的距离（单位px）。
+                freeMode: true, //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+                loop: false, //是否可循环
+                onTab: function(swiper) {
+                    var n = swiper1.clickedIndex;
+                }
+            });
+            swiper1.slides.each(function(index, val) {
+                var ele = $(this);
+                ele.on("click", function() {
+                    setCurrentSlide(ele, index);
+                    swiper2.slideTo(index, 500, false);
+                    //mySwiper.initialSlide=index;
+                });
+            });
+
+            var swiper2 = new Swiper('.swiper2', {
+                //freeModeSticky  设置为true 滑动会自动贴合  
+                direction: 'horizontal', //Slides的滑动方向，可设置水平(horizontal)或垂直(vertical)。
+                loop: false,
+                //					effect : 'fade',//淡入
+                //effect : 'cube',//方块
+                //effect : 'coverflow',//3D流
+                //					effect : 'flip',//3D翻转
+                autoHeight: true, //自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+                onSlideChangeEnd: function(swiper) { //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+                    var n = swiper.activeIndex;
+                    setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
+                    swiper1.slideTo(n, 500, false);
+                }
+            });
+	}
+});
+
+
+localStorage.removeItem('qian');
+ localStorage.removeItem('shangpinid');
+//加减
+$("body").on("click",".jian",function(){
+  var a=0;
+  var b=0;
+    var c=0
+
+//})
+//      $(".jian").click(function() {
+            //减
+
+            
+            var num = $(this).siblings(".zi").text();
+
+            num--;
+            if (num < 0) {
+            	localStorage.removeItem('qian');
+				 localStorage.removeItem('shangpinid');
+            } else {
+                $(this).siblings(".zi").text(num);
+                localStorage.removeItem('shangpinid');
+				localStorage.setItem("shangpinid",$(this).attr('goods'));
+				
+				
+				localStorage.setItem("qian",$(this).attr('qian'));
+			 	var qian=localStorage.getItem('qian');
+			 	a=num*qian;
+			 	b=a;
+			 	c+=b;
+			 	$(".center-span").html("¥"+c);
+            }
+
+        })
+//      $(".jia").click(function() {
+$("body").on("click",".jia",function(){
+            //加
+    var a=0;
+  var b=0;
+    var c=0
+            var num = $(this).siblings(".zi").text();
+
+            num++;
+            $(this).siblings(".zi").text(num);  
+            localStorage.removeItem('shangpinid'); //移除goods_id
+            localStorage.setItem("shangpinid",$(this).attr('goods')); //存上goods_id
+            
+            
+            
+			 localStorage.setItem("qian",$(this).attr('qian')); //存上单价
+			 	var qian=localStorage.getItem('qian'); //获取单价
+			 	console.log("我是单价"+qian);
+			 	console.log("我是数量"+num);
+			 	var xiaoshu=qian*num
+			 	c=0
+			 	a=xiaoshu;   //单价乘钱
+			 	b=a;
+				$(".zi").text(0);
+				$(this).siblings(".zi").text(num);
+				
+			 	c=c+b;
+			 	
+			 	$(".center-span").html("¥"+c);// 赋给总价
+			 	console.log("我是a步骤"+a);
+			 	console.log("我是b步骤"+b);
+				console.log("我是c步骤"+c);
+			
+				
+				console.log("---------------------------------------------------");
+
+        })
+
+       $("body").on("click",".xiadan",function(){
+       if(localStorage.getItem('user_id')==null){
+       		alert("请先登录")
+       		location.href="<?php echo U('ppb/ppb/login'); ?>";
+       	}else{
+       		
+       	
+        var shu=$(".zi").text()
+       	if (shu==0) {
+       		alert("请选择商品")
+       	} else{
+       		location.href="<?php echo U('ppb/ppb/medongxi'); ?>";
+       	}
+       	}
+       })
+       $("body").on("click",".jinxiangqing",function(){
+       	event.stopPropagation();
+       	localStorage.setItem("gondsxq_id",$(this).attr('goods'))
+       	location.href="<?php echo U('ppb/ppb/goodsxq'); ?>"
+       })
+
+    </script>
+
+
+</body>
+
+</html>

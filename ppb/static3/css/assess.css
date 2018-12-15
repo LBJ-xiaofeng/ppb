@@ -1,0 +1,399 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.nav{
+	width: 60%;
+	overflow: hidden;
+	margin: 0 auto;
+	
+}
+.nav a{
+	display: inline-block;
+	width: 31%;
+	color: #000000;
+	/*padding:.6rem .4rem;*/
+	padding: .65rem 0;
+	text-align: center;
+}
+.substance{
+	width: 90%;
+	overflow: hidden;
+	border-bottom: 1px solid #CCCCCC;
+	margin: 0 auto;
+}
+.substance_1{
+	width: 100%;
+	height: 2rem;
+	/*border-bottom:1px soild #CCCCCC ;*/
+	/*background-color: #0062CC;*/
+	line-height: 2rem;
+}
+.assess{
+	font-size: .9rem;
+	padding-left: 2%;
+}
+.assess_1{
+	font-size: .9rem;
+	float: right;
+	color:#E60000 ;
+}
+.substance_2{
+	width: 100%;
+	height: 2rem;
+	/*background-color: greenyellow;*/
+	display: flex;
+	align-items: center;
+}
+.substance_2 span{
+	display: inline-block;
+	
+	/*float: left;*/
+	background-color: #E60000;
+	border-radius: 15px;
+	text-align: center;
+	color: white;
+	font-size: .9rem;
+	margin-left: 2%;
+	padding: 0 1rem;
+	/*line-height: 1.5rem;*/
+	
+	
+}
+.substance_3{
+	
+	
+	width: 100%;
+	height: 4.8rem;
+	/*background-color: #007AFF;*/
+	margin-top: 1%;
+	
+}
+.substance_3 span{
+	color: #717171;
+	font-size: .9rem;
+}
+.substance_3 img{
+	width: 7%;
+	vertical-align: middle;
+}
+.substance_b{
+	width: 100%;
+	height: 4.8rem;
+	margin-top: 1%
+	
+	
+}
+.substance_b img{
+	width: 7%;
+	vertical-align: middle;
+}
+.substance_b span{
+		color: #717171;
+		font-size: .9rem;
+	}
+.store{
+	width: 100%;
+	height: hidden;
+	
+}
+.store_t{
+	width: 90%;
+	height: 4.5rem;
+	margin: 0 auto;
+	
+	display: flex;
+	align-items: center;
+}
+.store_t span{
+	width: 15%;
+	padding: .2rem;
+	background-color: #e60000;
+	color: white;
+	border-radius: 15px;
+	font-size: .9rem;
+	margin-left: 2%;
+	text-align: center;
+	
+	
+}
+.store_t img{
+	width: 10%;
+	vertical-align: middle;
+	margin-right: auto;
+}
+.store_b{
+	width: 90%;
+	height: 2rem;
+	margin: 0 auto;
+	margin-bottom: 2%;
+	display: flex;
+	justify-content: space-between;
+}
+.store_b span{
+	font-size: .9rem;
+}
+.cc{
+	color: red;
+}
+.detail{
+	text-align: center;
+	border-top: 1px solid #CCCCCC;
+}
+.detail span{
+	display: block;
+	color: #717171;
+	font-size: .9rem;
+	margin-top:2% ;
+}
+.detail img{
+	width: 50%;
+	margin-top: 5%;
+}
+/*底部*/
+footer{
+	width: 100%;
+	background-color: white;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+.footer_r{
+	width: 60%;
+	height: 4rem;
+	line-height: 4rem;
+	float: right;
+	margin-right: 9%;
+	padding-top: 3%;
+	flex: 4;
+	
+	/*border: 1px solid black;*/
+	
+}
+.footer_r span{
+	
+	display: inline-block;
+	width: 49%;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	font-size: 13px;
+	
+}
+.span_1{
+	background-color: #F05A01;
+	border-bottom-left-radius:20px ;
+	border-top-left-radius:20px ;
+	color: white;
+	text-align: center;
+	float: left;
+}
+.span_2{
+	background-color: #E60000;
+	border-bottom-right-radius:20px ;
+	border-top-right-radius:20px ;
+	color: white;
+	text-align: center;
+	float: left;
+}
+.footer_l{
+	width: 30%;
+	height: 1rem; 
+	margin-left: ;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	line-height: 1.2rem;
+	margin-top: 2%;
+	flex: 1;
+}
+.footer_2{
+	width: 30%;
+	height: 1rem; 
+	margin-left: ;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	line-height: 1.2rem;
+	margin-top: 2%;
+	flex: 1;
+}
+.span1{
+	width: 40%;
+	display: block;
+	
+	
+
+	/*height: 2.8rem;*/
+	/*height: 10rem;*/
+	/*height: 2.8rem;*/
+	/*height: 3rem;*/
+	text-align: center;
+}
+.span2{
+	font-size: 15px;
+}
+
+.span2-1{
+	width: 40%;
+	display: block;
+	
+	
+
+	/*height: 2.8rem;*/
+	/*height: 10rem;*/
+	/*height: 2.8rem;*/
+	/*height: 3rem;*/
+	text-align: center;
+}
+.span2-2{
+	font-size: 15px;
+}
+.footer_2 span img{
+	width: 15px;
+}
+.footer_l span img{
+	width: 15px;
+}
+.footer_b{
+	width: 30%;
+	display: flex;
+	justify-content: space-around;
+}
+.footer_b p{
+	text-align: center;
+	margin-top: .1rem;
+}
+P{
+		font-size: 1rem;
+		color: #0000000;
+	}
+/*iphone5*/	
+@media only screen and (min-width: 320px) and (max-width: 568px) {
+	.substance_2 span{
+		font-size: .9rem;
+		/*line-height: 0;*/
+		padding: 1px 15px;
+		
+	}
+	/*.font{
+		font-size: 15px;
+	}*/
+	.store_t{
+		height: 3rem;
+	}
+	.store_t span{
+		/*padding: .5rem 2rem;*/
+		width: 25%;
+		/*padding: .5rem .8rem;*/
+		font-size: .9rem;
+		padding: 0 .2rem;
+	}
+	.store_b{
+		margin-bottom: .2%;
+	}
+	.detail img{
+		margin-top: .5%;
+		width: 45%;
+	}
+	
+}
+/*iphone6*/
+@media only screen and (min-width: 375px) and (max-width: 667px) {
+	.detail img{
+	width: 60%;
+	margin-top: 8%;
+}
+}
+/*三星*/
+@media only screen and (min-width: 360px) and (max-width: 360px) {
+	.detail img{
+	width: 50%;
+	margin-top: 13%;
+}
+}
+/*iphone p*/
+@media only screen and (min-width: 414px) and (max-width: 736px) {
+	.detail img{
+	width: 70%;
+	margin-top: 11%;
+}
+	
+}
+/*iphone x*/
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+	/*.detail img{
+		width: 80%;
+	}*/
+}
+.show{
+	width: 100%;
+	height: 80%;
+	background:rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+#sh{
+	width: 100%;
+	height: 50%;
+	background-color: white;
+	position: fixed;
+	bottom: 8.9%;
+	border-top-left-radius:10px ;
+	border-top-right-radius:10px ;
+	z-index: 1000;
+	display: none;
+}
+.zz{
+	width: 90%;
+	height: 900%;
+	margin: 0 auto;
+	/*margin-top: 4%;*/
+	position: relative;
+	display: none;
+}
+.zz img{
+	width: 38%;
+	vertical-align: middle;
+	
+}
+.zero{
+	display: inline-block;
+	color: red;
+}
+.del{
+	width: 10%;
+	display: block;
+	position:absolute ;
+	top: .5%;
+	right: 0;
+	cursor: pointer;
+	
+}
+.del img{
+	width: 100%;
+}
+.scale{
+	width: 90%;
+	height: hidden;
+}
+.scale span{
+	display: inline-block;
+	background-color: #CCCCCC;
+	padding: .5rem .5rem;
+	margin-top: 1rem;
+	border-radius: 15px;
+	font-size: 1rem;
+}
+.ccc{
+	font-family: "微软雅黑";
+	font-size: 1.2rem;
+}

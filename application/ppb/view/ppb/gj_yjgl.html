@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+   
+    <title>问题反馈</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<script src="/ppb/js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/dingdan.css"/>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/dingdan.css"/>
+		<link rel="stylesheet" type="text/css" href="/ppb/fonts/iconfont.css"/>
+		<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--<link rel="stylesheet" type="text/css" href="css/gj_czgl.css"/>-->
+    <link rel="stylesheet" href="/ppb/static/css/swiper.min.css" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+        }
+        html{
+        	height: 100%;
+        }
+        .wrap {
+            margin: 0 auto;
+        }
+        
+        .tabs {
+            height: 32px;
+            width: 100%;
+            padding-top: 8px;
+            text-align: center
+        }
+        
+        .tabs .part {
+            display: block;
+            float: left;
+            width: 25%;
+            color: #ffbfc6;
+            text-align: center;
+            height: 20px;
+        }
+        
+        /*.left-boder {
+            border-right: 1px solid #ffbfc6;
+        }
+        */
+        .tabs a {
+            width: 70px;
+            height: 30px;
+            display: block;
+            color: black;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 15px;
+            text-decoration: none;
+            padding-bottom: 2px;
+        }
+        
+        .tabs span.active a {
+            color: #FD9D13;
+            border-bottom: 2px solid #FD9D13;
+            font-size: 15px;
+            
+        }
+        
+        .swiper-container {
+            width: 100%;
+            border-top: 0;
+            margin-top: 10px!important
+        }
+        
+        .swiper-slide {
+            width: 100%;
+            background: none;
+            color: #373737;
+        }
+        
+        p {
+            text-align: center;
+        }
+        .a{
+				
+				color: #91C9C0;
+				border-bottom:1px solid #91C9C0;
+			}
+			.total{
+				margin-top: 45px;
+				
+			}
+			.total-top{
+				height: 42px;
+				display: flex;
+				justify-content:space-around;
+				align-items: center;
+				font-size: 15px;
+				border-bottom: 1px solid gainsboro;
+			}
+			.total-top div{
+				
+				height: 100%;
+				line-height: 41px;
+			}
+			.list li{
+				height: 145px !important;
+			}
+			.left-img{
+				max-width: 105px !important;
+				width: 105px !important;
+				height: 110px !important;
+				border-radius: 7px !important;
+			}
+			.mui-table-view-cell>a:not(.mui-btn) {
+			    position: relative;
+			    display: block;
+			    overflow: hidden;
+			    margin: 0px -15px;
+			    padding: inherit;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    color: inherit;
+			}
+			.list-p{
+				margin-top: 12px !important;
+				/*overflow: hidden !important;
+  				text-overflow: ellipsis !important;
+  				display: -webkit-box !important;
+				-webkit-line-clamp: 2 !important;
+				-webkit-box-orient: vertical !important;*/
+			}
+			.button{
+				float: right;
+				margin-top: 27px;
+				background-color: #ffbfc6;
+				color: #fff;
+				border: 0px;
+				border-radius: 7px;
+			}
+			.qian{
+				float: left;
+				display: block;
+				margin-top: 33px;
+				color: red;
+				font-size: 15px;
+			}
+			.title{
+				font-size: 15px;
+			}
+			
+.caizhi{
+	width: 100%;
+	margin-top: 15px;
+}
+.caizhi li{
+	width: 100%;
+	height: 142px;
+	padding: 0 20px;
+	list-style: none;
+}
+.sc{
+	vertical-align: middle;
+	margin-right: 5px;
+	    float: left;
+    margin-top: 21px;
+}
+.sc1{
+	float: right;
+	display:none;
+	 margin-top: 21px;
+}
+.tjfl{
+	margin-top: 40%;
+	text-align: center;
+	
+}
+.tjfl img{
+	width: 70px;
+	height: 70px;
+}
+
+.swiper-slide-active,
+.swiper-wrapper { height:100%!important;}
+.yjnr{
+	width: 70%;
+	height: 70px;
+	margin-bottom: 5px!important;
+	font-size: 14px;
+	
+}
+.dixain{
+	width: 95%;
+	height: 1px;
+	
+	margin: 30px auto;
+	border-top: 1px solid #ccc;
+}
+    </style>
+
+</head>
+
+<body class="bgc_gray">
+ <header class="mui-bar mui-bar-nav" style="background-color: #FD9D13;">
+  <a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: #fff;"></a>
+  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+  <h1 class="mui-title" style="color: #fff;">意见管理</h1>
+  </header>
+<div class="start" style="margin-top: 50px;">
+    <div class="pg-main">
+
+        <div id="wrapper">
+            <!--header end-->
+            <div class="wrap">
+                <div class="tabs" style="border-bottom: 1px solid gray ;">
+                   <span class="part "><a href="#" hidefocus="true" style=" width: 112px;">意见反馈</a></span>
+                   
+                </div>
+
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-visible swiper-slide-active">
+                            <div class="content-slide">
+                                <!-- 1  -->
+                            		<ul class="caizhi">
+                            		</ul>
+								<div class="jiazai" style="width: 90%;margin: 0 auto;font-size: 14px;color: gray;text-align: center;">加载更多</div>
+                                <div></div>
+                            </div>
+                        </div>
+                
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     </div>
+
+    <script type="text/javascript" src="/ppb/static/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/ppb/static/js/idangerous.swiper.min.js"></script>
+    <script type="text/javascript">
+    	var page=1;
+    	var number;
+    	
+    	$.ajax({
+    		type:"get",
+    		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/getOpinion",
+    		dataType: 'JSON', //数据格式:JSON
+			data: {page:page},
+			success: function(data) {
+				var html="";
+				number=data.data.countPage;
+				for (var i=0;i<data.data.data.length;i++) {
+					html+=`
+						<li>
+	        				<img src="/ppb/img/shanchu.png" class="sc"/>
+	        				<textarea name="" rows="" cols="" readonly="readonly" class="yjnr">${data.data.data[i].msg_content}</textarea>
+	        				<img src="/ppb/img/sc1.png" class="sc1" shanchu="${data.data.data[i].msg_id}"/>
+	        				
+	        				<span style="float:left;width: 55%;display: inline-block; font-size: 14px;color: gray;">反馈人电话：${data.data.data[i].mobile}</span>
+	        				<span style="float:right;width: 45%;display: inline-block;font-size: 14px;color: gray;">时间：${data.data.data[i].msg_time}</span>
+	        				
+	        				<div class="dixain"></div>
+	        			</li>
+					`
+					$(".caizhi").html(html)
+				}
+			}
+    	});
+    		$('.jiazai').click(function(){
+      page++;
+       
+    if(page>number){
+      $('.jiazai').html('已无更多数据');
+    }else{
+$.ajax({
+    		type:"get",
+    		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/getOpinion",
+    		dataType: 'JSON', //数据格式:JSON
+			data: {page:page},
+			success: function(data) {
+				var html="";
+				for (var i=0;i<data.data.data.length;i++) {
+					html+=`
+						<li>
+	        				<img src="/ppb/img/shanchu.png" class="sc"/>
+	        				<textarea name="" rows="" cols="" readonly="readonly" class="yjnr">${data.data.data[i].msg_content}</textarea>
+	        				<img src="/ppb/img/sc1.png" class="sc1" shanchu="${data.data.data[i].msg_id}"/>
+	        				
+	        				<span style="float:left;width: 55%;display: inline-block; font-size: 14px;color: gray;">反馈人电话：${data.data.data[i].mobile}</span>
+	        				<span style="float:right;width: 45%;display: inline-block;font-size: 14px;color: gray;">时间：${data.data.data[i].msg_time}</span>
+	        				
+	        				<div class="dixain"></div>
+	        			</li>
+					`
+					$(".caizhi").append(html)
+				}
+			}
+    	});
+    }
+   
+    
+   })
+        $(function() {
+
+            var tabsSwiper;
+            tabsSwiper = new Swiper('.swiper-container', {
+                speed: 500,
+                onSlideChangeStart: function() {
+                    $(".tabs .active").removeClass('active');
+                    $(".tabs span").eq(tabsSwiper.activeIndex).addClass('active');
+                }
+            });
+
+            $(".tabs span").on('touchstart mousedown', function(e) {
+                e.preventDefault()
+                $(".tabs .active").removeClass('active');
+                $(this).addClass('active');
+                tabsSwiper.swipeTo($(this).index());
+
+            });
+
+            $(".tabs span").click(function(e) {
+                e.preventDefault();
+            });
+
+
+        }); //end
+        
+        
+       
+		$("body").on("click",".sc",function(){
+        	$(this).siblings(".sc1").toggle();
+        	
+        })
+    </script>
+
+</body>
+
+</html> 

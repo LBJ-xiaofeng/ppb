@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+</head>
+<body>
+<div style="width: 100%;height: 1955px; background: linear-gradient(lightgreen,orangered);">
+    <div align="center" style="width: 500px;height: 200px;border-radius: 50%;margin-left: 22%;"><img style="height: 200px" src="{$data['head_pic']}"></div>
+    <div style="height: 100px;line-height: 100px;text-align: center;">姓名：{$data['nickname']}</div>
+    <div style="height: 100px;line-height: 100px;text-align: center;">邮箱：{$data['email']}</div>
+    <div style="height: 100px;line-height: 100px;text-align: center;">手机号：{$data['mobile']}</div>
+    <div style="height: 100px;line-height: 100px;text-align: center;">性别：
+        <if condition="$data['sex'] eq 0">
+            保密
+            <elseif condition="$data['sex'] eq 1"/>  男
+            <elseif condition="$data['sex'] eq 2"/>  女
+        </if>
+    </div>
+    <div style="height: 100px;line-height: 100px;text-align: center;">账户余额：{$data['user_money']}&nbsp;&nbsp;&nbsp;&nbsp;积分值：{$data['pay_points']}</div>
+</div>
+</body>
+</html>

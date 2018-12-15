@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>查看订单</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.all{
+			padding: 10px 5%;
+		}
+		.all>p{
+			padding: 10px 0;
+			font-size: 17px;
+		}
+		.all>div>p{
+			padding: 4px 0;
+		}
+		.all>div{
+			color: #484848;
+		}
+		#st20
+        {
+            opacity:0;
+            filter:alpha(opacity=0);
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+        .paixue{
+        	    margin-top: 20px;
+        		margin-left: 10px;
+        	    height: 55px;
+        }
+        footer{
+        	position: absolute;
+        	bottom: 0;
+        	left: 0;
+        	width: 100%;
+        }
+        .one{   margin: 0;
+        		padding: 0;
+        	    background-color: #FD9D13;
+			    width: 100%;
+			    color: #fff;
+			    padding: 10px 0;
+			    border: none;
+			    font-size: 16px;
+        }
+         .two{
+                   margin: 0;
+                    margin-top: 78px;
+                    background-color: #FD9D13;
+                    width: 49%;
+                    color: #fff;
+                    padding: 10px 0;
+                    border: none;
+                    font-size: 15px;
+                    border-radius: 8px;
+                    margin-left: 25%;
+}
+	</style>
+</head>
+<body>
+<div class="all">
+	<p>订单信息</p>
+	<div>
+		<p><span>订单号：</span><span>12564</span></p>
+		<p><span>商品名称：</span><span>衣物保养</span></p>
+		<p><span>下单时间：</span><span>2017-12-12  5:00</span></p>
+	</div>
+</div>
+<ul class="paixue">
+
+                 <div class="yanzRight" style="position: relative;z-index: 99999;">
+                  <input style="margin-top:5px;float: left;" id="st20" name="head_pic" onchange="previewImage(this,5)" type="file" multiple="multiple"/>
+                  <img src="/ppb/image/xj.png" id="imghead5" class="imgg" style="width: 87px;height: 95px">
+                  
+                  <span class="dui" id="imgOrder_dui" style="display: none;"></span>
+                 </div>
+              <div id="preview5" style="clear:both;">
+                  <img src="" alt="" height="200" width="200" style="display:none;"/>
+              </div>
+             </ul>
+           <div class="all" style="margin-top: 50px;">
+    <div>
+        <p><span>已申请加钱：</span><span>¥500.00</span></p>
+        <p><span>申请说明：</span><span>撒大孙菲菲声地大</span></p>
+    </div>
+</div>
+            <footer>
+            	 <button class="one">完成工作</button>
+                
+            </footer>
+</body>
+<script type="text/javascript">
+  function previewImage(file,imgNum)
+    {
+        var MAXWIDTH  = 200;
+        var MAXHEIGHT = 200;
+        var div = document.getElementById('preview'+imgNum);
+        if (file.files && file.files[0])
+        {
+            div.innerHTML ='<img id=imghead'+imgNum+'>';
+            var img = document.getElementById('imghead'+imgNum+'');
+            img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+                //         img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = 0+'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function(evt){img.src = evt.target.result;}
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //
+        {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead'+imgNum+'>';
+            var img = document.getElementById('imghead2');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead"+imgNum+" style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+0+"px;"+sFilter+src+"\"'></div>";
+        }
+    }
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+        var param = {top : 0, left : 0, width : width, height : height};
+        if(width > maxWidth || height > maxHeight){
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+
+            if(rateWidth > rateHeight){
+                param.width = maxWidth;
+                param.height = Math.round(height / rateWidth);
+            } else {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+</script>
+</html>

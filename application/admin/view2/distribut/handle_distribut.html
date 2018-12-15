@@ -1,0 +1,158 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>分销管理 - 分销审核</h3>
+                <h5>网站系统分销管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="editForm" method="post">
+        <input type="hidden" name="user_id" value="{$user.user_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label>用户id</label>
+                </dt>
+                <dd class="opt">
+                    <a class="open" href="{:U('Admin/user/detail',array('id'=>$user[user_id]))}" target="blank">
+                        {$user.user_id}<i class="fa fa-external-link " title="新窗口打开"></i>
+                    </a>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>用户名</label>
+                </dt>
+                <dd class="opt">{$user.nickname}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>用户账号</label>
+                </dt>
+                <dd class="opt">{$user.mobile}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>用户邮箱</label>
+                </dt>
+                <dd class="opt">{$user.email}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>申请时间</label>
+                </dt>
+                <dd class="opt">{$user.distribut_time|date="Y-m-d H:i",###}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>第几级代理</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$user[first_leader] eq 1">
+                        一级代理
+                    </if>
+                    <if condition="$user[first_leader] eq 2">
+                        二级代理
+                    </if>
+                    <if condition="$user[first_leader] eq 3">
+                        三级代理
+                    </if>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>状态</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$user[is_distribut] eq 1">申请中</if>
+                    <if condition="$user[is_distribut] eq 2">申请成功</if>
+                    <if condition="$user[is_distribut] eq 3">申请失败</if>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>申请流程</label>
+                </dt>
+                <dd class="opt">
+                    1:用户前台申请成为几级代理<br/>
+                    2:管理员审核是否同意 <br/>
+                    3:审核完成后系统自动发送邮件到客户邮箱进行通知<br/>
+                </dd>
+            </dl>
+            <div class="bot">
+                    <a href="JavaScript:void(0);" name="{$user.nickname}" email="{$user.email}" data-id="{$user.user_id}" data-status="2" onclick="confirm_withdrawals(this);" class="ncap-btn-big ncap-btn-green">审核通过</a>
+
+                    <a href="JavaScript:void(0);" name="{$user.nickname}" email="{$user.email}" data-id="{$user.user_id}" data-status="3" onclick="cancel_withdrawals(this);" class="ncap-btn-big ncap-btn-green">审核拒绝</a>
+
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    // 确定提现
+    function confirm_withdrawals(e)
+    {
+        layer.confirm('您确定同意{$user.nickname}通过审核！', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+           var uid=$(e).attr('data-id');
+           var status=$(e).attr('data-status');
+           var name=$(e).attr('name');
+           var email=$(e).attr('email');
+                    $.ajax({
+                        type : "POST",
+                        url:"{:U('Admin/Distribut/handle_distribut')}",
+                        data : {uid:uid,type:status,name:name,email:email},
+                        dataType: "json",
+                        success: function(data){
+                            if(data.status == 1){
+                                layer.alert(data.msg, {icon: 1});
+                                location.reload();
+                            }else{
+                                layer.alert(data.msg, {icon: 2});
+                            }
+                        }
+                    });
+                }, function (index) {
+                    layer.close(index);
+                }
+        );
+    }
+    // 拒绝提现
+    function cancel_withdrawals(e) {
+        layer.confirm('确定要拒绝用户{$user.nickname}吗?', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+            var uid=$(e).attr('data-id');
+            var status=$(e).attr('data-status');
+            var name=$(e).attr('name');
+            var email=$(e).attr('email');
+                    $.ajax({
+                        type : "POST",
+                        url:"{:U('Admin/Distribut/handle_distribut')}",
+                        data : {uid:uid,type:status,name:name,email:email},
+                        dataType: "json",
+                        success: function(data){
+                            if(data.status == 1){
+                                layer.alert(data.msg, {icon: 1});
+                                location.reload();
+                            }else{
+                                layer.alert(data.msg, {icon: 2});
+                            }
+                        }
+                    });
+                }, function (index) {
+                    layer.close(index);
+                }
+        );
+
+    }
+</script>
+</body>
+</html>

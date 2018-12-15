@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>自己寄出</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<script src="/ppb/js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/zjjc.css"/>
+		<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title" >自己寄出</h1>
+	  </header>
+		<div class="start" >
+			<div>
+				<div class="biaoti-top">皮皮班地址</div>
+				<div class="bandizhi">
+					<p class="sjxx">李四      12151531</p>
+					<p class="sjdz">北京市被禁北欧晶石</p>
+				</div>
+				
+			</div>
+			<div>
+				<div class="biaoti-top">送回地址</div>
+				<a href="{:U('ppb/ppb/xuianzedizhi')}"><div class="bandizhi">
+					<p class="xedz xedz1"></p>
+					<p class="xedz xedz2"></p>
+					<div class="xuaneright"><img src="/ppb/img/xuanze.png"style="width: 10px;height: 15px;" /></div>
+					
+				</div></a>
+				
+				
+			</div>
+			<div style="margin-bottom: 45px;">
+				<div class="biaoti-top">快递信息</div>
+				<div class="bandizhi">
+					<input type="text"   placeholder="快递公司名称" class="shuruinput kdgs"/>
+					<input type="text" placeholder="快递单号" class="shuruinput kddh"/>
+				</div>
+				
+			</div>
+			<div class="qdbut">确定</div>
+		</div>
+		
+	</body>
+<script type="text/javascript">
+	
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/index/selfMail",
+		dataType: 'JSON', //数据格式:JSON
+		data: {},
+		success: function(data) {
+			$(".sjxx").html(`${data.data.shop_name}   ${data.data.shop_mobile}`)
+			$(".sjdz").html(data.data.shop_address)
+		}
+	});
+	
+	
+	var winHeight = $(window).height();   //获取当前页面高度
+$(window).resize(function(){
+   var thisHeight=$(this).height();
+    if(winHeight - thisHeight >50){
+         //当软键盘弹出，在这里面操作
+    $(".qdbut").css("position","static")
+    }else{
+        //当软键盘收起，在此处操作
+   $(".qdbut").css("position","absolute")
+    }
+});
+	var name=localStorage.getItem('name');
+	var mobile=localStorage.getItem('mobile');
+	var province= localStorage.getItem('province');
+	var city= localStorage.getItem('city');
+	var twon= localStorage.getItem('twon');
+	var address= localStorage.getItem('address');
+		$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/user/address_list', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {user_id:localStorage.getItem('user_id')},
+		success: function(data) {
+		var html="";
+       console.log(data);
+
+       if(data.msg=='暂无收货地址'){
+        $(".xedz2").html("去添加收货地址");
+       }else{
+        	if(name&&mobile&&mobile&&province&&city&&twon&&address) {
+        		$(".xedz1").html(`
+    		${name} &#12288;${mobile}
+    	`)
+    	$(".xedz2").html(`
+    		${province} ${city} ${twon} ${address}
+    	`)
+        	} else{
+        		$(".xedz1").html(`
+    		${data.data[0].consignee}&#12288; ${data.data[0].mobile}
+    	`)
+    	$(".xedz2").html(`
+    		${data.data[0].province}${data.data[0].city}${data.data[0].twon}${data.data[0].address}
+    	`)
+        	}
+       	
+       	
+    	
+       
+       }
+		}
+	})
+		
+	$("body").on("click",".qdbut",function(){
+		var code=$(".kdgs").val();
+		var name=$(".kddh").val();
+		$.ajax({
+			type:"get",
+			url:"http://ppb.dhxdrawing.top/index.php/ppb/Index/selfSubmit",
+			dataType: 'JSON', //数据格式:JSON
+			data: {order_id:localStorage.getItem('order_id'),code:code,name:name},
+			success: function(data) {
+				if (data.status==0) {
+					alert(data.msg);
+				} else{
+					
+					alert(data.msg);
+					location.href="{:U('ppb/ppb/index')}";
+					
+				}
+			}
+		});
+	})
+</script>
+</html>

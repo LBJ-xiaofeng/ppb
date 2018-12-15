@@ -1,0 +1,486 @@
+.toubu{
+	width: 100%;
+	text-align: center;
+	height: 1rem;
+	background-color: #5edb65;
+	line-height: 1rem;
+	color: #fff;
+	font-size: 0.32rem;
+}
+.fb_shangpin{
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+}
+.fb_shangpin p{
+	line-height: 1rem;
+	font-size: 0.3rem;
+	width: 100%;
+	height: 1rem;
+	border-bottom: 0.02rem solid #dfdfdf;
+}
+.fb_shangpin p span{
+	border-left: 0.1rem solid #42C44A;
+	padding-left: 0.1rem;
+}
+.fb_shangpin p:nth-child(2){
+	background: url(../img/ic_backs_xhdpi.png)right no-repeat;
+	background-size: 0.3rem;
+}
+.fb_shangpin p:nth-child(6){
+	background: url(../img/ic_backs_xhdpi.png)right no-repeat;
+	background-size: 0.3rem;
+}
+.fb_shangpin p .text{
+	outline: none;
+	height: 0.8rem;
+	/*color: #999999;*/
+	margin-left: 0.4rem;
+	border: 0rem solid ;
+}
+.fb_shangpin p .anniu{
+	background-color: #fff;
+	border: 0.02rem solid #c9c9c9;
+	width: 30px;
+	margin-left: 0.4rem;
+}
+.danwei input.cur{
+	color: #fff;
+	background: url(../img/bg_j_xhdpi.png)no-repeat;
+	border: 0 solid #fff;
+}
+.fb_shangpin .danwei{
+	padding-left: 3%;
+	width: 97%;
+	background: url(../img/bj_b_xhdp1i.png)left no-repeat;
+	background-size: 0.13rem;	
+}
+.fb_shangpin .zhuangtai{
+	padding-left: 3%;
+	width: 97%;
+	background: url(../img/bj_b_xhdp1i.png)left no-repeat;
+	background-size: 0.13rem;
+}
+.zhuangtai input.cur{
+	color: #fff;
+	background: url(../img/bg_j_xhdpi.png)no-repeat;
+	border: 0 solid #fff;
+}
+.fb_shangchuan{
+	margin-top: 0.6rem;
+	width: 100%;
+	text-align: center;
+}
+.fb_shangchuan img{
+	height: 0.9rem;
+}
+.fb_shangchuan p{
+	font-size: 0.25rem;
+}
+
+.fb_fabu{
+	margin-top:30px;
+	width: 100%;
+	text-align: center;
+} 
+.fb_fabu input{
+	width: 6rem;
+	height: 0.8rem;
+	background-color: #FD9D13;
+	border-radius: 0.54rem;
+}
+.jiantou{
+	padding-left: 0.3rem;
+	position: absolute;
+	top: 0.3rem;
+}
+.jiantou img{
+	height: 0.4rem;
+	
+}
+/*弹出层1*/
+
+.tianjiatanchuang{
+	position: fixed;
+	top: 0;
+
+     left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao .quxiao{
+	color: #9a9a9a;
+}
+/*弹出层2*/
+
+.tianjiatanchuang2{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao2{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao2 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao2 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao2 .quxiao{
+	color: #9a9a9a;
+}
+/*弹出层3*/
+
+.tianjiatanchuang3{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao3{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao3 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao3 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao3 .quxiao{
+	color: #9a9a9a;
+}
+
+/*弹出层4*/
+.tianjiatanchuang4{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao4{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao4 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao4 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao4 .quxiao{
+	color: #9a9a9a;
+}
+
+/*弹出层5*/
+
+.tianjiatanchuang5{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao5{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao5 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao5 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao5 .quxiao{
+	color: #9a9a9a;
+}
+
+/*弹出层6*/
+
+.tianjiatanchuang6{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao6{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao6 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao6 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao6 .quxiao{
+	color: #9a9a9a;
+}
+/*弹出层7*/
+
+.tianjiatanchuang7{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao7{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao7 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao7 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao7 .quxiao{
+	color: #9a9a9a;
+}
+/*弹出层8*/
+
+.tianjiatanchuang8{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	display: none;
+}
+.libiao8{
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 2.4rem;
+}
+.libiao8 p{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem
+}
+.libiao8 .tuku a{
+	text-decoration: none;
+	color: black;
+}
+.libiao8 .quxiao{
+	color: #9a9a9a;
+}
+/*---------------------------------------------------------------------*/
+.fb_shangchuantu{
+	height: 1.6rem;
+	margin-top: 0.2rem;
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+}
+.fb_shangchuantu div{
+	margin-left: 0.1rem;
+	float: left;
+}
+.fb_shangchuantu .fb_tupian img{
+	height: 1.4rem;
+}
+.fb_shangchuantu .fb_tupian{
+	text-align: center;
+	width: 2rem;
+	height: 1.4rem;
+}
+.fb_shangchuantu .fb_tupian .shashu{
+	width: 2rem;
+	text-align: center;
+	height: 1.4rem;
+}
+.fb_shangchuantu .fb_dianji img{
+	margin-top: 0.25rem;
+	width: 1.4rem;
+}
+.fb_shangchuantu .fb_tupian p{
+	line-height: 0.25rem;
+	height: 0.2rem;
+	position: relative;
+	top: 0;right: -2px;
+}
+.fb_shangchuantu .fb_tupian p img{
+	height: 0.25rem;
+	width: 0.25rem;
+	
+}
+
+/*上传图片*/
+.shangchuan {
+	margin-right: 20px;
+}
+.qingjia-img{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap:wrap;
+	margin-top: 30px;
+}
+.shangchuan{
+	position: relative;
+	margin-top: 15px;
+}
+#pew2{
+	visibility:hidden;
+	position: relative;
+}
+#pew3{
+	visibility:hidden;
+	position: relative;
+}
+#pew4{
+	visibility:hidden;
+	position: relative;
+}
+#pew5{
+	visibility:hidden;
+	position: relative;
+}
+#pew6{
+	visibility:hidden;
+	position: relative;
+}
+#pew7{
+	visibility:hidden;
+	position: relative;
+}
+#pew8{
+	visibility:hidden;
+	position: relative;
+}
+.shangchuan img{
+	width: 60px;
+	height: 60px;
+}
+  .st20{
+  	
+   opacity: 0;
+    filter: alpha(opacity=0);
+    height: 33px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+     }
+     .delt{
+     	width: 15px!important;
+     	height: 15px!important;
+     	position: absolute;
+     	top: -3px;
+     	right: -3px;
+     	z-index: 9999999;
+     }
+.tjtx{
+	width: 100%;
+	    height: 40px;
+	padding: 0 12%;
+	margin-top: 30%;
+}
+.tjtx button{
+	border: 0;
+	border-radius: 30px;
+	width: 100%;
+	height: 37px;
+	color: #fff;
+	background-color: #42C44A;
+}

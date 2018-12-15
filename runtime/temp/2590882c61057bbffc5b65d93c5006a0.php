@@ -1,0 +1,635 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\phpstudy\WWW\ppb/application/ppb\view\ppb\gj_jdgl.html";i:1541412226;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>进度管理</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<link rel="stylesheet" href="/ppb/pictureViewer.css">
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		body,html{
+			height:100%;
+		}
+		
+		.all{
+			padding: 10px 5%;
+		}
+		.all>p{
+			padding: 10px 0;
+			font-size: 17px;
+		}
+		.all>div>p{
+			padding: 4px 0;
+		}
+		.all>div{
+			color: #484848;
+		}
+		#st20
+        {
+            opacity:0;
+            filter:alpha(opacity=0);
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+        .paixue{
+        	    margin-top: 20px;
+        		margin-left: 10px;
+        	    height: 55px;
+        }
+        footer{
+        	position: fixed;
+        	bottom: 0;
+        	left: 0;
+        	width: 100%;
+
+        }
+        .one{   margin: 0;
+        		padding: 0;
+        	    background-color: #F10D0E;
+			    width: 49%;
+			    color: #fff;
+			    padding: 10px 0;
+			    border: none;
+			    font-size: 16px;
+        }
+        .two{
+        		margin: 0;
+        		padding: 0;
+        	    background-color: #FD9D13;
+			    width: 49%;
+			    color: #fff;
+			    padding: 10px 0;
+			    border: none;
+			    font-size: 16px;
+        }
+        .scewm{
+        	    border-radius: 8px;
+        }
+        .zzc{
+        	width: 100%;
+        	height: 100%;
+        	z-index: 99999;
+        	
+        	display: none;
+        }
+        .tcc{
+        	width: 50%;
+        	margin: 5% auto;
+        	z-index: 999999999;
+        	
+        }
+        .tcc img{
+        	width: 100%;
+        	height: 100%;
+        }
+        .dingdan-list-middle1 img{
+	width: 63px;
+	height: 63px;
+	border-radius: 5px;
+}
+.dingdan-list-middle2{
+	margin-left: 7px;
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+
+	flex-direction: column;
+	text-align: left;
+}
+.middle2-1{
+	font-size: 15px;
+	width: 150px;
+}
+.middle2-2{
+	font-size: 12px;
+	color: #FF6E17;
+	width: 150px;
+}
+
+.dingdan-list-middle3{
+	flex: 2;
+	text-align: right;
+	width: 100px;
+	color: #FF6E17;
+	font-size: 15px;
+	
+}
+.jinnongchang{
+	
+	flex: 2;
+	text-align: right;
+	width: 100px;
+	
+	font-size: 15px;
+}
+/*.qingjia-center{
+	width: 100%;
+	height: 200px;
+}*/
+.qingjia-img{
+	margin-top: 12%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.shangchuan img{
+	width: 60px;
+	height: 60px;
+}
+.shangchuan{
+	
+	position: relative;
+}
+.shangchuan1 img{
+	width: 60px;
+	height: 60px;
+}
+.shangchuan1{
+	
+	position: relative;
+}
+
+#yincang2{
+		visibility:hidden;
+}
+#yincang3{
+	visibility:hidden;
+}
+#yincang4{
+	visibility:hidden;
+}
+#yincang5{
+	visibility:hidden;
+}
+
+  .st20{
+  	
+   opacity: 0;
+    filter: alpha(opacity=0);
+    height: 60px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+     }
+     .delt{
+     	width: 15px!important;
+     	height: 15px!important;
+     	position: absolute;
+     	top: -3px;
+     	right: -3px;
+     }
+.tjtx{
+	width: 100%;
+	    height: 40px;
+	padding: 0 12%;
+	margin-top: 30%;
+}
+.tjtx button{
+	border: 0;
+	border-radius: 30px;
+	width: 100%;
+	height: 37px;
+	color: #fff;
+	background-color: #42C44A;
+}
+.zhanshi{
+	margin-top: 5%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+.zsimg{
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+	border-radius:5px ;
+}
+.zsimg img{
+	width: 100%;
+	height: 100%;
+}
+.two{
+                   
+                    margin-top: 60px;
+                    background-color: #FD9D13;
+                    width: 100%;
+                    color: #fff;
+                    padding: 10px 0;
+                    border: 0;
+                    font-size: 15px;
+                    /*border-radius: 8px;*/
+                  
+                   
+}
+
+
+
+	</style>
+</head>
+<body>
+<div class="all">
+	<p>订单信息:</p>
+	<div>
+		<p><span>订单号：</span><span class="ddh"></span></p>
+		<!-- <p><span>商品名称：</span><span class="spmc"></span></p> -->
+		<p><span>订单物品：</span><span class="ddwp"></span></p>
+		<p><span>下单时间：</span><span class="xdsj"></span></p>
+		<p><span>支付时间：</span><span class="zfsj"></span></p>
+		<p><span>订单状态：</span><span class="ddzt" style="color: orange;"></span></p>
+		<p class="bhly"></p>
+	</div>
+</div>
+<p style="padding: 0 5%;">物品图片:</p>
+<div class="zhanshi">
+	
+</div>
+	<form action="http://ppb.dhxdrawing.top/index.php/ppb/admin/editOrder" method="post" enctype="multipart/form-data" id="formLogin" onsubmit="return false" />
+			<div class="qingjia-img">
+			
+        <!--1-->    
+			<div class="shangchuan " style="position: relative;z-index: 99999;" >
+				<input style="margin-top:5px;float: left;" class="st20"  name="comment_img[0]" onchange="previewImage(this,1)" type="file" multiple="multiple" />
+				<img src="/ppb/img/qinglun.png" id="imghead1"/>
+				 
+			</div>
+			<div id="preview1" style="clear:both;display:none;">
+                <img style="display: none;" />
+            </div>
+		<!--2-->
+			<div class="shangchuan " id="yincang2" style="position: relative;z-index: 99999;" >
+				<input style="margin-top:5px;float: left;" class="st20"  name="comment_img[1]" onchange="previewImage(this,2)" type="file" multiple="multiple" />
+				<img src="/ppb/img/qinglun.png" id="imghead2"/>
+				 
+			</div>
+			<div id="preview2" style="clear:both;display:none;">
+                <img style="display: none;" />
+            </div>
+		<!--3-->
+			<div class="shangchuan" id="yincang3" style="position: relative;z-index: 99999;" >
+				<input style="margin-top:5px;float: left;" class="st20"  name="comment_img[2]" onchange="previewImage(this,3)" type="file" multiple="multiple" />
+				<img src="/ppb/img/qinglun.png" id="imghead3"/>
+				 
+			</div>
+			<div id="preview3" style="clear:both;display:none;">
+                <img style="display: none;" />
+            </div>
+        <!--4-->
+            <div class="shangchuan"id="yincang4" style="position: relative;z-index: 99999;" >
+				<input style="margin-top:5px;float: left;" class="st20" name="comment_img[3]" onchange="previewImage(this,4)" type="file" multiple="multiple" />
+				<img src="/ppb/img/qinglun.png" id="imghead4"/>
+				 
+			</div>
+			<div id="preview4" style="clear:both;display:none;">
+                <img style="display: none;" />
+            </div>
+        <!--5-->
+            <div class="shangchuan"id="yincang5"  style="position: relative;z-index: 99999;" >
+				<input style="margin-top:5px;float: left;" class="st20" name="comment_img[4]" onchange="previewImage(this,5)" type="file" multiple="multiple" />
+				<img src="/ppb/img/qinglun.png" id="imghead5"/>
+				 
+			</div>
+			<div id="preview5" style="clear:both;display:none;">
+                <img style="display: none;" />
+            </div>
+		</div>
+             <div class="zzc">
+             	<div class="tcc"><img src="/ppb/image/geren (3).jpg"/></div>
+             </div>
+           
+           	<div class="all">
+		<p>价格信息</p>
+		<div class="price"></div>
+		<p>添加价格</p>
+		<div>
+		<input type="text" placeholder="加价理由" class="tianjialy" style="width: 35%;"></input>
+		<input type="text" placeholder="添加金额" class="tianjiajg" style="width: 35%;"></input>
+		<input type="button" value="确定" class="quedtj" style="width: 20%;"></input>
+		</div>
+		
+</div>
+<div class="all" style="margin-bottom: 55px;">
+<p>进程信息</p>
+		<div class="jincheng1"></div>
+		<div class="jincheng2"></div>
+		<div class="jincheng3"></div>
+		<div class="jincheng4"></div>
+		<div class="jincheng5"></div>
+		<div class="jincheng6"></div>
+
+</div>
+</div>
+          <!--   <div class="jiage"></div> -->
+            <footer class="footer">
+            	 
+            </footer>
+			
+            <input  class="order_id" name="order_id" hidden="hidden"/>
+            </form>
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ppb/js/formDate.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ppb/jquery.mousewheel.min.js"></script>
+ <script src="/ppb/pictureViewer.js"></script>
+<script type="text/javascript">
+	//点击添加价格
+
+$("body").on("click",".quedtj",function(){
+		var msg=$(".tianjialy").val();
+		var price=$(".tianjiajg").val();
+		if (msg!=="" || price!=="") {
+			$.ajax({
+				type:"get",
+				url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/submitimgorprice",
+				dataType: 'JSON', //数据格式:JSON
+				data: {
+					admin_id:localStorage.getItem('admin_id'),
+					msg:msg,
+					price:price,
+					order_id:localStorage.getItem('ddxqid')
+				},
+				success: function(data) {
+					if (data.status==1) {
+						alert("操作成功");
+						location.reload();
+					}else{
+						alert("网络错误");
+					}
+				}
+			})
+		}else{
+			alert("请填写完整");
+		}
+
+
+})
+
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/editOrder",
+		dataType: 'JSON', //数据格式:JSON
+		data: {order_id:localStorage.getItem('ddxqid')},
+		success: function(data) {
+			price="";
+			html="";
+			html2="";
+			html3="";
+			$(".ddh").html(data.data.order.order_sn+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">￥'+data.data.order.goods_price+'</span>');
+			// $(".spmc").html(data.data.order.parent_name);
+			$(".ddwp").html(data.data.order.mobile_name+'-'+data.data.order.attr_name+'-'+data.data.order.brand_name);
+			$(".xdsj").html(data.data.order.add_time);
+			$(".zfsj").html(data.data.order.pay_time);
+			$(".ddzt").html(data.data.order.order_status+'....'+data.data.order.checkstatus);
+			if(data.data.order.checkmsg !== " "){
+			$(".bhly").html('<span>查核意见：</span>'+data.data.order.checkmsg+'<span>('+data.data.order.checktime+')</span>');
+			}
+			$(".order_id").val(localStorage.getItem('ddxqid'));
+			$(".qrjgan").attr("djqrjg",localStorage.getItem('ddxqid'))
+			if (data.data.money.length==0) {
+				$(".price").html('暂无信息');
+				$(".price").css("text-align","left");
+				$(".price").css("width","100%");
+			} else{
+				
+			
+			for (var i=0;i<data.data.money.length;i++) {
+				price+=`
+				<div>
+						<p>&emsp;${data.data.money[i].title} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;￥${data.data.money[i].money}</p>
+							
+						</div>
+								
+				`
+				$(".price").html(price);
+			
+			}
+		}
+		if(data.data.order.first_end_time>0 || data.data.order.first_end_time !=0){
+			$('.jincheng1').html(`<span>${data.data.order.first_start_time}--${data.data.order.first_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.first_content}</span>`);
+		}else{
+			$('.jincheng1').html(`<span style="margin-left:5px;color:#ccc;">暂无进程...</span>`);
+		}
+		if(data.data.order.seacond_end_time>0 || data.data.order.seacond_end_time !=0){
+			$('.jincheng2').html(`<span>${data.data.order.seacond_start_time}--${data.data.order.seacond_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.seacond_content}</span>`);
+		}
+		if(data.data.order.third_end_time>0 || data.data.order.third_end_time !=0){
+			$('.jincheng3').html(`<span>${data.data.order.third_start_time}--${data.data.order.third_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.third_content}</span>`);
+		}
+		if(data.data.order.four_end_time>0 || data.data.order.four_end_time !=0){
+			$('.jincheng4').html(`<span>${data.data.order.four_start_time}--${data.data.order.four_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.four_content}</span>`);
+		}
+		if(data.data.order.five_end_time>0 || data.data.order.five_end_time !=0){
+			$('.jincheng5').html(`<span>${data.data.order.five_start_time}--${data.data.order.five_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.five_content}</span>`);
+		}
+		if(data.data.order.six_end_time>0 || data.data.order.six_start_time >0 ){
+			$('.jincheng6').html(`<span>${data.data.order.six_start_time}--${data.data.order.six_end_time}</span>&emsp;&emsp;&emsp;&emsp;<span>${data.data.order.six_content}</span>`);
+		}
+		if (data.data.order.transaction_id.length==0 ||data.data.order.transaction_id.length==undefined) {
+			$(".zhanshi").html("暂无图片");
+			$(".zhanshi").css("text-align","center");
+		} else{
+			for(var i=0;i<data.data.order.transaction_id.length;i++){
+
+				html+=`
+					<div class="zsimg"><img src="${data.data.order.transaction_id[i]}"/></div>		
+				`
+				$(".zhanshi").html(html);
+			}
+		}	
+		//判断是否开始工作
+		// if (data.data.order.first_start_time==0) {
+		// 	$(".qrjg").css("display","none");
+		// 	html2+=`
+  //               <button class="two queren">开始工作</button>
+		// 	`
+		// 	$(".footer").html(html2);
+		// } else if(data.data.order.wc_status !=1){
+		// 	$(".qrjg").css("display","block");
+		// 	html2+=`
+  //               <button class="two wcgz" data="${data.data.order.goods_price}">完成工作</button>
+		// 	`
+		// 	$(".footer").html(html2);
+		// }
+		
+		//判断是否确定价格
+			if (data.data.order.goods_price=="0.00") {
+			html3+=`
+					   <div class="qrjg" style="text-align: center;"><button class="two qrjgan" >确认价格</button></div>		
+			`
+			$(".jiage").html(html3);
+		} else{
+			jiage=data.data.order.goods_price;
+			html3+=`
+					 <div class="all" style="margin-bottom:40px;">
+					    <div>
+					        <p><span>确认价格：</span><span>¥${data.data.order.goods_price}</span></p>
+					       
+					          <p><span style="vertical-align: top">价格说明：</span><textarea readonly style="width: 65%;height: 60px;padding: 10px">${data.data.order.admin_note}</textarea></p>
+					    </div>
+					</div>			
+			`
+			$(".jiage").html(html3);
+		}
+		
+		}
+		
+	});
+	
+	$("body").on("click",".qrjgan",function(){
+		 localStorage.setItem('djqrjg',$(this).attr('djqrjg'));
+		location.href="<?php echo U('ppb/ppb/gj_jdgl3'); ?>"
+	})
+	
+	//点击完成工作
+			$("body").on("click",".wcgz",function(){
+			var jiage=$(this).attr('data')
+		if (jiage=="0.00") {
+			alert("请填写价格");
+		} else{
+			
+		
+		$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/startWork",
+		dataType: 'JSON', //数据格式:JSON
+		data: {oid:localStorage.getItem('ddxqid')},
+		success: function(data) {
+			if (data.status==0) {
+				alert(data.msg);
+			} else{
+				alert(data.msg);
+				location.href="<?php echo U('ppb/ppb/gj_jdgllist'); ?>";
+			}
+		}
+	});
+	}
+	})
+	
+		$("body").on("click",".scewm",function(){
+		
+		$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/makecode",
+		dataType: 'JSON', //数据格式:JSON
+		data: {oid:localStorage.getItem('ddxqid')},
+		success: function(data) {
+			if (data.status==0) {
+				alert(data.msg);
+			} else{
+				// alert(data.msg);
+				$(".tcc img").attr('src',data.data);
+				$(".zzc").css("display","block");
+			}
+		}
+	});
+	})
+
+	
+	// $("body").on("click",".scewm",function(){
+		
+	// 	$.ajax({
+	// 	type:"get",
+	// 	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/makecode",
+	// 	dataType: 'JSON', //数据格式:JSON
+	// 	data: {oid:localStorage.getItem('ddxqid')},
+	// 	success: function(data) {
+	// 		if (data.status==0) {
+	// 			alert(data.msg);
+	// 		} else{
+	// 			// alert(data.msg);
+	// 			$(".tcc img").attr('src',data.data);
+	// 			$(".zzc").css("display","block");
+	// 		}
+	// 	}
+	// });
+	// })
+	
+    	var b=1;
+    	function previewImage(file,imgNum)
+    {
+      b=2;
+
+        var MAXWIDTH  = 200;
+        var MAXHEIGHT = 200;
+        var div = document.getElementById('preview'+imgNum);
+        var div2= document.getElementById('yincang'+(imgNum+1));
+        if (file.files && file.files[0])
+        {
+            div.innerHTML ='<img id=imghead'+imgNum+'>';
+            var img = document.getElementById('imghead'+imgNum+'');
+            img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+
+                //         img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = 0+'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function(evt){
+            	img.src = evt.target.result;
+            	console.log(evt)
+            }
+            reader.readAsDataURL(file.files[0]);
+            div2.style.visibility ='visible';
+        }
+        else //
+        {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead'+imgNum+'>';
+            var img = document.getElementById('imghead2');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead"+imgNum+" style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+        }
+    }
+        
+        
+       $("body").on("click",".queren",function(){
+	
+          	
+          	 $("#formLogin").submit();
+          	 $("#formLogin").ajaxForm(function(data){
+               if(JSON.parse(data).status=="1"){
+             alert("提交成功");
+				window.history.back();location.reload();
+
+             } else{
+
+                alert("网络错误或者请上传图片");
+             }
+            
+       });
+    	})
+
+		$('.zhanshi').on('click', '.zsimg', function () {
+        var this_ = $(this);
+        var images = this_.parents('.zhanshi').find('.zsimg');
+        var imagesArr = new Array();
+        $.each(images, function (i, image) {
+            imagesArr.push($(image).children('img').attr('src'));
+        });
+        $.pictureViewer({
+            images: imagesArr, //需要查看的图片，数据类型为数组
+            initImageIndex: this_.index() + 1, //初始查看第几张图片，默认1
+            scrollSwitch: true //是否使用鼠标滚轮切换图片，默认false
+        });
+    });
+	
+</script>
+</html>

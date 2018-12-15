@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+   
+    <title>分类管理</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<script src="/ppb/js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/dingdan.css"/>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/dingdan.css"/>
+		<link rel="stylesheet" type="text/css" href="/ppb/fonts/iconfont.css"/>
+		<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/gj_czgl.css"/>
+    <link rel="stylesheet" href="/ppb/static/css/swiper.min.css" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+        }
+         html{
+        	height: 100%;
+        }
+        .swiper-slide-active,
+		.swiper-wrapper { height:100%!important;}
+        .wrap {
+            margin: 0 auto;
+        }
+        
+        .tabs {
+            height: 32px;
+            width: 100%;
+            padding-top: 8px;
+            text-align: center
+        }
+        
+        .tabs .part {
+            display: block;
+            float: left;
+            width: 25%;
+            color: #ffbfc6;
+            text-align: center;
+            height: 20px;
+        }
+        
+        /*.left-boder {
+            border-right: 1px solid #ffbfc6;
+        }
+        */
+        .tabs a {
+            width: 70px;
+            height: 30px;
+            display: block;
+            color: black;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 15px;
+            text-decoration: none;
+            padding-bottom: 2px;
+        }
+        
+        .tabs span.active a {
+            color: #FD9D13;
+            border-bottom: 2px solid #FD9D13;
+            font-size: 15px;
+            
+        }
+        
+        .swiper-container {
+            width: 100%;
+            border-top: 0;
+            margin-top: 10px!important
+        }
+        
+        .swiper-slide {
+            width: 100%;
+            background: none;
+            color: #373737;
+        }
+        
+        p {
+            text-align: center;
+        }
+        .a{
+				
+				color: #91C9C0;
+				border-bottom:1px solid #91C9C0;
+			}
+			.total{
+				margin-top: 45px;
+				
+			}
+			.total-top{
+				height: 42px;
+				display: flex;
+				justify-content:space-around;
+				align-items: center;
+				font-size: 15px;
+				border-bottom: 1px solid gainsboro;
+			}
+			.total-top div{
+				
+				height: 100%;
+				line-height: 41px;
+			}
+			.list li{
+				height: 145px !important;
+			}
+			.left-img{
+				max-width: 105px !important;
+				width: 105px !important;
+				height: 110px !important;
+				border-radius: 7px !important;
+			}
+			.mui-table-view-cell>a:not(.mui-btn) {
+			    position: relative;
+			    display: block;
+			    overflow: hidden;
+			    margin: 0px -15px;
+			    padding: inherit;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    color: inherit;
+			}
+			.list-p{
+				margin-top: 12px !important;
+				/*overflow: hidden !important;
+  				text-overflow: ellipsis !important;
+  				display: -webkit-box !important;
+				-webkit-line-clamp: 2 !important;
+				-webkit-box-orient: vertical !important;*/
+			}
+			.button{
+				float: right;
+				margin-top: 27px;
+				background-color: #ffbfc6;
+				color: #fff;
+				border: 0px;
+				border-radius: 7px;
+			}
+			.qian{
+				float: left;
+				display: block;
+				margin-top: 33px;
+				color: red;
+				font-size: 15px;
+			}
+			.title{
+				font-size: 15px;
+			}
+			.bianji{
+	width: 18%;
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	float: right;
+	 /*margin-top: 41px;*/
+	 
+}
+.baocun{
+	width: 18%;
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	float: right;
+	 /*margin-top: 41px;*/
+	 display: none;
+}
+.tjwpbc{
+	width: 18%;
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	float: right;
+	 /*margin-top: 41px;*/
+	 display: none;
+}
+.yjnr{
+	width: 50%;
+	height: 37px;
+	font-size: 15px;
+	border: 0px;
+	
+}
+.tianjiaimg{
+	    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 12px;
+    float: left;
+    margin-top: 41px;
+}
+    </style>
+
+</head>
+
+<body class="bgc_gray">
+ <header class="mui-bar mui-bar-nav" style="background-color: #FD9D13;">
+  <a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: #fff;"></a>
+  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+  <h1 class="mui-title" style="color: #fff;">分类管理</h1>
+  </header>
+<div class="start" style="margin-top: 50px;">
+    <div class="pg-main">
+
+        <div id="wrapper">
+            <!--header end-->
+            <div class="wrap">
+                <div class="tabs" style="border-bottom: 1px solid gray ;">
+                   <span class="part "><a href="#" hidefocus="true" style=" width: 141px;">物品分类</a></span>
+                   
+                </div>
+
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-visible swiper-slide-active">
+                            <div class="content-slide">
+                                <!-- 1  -->
+                            		<ul class="caizhi">
+                            		</ul>
+                            		<div class="tjfl"><img src="/ppb/img/tjfl.png"/></div>
+
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     </div>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/ppb/static/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/ppb/static/js/idangerous.swiper.min.js"></script>
+    <script type="text/javascript">
+        
+        
+      $("body").on("click",".sc",function(){
+        	$(this).siblings(".sc1").toggle();
+        	$(this).siblings(".bianji").toggle();
+        	
+        })
+
+		$("body").on("click",".bianji",function(){
+			$(this).parent().find(".bianji").css("display","none");			
+        	$(this).siblings(".baocun").toggle();
+        	$(this).siblings(".sc").css("visibility","hidden");
+        	$(this).siblings(".yjnr").attr("readonly",false);
+        	
+
+        })
+		$("body").on("click",".baocun",function(){
+			$(this).parent().find(".baocun").toggle();
+        	$(this).siblings(".bianji").toggle();
+        	$(this).siblings(".sc").css("visibility","visible");
+        	$(this).siblings(".yjnr").attr("readonly",true);
+        	
+
+        })
+ //获取列表      
+        $.ajax({
+        	type:"get",
+        	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/categoryList",
+        	dataType: 'JSON', //数据格式:JSON
+			data: {},
+			success: function(data) {
+				var html="";
+				for (var i=0;i<data.data.length;i++) {
+					html+=`
+						<li>
+						<img src="/ppb/img/shanchu.png" class="sc" style="float: left;margin-top: 7px;"/>
+						<img src="/ppb/img/sc1.png" class="sc1" style="margin-top: 7px;" fenleiid="${data.data[i].id}"/>
+						<span class="bianji" style="margin-top: 10px;">编辑</span>
+            				<span class="baocun" style="margin-top: 10px;" baocun="${data.data[i].id}">保存</span>
+            				<textarea readonly="true"  class="yjnr">${data.data[i].mobile_name} </textarea>
+						
+						</li>
+					
+					`
+					$(".caizhi").html(html);
+				}
+			}
+        });
+//删除        
+
+$("body").on("click",".sc1",function(){
+			localStorage.removeItem('fenleiid');
+			localStorage.setItem("fenleiid",$(this).attr('fenleiid'));
+			var fenleiid=localStorage.getItem('fenleiid')
+			$.ajax({
+				type:"get",
+				url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/getOrDelCate",
+				dataType: 'JSON', //数据格式:JSON
+				data: {id:fenleiid,type:2},
+				success: function(data) {
+					if (data.status==0) {
+						alert(data.msg);
+					} else{
+						alert(data.msg);
+											  $.ajax({
+        	type:"get",
+        	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/categoryList",
+        	dataType: 'JSON', //数据格式:JSON
+			data: {pid:localStorage.getItem('pid')},
+			success: function(data) {
+				var html="";
+				for (var i=0;i<data.data.length;i++) {
+					html+=`
+						<li>
+						<img src="/ppb/img/shanchu.png" class="sc" style="float: left;margin-top: 7px;"/>
+						<img src="/ppb/img/sc1.png" class="sc1" style="margin-top: 7px;" fenleiid="${data.data[i].id}"/>
+						<span class="bianji" style="margin-top: 10px;">编辑</span>
+            				<span class="baocun" style="margin-top: 10px;" baocun="${data.data[i].id}">保存</span>
+            				<textarea readonly="true"  class="yjnr">${data.data[i].mobile_name} </textarea>
+						
+						</li>
+					
+					`
+					$(".caizhi").html(html);
+				}
+			}
+        });
+					}
+						
+			}
+        });
+ 	 })
+
+//修改分类
+		$("body").on("click",".baocun",function(){
+			localStorage.removeItem('baocun');
+			localStorage.setItem("baocun",$(this).attr('baocun'));
+			var baocun=localStorage.getItem('baocun')
+			
+		var name=$(this).parent().find(".yjnr").val();	
+			
+			$.ajax({
+				type:"get",
+				url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/cateEdit",
+				dataType: 'JSON', //数据格式:JSON
+				data: {id:baocun,name:name},
+				success: function(data) {
+					if (data.status==0) {
+						alert(data.msg);
+					} else{
+						alert(data.msg);
+								 $.ajax({
+        	type:"get",
+        	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/categoryList",
+        	dataType: 'JSON', //数据格式:JSON
+			data: {pid:localStorage.getItem('pid')},
+			success: function(data) {
+				var html="";
+				for (var i=0;i<data.data.length;i++) {
+					html+=`
+						<li>
+						<img src="/ppb/img/shanchu.png" class="sc" style="float: left;margin-top: 7px;"/>
+						<img src="/ppb/img/sc1.png" class="sc1" style="margin-top: 7px;" fenleiid="${data.data[i].id}"/>
+						<span class="bianji" style="margin-top: 10px;">编辑</span>
+            				<span class="baocun" style="margin-top: 10px;" baocun="${data.data[i].id}">保存</span>
+            				<textarea readonly="true"  class="yjnr">${data.data[i].mobile_name} </textarea>
+						
+						</li>
+					
+					`
+					$(".caizhi").html(html);
+				}
+			}
+        });
+					}
+				}
+			});
+
+        })
+//添加标签
+//$("body").on("click",".tjfl",function(){
+		$(".tjfl").click(function(){
+			
+			var html="";
+		html+=`
+						<li>
+						<img src="/ppb/img/tianjiawt.png" class="sc tianjiaimg" style="float: left;margin-top: 7px;margin-left: 4px; "/>
+            				<span class="tjwpbc" style="margin-top: 10px; display:block;">保存</span>
+            				<textarea  class="yjnr tjwpname"></textarea>
+						
+						</li>
+					
+					`
+					$(".caizhi").append(html);
+		})
+		//添加物品
+		$("body").on("click",".tjwpbc",function(){
+			
+		
+			var tjwpname=$(this).siblings(".tjwpname").val();
+			$.ajax({
+				type:"get",
+				url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/cateEdit",
+				dataType: 'JSON', //数据格式:JSON
+				data: {name:tjwpname,parent_id:localStorage.getItem('pid')},
+				success: function(data) {
+					if (data.status==0) {
+						alert(data.msg);
+					} else{
+						alert(data.msg);
+						$.ajax({
+				        	type:"get",
+				        	url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/categoryList",
+				        	dataType: 'JSON', //数据格式:JSON
+							data: {pid:localStorage.getItem('pid')},
+							success: function(data) {
+								var html="";
+								for (var i=0;i<data.data.length;i++) {
+									html+=`
+										<li>
+										<img src="/ppb/img/shanchu.png" class="sc" style="float: left;margin-top: 7px;"/>
+										<img src="/ppb/img/sc1.png" class="sc1" style="margin-top: 7px;" fenleiid="${data.data[i].id}"/>
+										<span class="bianji" style="margin-top: 10px;">编辑</span>
+				            				<span class="baocun" style="margin-top: 10px;" baocun="${data.data[i].id}">保存</span>
+				            				<textarea readonly="true"  class="yjnr">${data.data[i].mobile_name} </textarea>
+										
+										</li>
+									
+									`
+									$(".caizhi").html(html);
+								}
+							}
+				        });
+					}
+				}
+			});
+			
+		})
+    </script>
+
+</body>
+
+</html> 

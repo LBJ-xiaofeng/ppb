@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+    <title>我的收货地址</title>
+    <meta name='keywords' content=''>
+    <meta name='description' content=''>
+    <script src='/ppb/static3/js/rem.js'></script>
+    <script src='/ppb/static3/js/jquery.min.js' type='text/javascript'></script>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/base.css'/>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/page.css'/>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/all.css'/>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/mui.min.css'/>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/loaders.min.css'/>
+    <link rel='stylesheet' type='text/css' href='/ppb/static3/css/loading.css'/>
+<style type='text/css'>
+	.goAdd{
+		    display: inline-block;
+    width: 66%;
+    padding: 10px 0px;
+    background: #ffbfc6;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 55%;
+	}
+	#main {
+    padding-top: 0px !important;
+}
+.addlist .top {
+    
+    margin-top: 18px;
+}
+.guanli{
+	border: 0;
+	border-radius:5px ;
+	width: 80%;
+    margin-left: 7%;
+    margin-top: 60px;
+    color: #fff;
+    background: #ffbfc6;
+    padding: 10px 0px 10px 20px;
+    font-size: 14px;
+    letter-spacing: 19px;
+    text-align: center;
+}
+
+</style>
+</head>
+	<body>
+	    <div id='main' class='mui-clearfix add-address choice-address'>
+
+	    </div>
+	  <div class='aa'>
+
+	  </div>	
+	</body>
+	<script type='text/javascript' src='/ppb/static2/js/jquery.min.js'></script>
+	<script type='text/javascript' src='/ppb/static2/js/jquery-1.8.3.min.js' ></script>
+	<script src='/ppb/static2/js/fastclick.js'></script>
+	<script src='/ppb/static2/js/mui.min.js'></script>
+	<script type='text/javascript' src='/ppb/static2/js/hmt.js' ></script>
+	
+	<script type='text/javascript'>
+					function getUrlParms(name){
+   var reg = new RegExp('(^|&)'+ name +'=([^&]*)(&|$)');
+   var r = window.location.search.substr(1).match(reg);
+   if(r!==null)
+   return unescape(r[2]);
+   return null;
+   }
+var aid = getUrlParms('id');
+console.log(aid);
+		 $.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/user/address_list', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {user_id:localStorage.getItem('user_id')},
+		success: function(data) {
+       console.log(data);
+
+       if(data.msg=='暂无收货地址'){
+        $('.add-address').html("<a href={:U('ppb/ppb/tianjia')} class='goAdd'>去添加收货地址</a>");
+          $('.add-address').css('marginTop','60px');
+            $('.add-address').css('textAlign','center');
+
+       }else{
+       	$('.aa').html("<a href={:U('ppb/ppb/guanli')}><button class='guanli'>管理</button></a>");
+       var html='';
+       for(var i=0;i<data.data.length;i++){
+       if(data.data[i].is_default==1){
+       	html+="<div class='addlist clearfloat' data='"+data.data[i].address_id+"'><div class='top clearfloat box-s'><ul><li><span class='fl'>"+data.data[i].consignee+"</span><span class='fr'>"+data.data[i].mobile+"</span></li><li><span class='moren'>[默认地址]</span>"+data.data[i].province+data.data[i].city+data.data[i].twon+data.data[i].address+"</li></ul></div></div>"
+       }else{
+       	html+="<div class='addlist clearfloat' data='"+data.data[i].address_id+"'><div class='top clearfloat box-s'><ul><li><span class='fl'>"+data.data[i].consignee+"</span><span class='fr'>"+data.data[i].mobile+"</span></li><li>"+data.data[i].province+data.data[i].city+data.data[i].twon+data.data[i].address+"</li></ul></div></div>"
+       	
+       }
+       }
+       $('.add-address').html(html);
+       }
+		}
+	})
+		 $('body').on('click','.addlist',function(){
+		 	if (aid==1) {
+		 		 $.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/user/set_default', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {user_id:localStorage.getItem('user_id'),address_id:$(this).attr('data')},
+		success: function(data) {
+          if(data.status==1){
+          	window.location.href="{:U('ppb/ppb/tianjia')}";
+          }
+		}
+	})
+		 	}else{
+		 		return false;
+		 	}
+		 })
+	</script>
+</html>

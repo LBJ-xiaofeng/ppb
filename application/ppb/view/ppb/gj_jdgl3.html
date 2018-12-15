@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>申请加钱</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		
+        footer{
+        	position: absolute;
+        	bottom: 0;
+        	left: 0;
+        	width: 100%;
+        }
+        .one{   margin: 0;
+        		padding: 0;
+        	    background-color: #FD9D13;
+			    width: 100%;
+			    color: #fff;
+			    padding: 10px 0;
+			    border: none;
+			    font-size: 16px;
+        }
+         
+input{
+        padding: 7px 0;
+    border: 1px solid #E3E3E3;
+    width: 71%;
+	
+}
+.all span{
+    font-weight: bold;
+}
+.all{
+    padding: 10px 5%;
+}
+.ming{
+    display: block;
+}
+textarea{
+    width: 100%;
+    margin-top: 10px;
+    font-weight: 100;
+     border: 1px solid #E3E3E3;
+    
+}
+</style>
+</head>
+<body>
+<div class="all" style="margin-top: 5%;">
+    <span>应付金额：</span><span><input type="number" name="" class="yfje" placeholder="请输入应付金额"></span>
+</div>
+<div class="all">
+    <span class="ming">收款说明：</span>
+    <textarea rows="7" placeholder="请输入收款说明" class="shuoming"></textarea>
+</div>
+          
+            <footer>
+            	 <!--<a href="gj_jdgl2.html">-->
+            	 	<button class="one tijg">完成</button>
+            	 <!--</a>-->
+                
+            </footer>
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$("body").on("click",".tijg",function(){
+	var goods_price= $(".yfje").val();
+	var admin_note= $(".shuoming").val();
+		$.ajax({
+		type:"post",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/editOrder",
+		dataType: 'JSON', //数据格式:JSON
+		data: {
+			order_id:localStorage.getItem('ddxqid'),
+			goods_price:goods_price,
+			admin_note:admin_note
+		},
+		success: function(data) {
+			if (data.status==0) {
+				alert(data.msg);
+			
+			} else{
+				alert(data.msg);
+				location.href="{:U('ppb/ppb/gj_jdgl')}"
+
+//localStorage.removeItem(djqrjg);
+				
+			}
+		}
+	});
+	})
+</script>
+</html>

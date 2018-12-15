@@ -1,0 +1,96 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>代理基本配置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>申请代理条件及金额</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" id="handlepost" action="{:U('admin/System/handle')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <!--<div id="switch_on_off" <if condition="$config['switch'] eq 0">style="display: none;"</if>>-->
+            <dl class="row">
+                <dt class="tit">
+                    <label for="first_dl_auth">省级代理权限</label>
+                </dt>
+                <dd class="opt">
+                    <input id="first_dl_auth" name="first_dl_auth" value="{$config.first_dl_auth}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="first_dl_money">省级代理缴纳金额</label>
+                </dt>
+                <dd class="opt">
+                    <input id="first_dl_money" name="first_dl_money" value="{$config.first_dl_money}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="seacon_dl_auth">市级代理权限</label>
+                </dt>
+                <dd class="opt">
+                    <input id="seacon_dl_auth" name="seacon_dl_auth" value="{$config.seacon_dl_auth}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="seacon_dl_money">市级代理缴纳金额</label>
+                </dt>
+                <dd class="opt">
+                    <input id="seacon_dl_money" name="seacon_dl_money" value="{$config.seacon_dl_money}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="third_dl_auth">县级代理权限</label>
+                </dt>
+                <dd class="opt">
+                    <input id="third_dl_auth" name="third_dl_auth" value="{$config.third_dl_auth}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="third_dl_money">县级代理缴纳金额</label>
+                </dt>
+                <dd class="opt">
+                    <input id="third_dl_money" name="third_dl_money" value="{$config.third_dl_money}" class="input-txt" type="text" />
+                </dd>
+            </dl>
+        </div>
+        <div class="bot">
+            <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="adsubmit()">确认提交</a>
+        </div>
+
+</form>
+    </div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+
+</body>
+<script>
+    function adsubmit(){
+
+        $('#handlepost').submit();
+    }
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            margin: 100px;
+        }
+        
+        .one {
+            width: 200px;
+            margin-bottom: 5px;
+        }
+        
+        .one a {
+            background: red;
+            text-decoration: none;
+            display: block;
+            text-align: center
+        }
+        
+        .one p {
+            display: none;
+            background: green;
+        }
+    </style>
+<script src="/public/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+ 
+</head>
+ 
+<body>
+<form action="{:U('ppb/admin/index')}" method="post" enctype="multipart/form-data">
+    <!-- <input type="file" value="" name="img[]" multiple="multiple" /> -->
+    <input type="submit" />
+    <div class="picture"></div>
+    <input id="takepicture" type="file" name="img[]"  accept="image/*" multiple="multiple" capture="camera" style="display: none">
+    <div class="clickpz">点击拍照</div>
+</form>
+</body>
+ <script type="text/javascript">
+  $('.clickpz').click(function(){
+// var takePicture = document.getElementById('takepicture');
+    $("#takepicture").click();
+  })
+
+var takePicture = document.getElementById('takepicture');
+  var takePictureUrl = function () {
+      takePicture.onchange = function (event) {
+          var files = event.target.files, file;
+         if (files && files.length > 0) {
+              file = files[0];
+              try {
+                var URL = window.URL || window.webkitURL;
+                 var blob = URL.createObjectURL(file);　　// 获取照片的文件流
+                 compressPicture(blob);　　// 压缩照片
+             }
+             catch (e) {
+                 try {
+                     var fileReader = new FileReader();
+                     fileReader.onload = function (event) {　　　　// 获取照片的base64编码
+                        
+                         console.log(event);
+                         $('.picture').attr('src',event.target.result);
+                     };
+                     fileReader.readAsDataURL(file);
+                 }
+                 catch (e) {
+                   alert(common.MESSAGE.title.error, '拍照失败,请联系客服或尝试更换手机再试!');
+                 }
+             }
+        }
+   }
+ }();
+ </script>
+</html>

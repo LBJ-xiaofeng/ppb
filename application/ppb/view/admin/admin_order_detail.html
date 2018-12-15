@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/ppb/pictureViewer.css">
+    <title>订单资料</title>
+<style type="text/css">
+    html, body {
+        overflow: visible;
+        background-color: darkseagreen;
+        overflow: auto;
+        margin: 0px;
+    }
+    .title{
+        /*width: 100%;*/
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background: darkorange;
+        color: #fff;
+        font-weight: 600;
+        border-bottom: 5px solid #fff;
+    }
+    .public{
+    	width:90%;
+    	height:100%;
+    	padding-left: 10%;
+    }
+        
+        .clicks{
+            display: none;
+        }
+        .common{
+        margin-bottom: 10px;
+    }
+</style>
+
+</head>
+<body>
+<div class="one">
+        <div class="title">{$order.mobile_name}-{$order.attr_name}-{$order.brand_name}</div>
+        <div class="public">
+        <div style="width: 90%;">
+        <div>订单号码：{$order.order_sn}</div>
+        <div>订单状态：{$order.order_status}</div>
+        <div>支付状态：{$order.pay_status}</div>
+        <div>支付时间：{$order.pay_time}</div>
+        <div>下单时间：{$order.add_time}</div>
+        <div>完成状况：{$order.wc_status}</div>
+        <div>合格状况：{$order.hg_status}</div>
+    	</div>
+   		</div>
+</div>
+<div class="one">
+        <div class="title">客户信息</div>
+        <div class="public clicks">
+        <div style="width: 90%;">
+        <div>客户姓名：{$order.consignee}</div>
+        <div>联系电话：{$order.mobile}</div>
+        <div>联系地址：{$order.province}{$order.city}{$order.twon}{$order.address}</div>
+    	</div>
+   		</div>
+</div>
+<div class="one">
+   		<div class="title">价格信息</div>
+        <div class="public clicks">
+        <div style="width: 90%;">
+        <div>
+        {volist name="money" id="val"}
+        <span>{$val.title}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>￥{$val.money}</span><br/>
+    	{/volist}
+    	<span>总计</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">￥{$order.goods_price}</span><br/>
+        </div>
+    	</div>
+   		</div>
+</div>
+<div class="one">
+   		<div class="title">进度信息</div>
+        <div class="public clicks">
+        <div style="width: 90%;">
+        <div>
+        
+        {if condition="$order.first_end_time gt 0"}
+        <div class="common">第一阶段：{:getAdmin($order.first_admin)}</div>
+        <div class="common">{$order.first_start_time}--{$order.first_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.first_content}</div>
+        {else/}
+        <div>暂无进程</div>
+        {/if}
+
+        {if condition="$order.seacond_end_time gt 0"}
+        <div class="common">第二阶段：{:getAdmin($order.seacond_admin)}</div>
+        <div class="common">{$order.seacond_start_time}--{$order.seacond_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.seacond_content}</div>
+        {/if}
+        {if condition="$order.third_end_time gt 0"}
+        <div class="common">第三阶段：{:getAdmin($order.third_admin)}</div>
+        <div class="common">{$order.third_start_time}--{$order.third_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.third_content}</div>
+        {/if}
+        {if condition="$order.four_end_time gt 0"}
+        <div class="common">第四阶段：{:getAdmin($order.four_admin)}</div>
+        <div class="common">{$order.four_start_time}--{$order.four_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.four_content}</div>
+        {/if}
+        {if condition="$order.five_end_time gt 0"}
+        <div class="common">第五阶段：{:getAdmin($order.five_admin)}</div>
+        <div class="common">{$order.five_start_time}--{$order.five_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.five_content}</div>
+        {/if}
+        {if condition="$order.six_start_time gt 0"}
+        <div class="common">第六阶段：{:getAdmin($order.six_admin)}</div>
+        <div class="common">{$order.six_start_time}--{$order.six_end_time}&nbsp;&nbsp;&nbsp;&nbsp;{$order.six_content}</div>
+        {/if}
+        </div>
+        </div>
+        </div>
+</div>
+<div class="one">
+   		<div class="title">定损信息</div>
+        <div class="public clicks">
+        <div style="width: 90%;">
+        <div style="width: 90%;display: inline-flex;" class="yishangchuan">
+        {volist name="order['order_prom_type']" id="val"}
+        <p style="width:18%;height:60px;border:1px solid #eee;margin-right: 2%;"><img class="img-rounded" style="height:60px;width: 100%;" src="{$val}"/></p>
+    	{/volist}
+        </div>
+    	</div>
+    	</div>
+</div>
+<div class="one">
+   		<div class="title">客户已选取</div>
+        <div class="public clicks">
+        <div style="width: 90%;">
+        <div style="width: 90%;display: inline-flex;" class="yixuanze">
+        {volist name="order['checkedimg']" id="val"}
+        <p style="width:18%;height:60px;border:1px solid #eee;margin-right: 2%;"><img class="img-rounded" style="height:60px;width: 100%;" src="{$val}"/></p>
+    	{/volist}
+        </div>
+    	</div>
+   		</div>
+</div>
+<div class="one">
+   		<div class="title">质检信息</div>
+        <div class="public clicks">
+	        <div style="width: 90%;">
+	        <div style="width: 90%;display: inline-flex;" class="zhijian">
+			{volist name="order['integral']" id="val"}
+	        <p style="width:18%;height:60px;border:1px solid #eee;margin-right: 2%;"><img class="img-rounded" style="height:60px;width: 100%;" src="{$val}"/></p>
+	    	{/volist}
+	        </div>
+	        {volist name="result" id="val"}
+	        <div>{$val.add_time}&nbsp;&nbsp;&nbsp;&nbsp;{$val.action_note}</div>
+	    	{/volist}
+	    	</div>
+    	</div>
+</div>
+</body>
+<script src="/public/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ppb/jquery.mousewheel.min.js"></script>
+ <script src="/ppb/pictureViewer.js"></script>
+    <script>
+        $(function() {
+            // $('.one .title').click(function() {
+            	$("body").on("click",".one .title",function(){
+                // 判断当前点击的选项有没有active这个类名
+                if ($(this).hasClass('active')) {
+                    //如果有就让它的兄弟元素隐藏
+                    $(this).siblings('.public').hide();
+                } else {
+                    var num = $(this).parent().index();
+                    $('.one').eq(num).find('.public').show().parent().siblings('.one').find('.public').hide();
+                }
+                $(this).toggleClass('active');  //这个作用是 点击有这个类再次点击就没这个类
+                $(this).parent().siblings('.one').find('.title').removeClass('active');  //这句作用是让它的.one元素下面的 其他元素移除这个类
+            })
+        })
+                $('.yishangchuan,.yixuanze,.zhijian').on('click', 'p', function () {
+        var this_ = $(this);
+        var images = this_.parents('.yishangchuan,.yixuanze,.zhijian').find('p');
+        var imagesArr = new Array();
+        $.each(images, function (i, image) {
+            imagesArr.push($(image).children('img').attr('src'));
+        });
+        $.pictureViewer({
+            images: imagesArr, //需要查看的图片，数据类型为数组
+            initImageIndex: this_.index() + 1, //初始查看第几张图片，默认1
+            scrollSwitch: true //是否使用鼠标滚轮切换图片，默认false
+        });
+    });
+    </script>
+ 
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1.3,user-scalable=no' />
+    <title>关于我们</title>
+    <link href='/ppb/css/mui.css' rel='stylesheet'/>
+   
+    <style type='text/css'>
+    .color {
+                color: #000 !important;
+            }
+            .title{
+                text-align: center;
+    padding: 20px;
+    font-size: 17px;
+            }
+            .div1 span{
+                float: right;
+    font-size: 12px;
+    color: #8c8c8c;
+    margin-right: 20px;
+            }
+            .content{
+                clear: both;
+                padding: 0px 5%;
+            }
+            .quanbu{
+            	margin-top: 45px;
+            }
+            .div1{
+            	padding: 15px;
+            }
+            .gywoimg{
+            	width: 100%;
+            	height: 170px;
+            }
+</style>
+</head>
+<body>
+     <header class="mui-bar mui-bar-nav" >
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: black;"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title" >关于我们</h1>
+	  </header>
+	 
+	  <div class="quanbu">
+</div>
+</body>
+        <script type='text/javascript' src='/ppb/js/jquery.min.js'></script>
+
+<script type='text/javascript'>
+    $.ajax({
+        type: 'get', 
+        url: 'http://ppb.dhxdrawing.top/index.php/ppb/index/serviceIsIntroduced', //目标地址
+        dataType: 'JSON', //数据格式:JSON
+        data: {type:3},
+        success: function(data) {
+        	var quanbu="";
+	        console.log(data);
+	        quanbu+=`
+	        	<div class='mui-content'>
+	        	 <img src="${data.data.img}" class="gywoimg"/>
+			      <p class='title'>${data.data.cat_name}</p>
+			      <div class='div1'>
+			        
+			        ${data.data.content}
+			      </div>
+			    </div>
+			    <div class='content'>
+			        
+			    </div>
+	        `
+	        $(".quanbu").html(quanbu)	
+        }
+    })
+</script>
+</html>

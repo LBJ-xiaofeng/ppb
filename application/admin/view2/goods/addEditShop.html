@@ -1,0 +1,102 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>店铺详情</h3>
+                <h5>店铺添加与管理</h5>
+            </div>
+        </div>
+    </div>
+    <!--表单数据-->
+    <form method="post" id="addEditBrandForm" >
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="ac_name"><em>*</em>店铺名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" placeholder="名称" class="input-txt" name="shop_name" value="{$data.shop_name}">
+                    <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="ac_name">店铺地址</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" placeholder="地址" class="input-txt" name="shop_address" value="{$data.shop_address}">
+                    <span  class="err" id="err_url" style="color:#F00; display:none;"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="ac_name">店铺联系方式</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" placeholder="联系方式" class="input-txt" name="shop_mobile" value="{$data.shop_mobile}">
+                    <span  class="err" id="err_mobile" style="color:#F00; display:none;"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="ac_sort">排序</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" placeholder="排序" name="sort" value="{$data.sort}" class="input-txt">
+                    <span class="err" id="err_sort" style="color:#F00; display:none;"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+
+            <div class="bot"><a href="JavaScript:void(0);" onClick="verifyForm();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+        <input type="hidden" name="id" value="{$data.id}">
+        <input type="hidden" name="act" value="{$data.act}">
+    </form>
+</div>
+<script>
+    function verifyForm(){
+        $('span.err').show();
+        $.ajax({
+            type: "POST",
+            url: "{:U('Admin/Goods/addEditShop')}",
+            data: $('#addEditBrandForm').serialize(),
+            dataType: "json",
+            error: function () {
+                layer.alert("服务器繁忙, 请联系管理员!");
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    layer.msg(data.msg, {icon: 1});
+                    window.location.href = "{:U('Admin/Goods/shopList')}";
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                    $.each(data.result, function (index, item) {
+                        $('#err_' + index).text(item).show();
+                    });
+                }
+            }
+        });
+    }
+
+
+    window.onload = function(){
+        var brand_cat_id = parseInt('{$brand.cat_id}');
+        if(brand_cat_id > 0 ){
+            get_category($("#parent_id_1").val(),'parent_id_2',brand_cat_id);
+        }
+    }
+    function img_call_back(fileurl_tmp)
+    {
+        $("#logo").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</body>
+</html>

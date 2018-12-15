@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select name="province" id="province" onchange="loadRegion('province',2,'city','{:U('User/getRegion')}');">
+    <option value="0" selected>省份/直辖市</option>
+    <foreach name="province" item="vo">
+    <option value="{$vo.id}" >{$vo.name}</option>
+    </foreach>
+</select>
+<select name="city" id="city"  onchange="loadRegion('city',3,'town','{:U('User/getRegion')}');">
+    <option value="0">市</option>
+</select>
+<select name="town" id="town">
+    <option value="0">县</option>
+</select>
+</body>
+</html>
+<script src="/public/js/jquery-1.8.2.min.js"></script>
+<script>
+        function loadRegion(sel,type_id,selName,url){
+        jQuery("#"+selName+" option").each(function(){
+        jQuery(this).remove();
+        });
+        jQuery("<option value=0>请选择</option>").appendTo(jQuery("#"+selName));
+        if(jQuery("#"+sel).val()==0){
+        return;
+        }
+        jQuery.getJSON(url,{pid:jQuery("#"+sel).val(),type:type_id},
+        function(data){
+            console.log(data);
+        if(data){
+        jQuery.each(data,function(idx,item){
+        jQuery("<option value="+item.id+">"+item.name+"</option>").appendTo(jQuery("#"+selName));
+        });
+        }else{
+        jQuery("<option value='0'>请选择</option>").appendTo(jQuery("#"+selName));
+        }
+        }
+        );
+        }
+</script>

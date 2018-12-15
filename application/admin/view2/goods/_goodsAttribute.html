@@ -1,0 +1,71 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商品属性</h3>
+        <h5>商品属性添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsAttributeForm">
+        <!--<input type="text" name="goods_type_id" value="{$id}">-->
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>属性名称：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$goodsAttribute.attr_name}" name="attr_name"  class="input-txt" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label for="ac_value"><em>*</em>属性值：</label>
+            </dt>
+            <dd class="opt">
+                <input type="text" value="{$goodsAttribute.attr_value}" name="attr_value"  class="input-txt" />
+                <span class="err" id="err_attr_value" style="color:#F00; display:none;"></span>
+            </dd>
+        </dl>
+        <!--<dl class="row">-->
+            <!--<dt class="tit">-->
+                <!--<label for="ac_num"><em>*</em>属性库存：</label>-->
+            <!--</dt>-->
+            <!--<dd class="opt">-->
+                <!--<input type="text" value="{$goodsAttribute.attr_num}" name="attr_num"  class="input-txt" />-->
+                <!--<span class="err" id="err_attr_num" style="color:#F00; display:none;"></span>-->
+            <!--</dd>-->
+        <!--</dl>-->
+        <dl class="row">
+            <dt class="tit">
+                <label for="ac_price"><em>*</em>属性价格：</label>
+            </dt>
+            <dd class="opt">
+                <input type="text" value="{$goodsAttribute.attr_price}" name="attr_price"  class="input-txt" />
+                <span class="err" id="err_attr_price" style="color:#F00; display:none;"></span>
+            </dd>
+        </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id"><em>*</em>所属商品模型：</label>
+        </dt>
+        <dd class="opt">
+            <select id="type_id" name="goods_type_id" class="small form-control">
+                 <option value="{$goodsTypeList[id]}">{$goodsTypeList[name]}</option>
+            </select>
+            <span  class="err" id="err_type_id" style="color:#F00; display:none;"></span>
+        </dd>
+      </dl>
+<input type="submit" value="确认提交">
+      <!--<div class="bot"><a href="JavaScript:void(0);" onclick="ajax_submit_form('addEditGoodsAttributeForm','{:U('Goods/addEditGoodsAttribute?is_ajax=1')}');"  class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>-->
+    <!--</div>-->
+	   <input type="hidden" name="goods_attr_id" value="{$goodsAttribute.goods_attr_id}">
+  </form>
+</div>
+ 
+</body>
+</html>

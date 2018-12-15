@@ -1,0 +1,3 @@
+<?php
+//000000000001{"site_url":"http:\/\/www.tp-shop.cn","record_no":"\u4eac111111\u53f7","store_name":"\u76ae\u76ae\u73ed","store_logo":"\/public\/upload\/logo\/2018\/08-13\/1a3d192b74ea5423ef20a4c04ad5481d.jpg","store_title":"\u76ae\u76ae\u73ed","store_desc":"\u5976\u8336\u996e\u54c1\u6b22\u8fce\u60a8\uff01","store_keyword":"\u9886\u5934\u541b","contact":"\u53cc\u65b9\u90fd","phone":"12345678911","address":"\u5317\u4eac\u5e02\u660c\u5e73\u533a\u7684\u6492\u5e7f\u53a6\u80a1\u4efd\u6c34\u7535\u8d391001\u53f7","qq":"111111111","qq2":"222222222","qq3":"333333333","mobile":"12345678911","province":"1","city":"2","district":"0","store_user_logo":"","form_submit":"ok"}
+?>

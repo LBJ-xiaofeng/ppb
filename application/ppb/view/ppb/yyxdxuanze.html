@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约下单</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <style type="text/css">
+        body,div,p,ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .all{
+            overflow: hidden;
+            padding: 62px 5%;
+        }
+        .all p{
+                font-size: 19px;
+    text-align: center
+        }
+        .type{
+                width: 80%;
+                height: 65px;
+                background: url("/ppb/image/tj (1).jpg");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                text-align: center;
+                margin-left: 10%;
+                margin-bottom: 30px;
+                color: #ffbfc6;
+                line-height: 65px;
+        }
+        .active{
+           background: url("/ppb/image/tj (2).png");
+           background-size: 100% 100%;
+           background-repeat: no-repeat;
+           color: #fff;
+        }
+        footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .one{   margin: 0;
+                padding: 0;
+                background-color: #ffbfc6;
+                width: 100%;
+                color: #fff;
+                padding: 15px 0;
+                border: none;
+                font-size: 16px;
+        }
+</style>
+</head>
+<body>
+     
+<div class="all">
+   <p>选择类型</p>
+</div>
+<div class="leixing">
+   <!--<div class="type active ">保养护理</div>
+   <div class="type ">清洁翻新</div>-->
+</div>
+   		<footer>
+             <button class="one xiayibu">下一步</button>
+        </footer>
+</body>
+
+            <script type="text/javascript" src="/ppb/js/jquery.min.js"></script>
+<script type="text/javascript">
+	localStorage.removeItem('yuyueid');
+	
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/index/bookingOrder",
+		dataType: 'JSON', //数据格式:JSON
+		data: {},
+		async:false,
+		success: function(data){
+		var leixing="";
+		for(var i=0; i<data.data.length;i++) {
+			leixing+=`
+				 <div class="type"  id="${data.data[i].id}" >${data.data[i].mobile_name}</div>
+			`
+			
+		}
+			$(".leixing").html(leixing);
+			
+			$(".type").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+  	localStorage.removeItem('yuyueid');
+
+    localStorage.setItem("yuyueid",$(this).attr("id"));
+    
+    
+   
+})
+		}
+	});
+	
+	
+$("body").on("click",".xiayibu",function(){
+	var leiid=localStorage.getItem('yuyueid');
+	if (leiid ==null) {
+		alert("请选择类型");
+	} else{
+//		alert(leiid)
+		window.location.href = "{:U('ppb/ppb/yyxd')}";
+	
+		
+	}
+})
+
+</script>
+</html>

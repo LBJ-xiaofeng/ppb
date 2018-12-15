@@ -1,0 +1,196 @@
+<include file="public/layout" />
+
+<style type="text/css">
+    html, body {
+        overflow: visible;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="微信支付配置"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>微信配置</h3>
+                <h5>配置微信 mchid、apiKey、appid、appsecret要与微信商户平台、公众开放平台信息一致</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" method="post" id="handlepost" action="" enctype="multipart/form-data">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>MCHID</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="mchid" size="30" value="{$wechat.mchid}" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>APIKEY</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="apikey" value="{$wechat.apikey}" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">微信商户平台->帐户设置-安全设置-API安全-API密钥-设置API密钥</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>APPID</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="appid" size="30" value="{$wechat.appid}" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">微信支付申请对应的公众号的APPID</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>APPSECRET</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="appsecret" value="{$wechat.appsecret}" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">微信支付申请对应的公众号APPID生成的AppSecret</p>
+                </dd>
+            </dl>
+              <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>微信邀请标题</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="wxname" value="{$wechat.wxname}" class="input-txt">
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>微信邀请描述</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="share_ticket" value="{$wechat.share_ticket}" class="input-txt">
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <!--<dl class="row">-->
+                <!--<dt class="tit">-->
+                    <!--<label><em>*</em>微信分享跳转地址</label>-->
+                <!--</dt>-->
+                <!--<dd class="opt">-->
+                    <!--<input type="text" name="qr" value="{$wechat.qr}" class="input-txt">-->
+                    <!--<span class="err"></span>-->
+                    <!--<p class="notic">格式:http://您的链接/，如：http://www.baidu.com/</p>-->
+                <!--</dd>-->
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>微信邀请图标</label>
+                </dt>
+                <dd class="opt">
+                        <img src="{$wechat.headerpic}" style="width: 120px;height: 100px;" id="saveImg">
+                        <input type="file" id="file" name="headerpic" value="{$wechat.headerpic}" class="input-txt" style="display: none">
+                        <span class="err"></span>
+
+                </dd>
+            </dl>
+            <!--<dl class="row">-->
+                <!--<dt class="tit">-->
+                    <!--<label><em>*</em>公众号二维码</label>-->
+                <!--</dt>-->
+                <!--<dd class="opt">-->
+                    <!--<img src="{$wechat.w_token}" style="width: 120px;height: 100px;" id="saveImgs">-->
+                    <!--<input type="file" id="files" name="w_token" value="{$wechat.w_token}" class="input-txt" style="display: none">-->
+                    <!--<span class="err"></span>-->
+
+                <!--</dd>-->
+            <!--</dl>-->
+            <input type="hidden" name="id" value="{$wechat.id}">
+            <div class="bot"><a href="JavaScript:void(0);" onClick="formSubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script>
+    $('#saveImg').click(function(){
+        $('#file').click();
+    })
+    $('#saveImgs').click(function(){
+        $('#files').click();
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#handlepost").validate({
+            debug: false, //调试模式取消submit的默认提交功能
+            focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+            onkeyup: false,
+            submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+                form.submit();   //提交表单
+            },
+            ignore:":button", //不验证的元素
+            rules:{
+                w_token:{
+                    required:true
+                },
+                wxname:{
+                    required:true
+                },
+                appsecret:{
+                    required:true
+                },
+                wxid:{
+                    required:true
+                },
+                weixin:{
+                    required:true
+                },
+                appid:{
+                    required:true
+                },
+                appsecret:{
+                    required:true
+                }
+            },
+            messages:{
+                mchid:{
+                    required:"请填写mchid"
+                },
+                apikey:{
+                    required:"请填写apikey"
+                },
+                appid:{
+                    required:"请填写appid"
+                },
+                appsecret:{
+                    required:"请填写AppSecret"
+                }
+            }
+        });
+
+
+    });
+    function formSubmit(){
+        $("#handlepost").submit();
+    }
+
+    function img_call_back(fileurl_tmp)
+    {
+        $("#headerpic").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+    function img_call_back2(fileurl_tmp)
+    {
+        $("#qr").val(fileurl_tmp);
+        $("#img_a2").attr('href', fileurl_tmp);
+        $("#img_i2").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</body>
+</html>

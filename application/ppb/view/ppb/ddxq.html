@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=.mian-ul1 li, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>皮皮班</title>
+<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/ppb/css/shop.css" />
+        <link rel="stylesheet" type="text/css" href="/ppb/fonts/iconfont.css"/>
+        <link rel="stylesheet" type="text/css" href="/ppb/css/aui.css"/> 
+        <link rel="stylesheet" href="/ppb/pictureViewer.css">
+        <style type="text/css">
+
+        .mine-ul1{
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 20px;
+            margin-top: 60px;
+        }
+        .mine-ul1 li{
+            float: left;
+            width:24%;
+            text-align: center;
+            list-style: none;
+             font-size: 16px;
+        }
+        .mine-ul1 li p{
+            margin-top: 5px;
+        }
+      
+        .mine-ul1 li.active{
+            color: #BFD6CA;
+        }
+        .left{
+               
+    display: inline-block;
+    margin-top: 6px;
+        }
+        .qrds{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #f15105;
+            color: #fff;
+            background: #f15105;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 15px;
+            margin: 10px auto;
+            font-size: 16px;
+        }
+        .contentc{
+           
+            display: flex;
+             flex-wrap:wrap;
+             justify-content: flex-start;
+             align-content: center;
+        }
+        .contentc p{
+             margin-top: 7px;
+             border-radius: 5px;
+        }
+         .contentb{
+           
+            display: flex;
+             flex-wrap:wrap;
+             justify-content: flex-start;
+             align-content: center;
+        }
+        .contentb p{
+             margin-top: 7px;
+             border-radius: 5px;
+        }
+         .contenta{
+           
+            display: flex;
+             flex-wrap:wrap;
+             justify-content: flex-start;
+             align-content: center;
+        }
+        .contenta p{
+             margin-top: 7px;
+             border-radius: 5px;
+        }
+        .xuanzhong{
+        border:2px solid #f15105 !important;
+    }
+    .qrchanga,
+    .qrhe,
+    .qrbh
+    {
+          cursor: pointer;
+    }
+    .qrchangb{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    
+<div class="content">
+    <p>订单信息</p>
+    <p><span >时间：</span><span class="dd-time"></span></p>
+    <p><span >订单号：</span><span class="order_sn"></span></p>
+    <p><span >寄件人姓名：</span><span class="dd-name"></span></p> 
+    <p><span >寄件人电话：</span><span class="dd-moblie"></span></p> 
+    <p><span >寄件人地址：</span><span class="dd-dizjhi"></span></p> 
+    <p><span >收件人：</span><span class="sj-name"></span></p> 
+    <p><span >收件人电话：</span><span class="sj-moblie"></span></p> 
+    <p><span >收件人地址：</span><span class="sj-dizjhi"></span></p> 
+    
+    
+</div>
+<div class="content">
+    <p>物品信息</p>
+    <p><span>类型：</span><span class="leixing"></span></p>
+    <p><span>品类：</span><span class="pinlei"></span></p>
+    <p><span>品牌：</span><span class="caizhi"></span></p>
+    
+</div>
+
+<div class="content">
+    <p>订单进度</p>
+    <p><span class="orderstatus"></span></p>
+</div>
+<div class="content">
+    <p>价格信息</p>
+    <p><span class="money"></span></p>
+     <p>合计：<span class="prices" style="color:#f15105"></span></p>
+</div>
+    <div class="content">
+        <p>定损照片</p>
+        <span  class="contenta" style="width: 100%;display: inline-flex;"></span>
+        <span class="qrchanga"></span>
+    </div>
+    <div class="content">
+         <p>已选择维护照片</p>
+        <span  class="contentb" style="width: 100%;display: inline-flex;"></span>
+    </div>
+    <div class="content">
+         <p>核验照片</p>
+        <span  class="contentc" style="width: 100%;display: inline-flex;"></span>
+        <span class="qrchangb"></span>
+    </div>
+<script src="/ppb/js/jquery.min.js"></script>
+<!-- <script src="/ppb/jquery.min.js"></script> -->
+<script src="/ppb/jquery.mousewheel.min.js"></script>
+ <script src="/ppb/pictureViewer.js"></script>
+<script type="text/javascript">
+	
+		$.ajax({
+			type:"get",
+			url:"http://ppb.dhxdrawing.top/index.php/ppb/order/orderDetail",
+			data : {order_id: localStorage.getItem('order')},//数据
+            async : true,//同步
+            dataType : 'json',
+            success : function(data){
+               localStorage.setItem("yixuanimgcd",data.data.order_prom_type.length);
+                // console.log(data.data.checkedimg.length)
+            	var html="";
+            	var dizhi="";
+                var acon="";
+                var bcon="";
+                var ccon="";
+                var money="";
+            	html+=`
+            		${data.data.mobile_name}</br>
+            		<p style="width:150px;  display: inline-block;">${data.data.attr_name}${data.data.brand_name}</p>
+            	`
+            	
+            	if(data.data.moneylist==""){
+                    $('.money').html(`<span class="margin-left:5%;color:#ccc;">暂无价格</span>`);
+                }else{
+                    for(i=0;i<data.data.moneylist.length;i++){
+                        // console.log()
+                        money+=`
+                        <span>${data.data.moneylist[i].title}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>￥${data.data.moneylist[i].money}</span><br/>
+                        `
+                    }
+                     $('.money').html(money);
+                     $(".prices").html("¥"+data.data.goods_price);
+                }
+            	$(".names").html(html);
+            	$(".dd-time").html(data.data.add_time);
+//          	$(".leixing").html(data.data.cat_id);
+            	$(".leixing").html(data.data.mobile_name);
+            	$(".pinlei").html(data.data.attr_name);
+            	$(".caizhi").html(data.data.brand_name);
+            	$(".order_sn").html(data.data.order_sn);
+            	$(".dd-name").html(data.data.consignee);
+            	$(".dd-moblie").html(data.data.mobile);
+                $(".orderstatus").html(data.data.order_status);
+            	$(".num").html("x"+data.data.goods_num);
+            	dizhi+=`
+            		${data.data.province} ${data.data.city}${data.data.twon} ${data.data.address}
+            	`
+            	$(".dd-dizjhi").html(dizhi);
+            	$(".sj-name").html(data.data.shop_name);
+            	$(".sj-moblie").html(data.data.shop_mobile);
+            	$(".sj-dizjhi").html(data.data.shop_address);
+                if(data.data.order_prom_type != false){
+                    for(i=0;i<data.data.order_prom_type.length;i++){
+                        acon+=`
+                            <p style="width:25%;height:55px;border:1px solid #eee; display:block;"><img style="height:55px;" class="zuanzeimg" src="${data.data.order_prom_type[i]}" id="${i}" /></p>
+                    `
+                    }
+                     // onclick="changeimg(this)"
+                    $(".contenta").html(acon);
+                    
+                }else{
+                    $(".contenta").html(`<span style="margin-left: 5%;color: #ccc; class="zsz">正在定损中...</span>`);
+                    $(".qrchanga").css("display","none");
+                }
+                if(data.data.checkedimg != false){
+                    for(i=0;i<data.data.checkedimg.length;i++){
+                        bcon+=`
+                            <p style="width:25%;height:55px;border:1px solid #eee;"><img style="height:55px;" src="${data.data.checkedimg[i]}" data="1"  /></p>
+                    `
+                    }
+                    $(".contentb").html(bcon);
+                    
+                }else{
+                    $(".contentb").html(`<span style="margin-left: 5%;color: #ccc;">暂未选择</span>`);
+                    // $(".qrchanga").html(`<div class="qrds">确认选择</div>`);
+                }
+                if(data.data.integral != false){
+                    for(i=0;i<data.data.integral.length;i++){
+                        ccon+=`
+                            <p style="width:25%;height:55px;border:1px solid #eee;"><img style="height:55px;" src="${data.data.integral[i]}" /></p>
+                    `
+                    }
+                    $(".contentc").html(ccon);
+                }else{
+                    $(".contentc").html(`<span style="margin-left: 5%;color: #ccc;">暂无照片</span>`);
+                }
+                // if(data.data.wc_status==1 && data.data.hg_status==0 && data.data.integral != false){
+                //     $(".qrchangb").html(`<div class="qrds qrhe" style="display: inline-block;">确认完成</div>
+                //         <div class="qrds qrbh" style="display: inline-block;">不合格</div>`);
+                // }
+            }
+		});
+
+
+
+
+
+
+
+
+
+
+// var xuanzeimgboos = new Array();
+
+
+$("body").on("click",".zuanzeimg",function(){
+
+    if ( $(this).attr("data")==1) {
+                    $(this).removeClass("xuanzhong");
+                       $(this).attr("data","2");
+                     
+
+
+
+    } else{
+                   $(this).addClass("xuanzhong");
+                     $(this).attr("data","1");
+                      
+
+    }
+
+})
+
+
+
+$("body").on("click",".qrchanga",function(){
+    var xuanzeimgboos = new Array();
+$('.contenta p img').each(function(i){
+
+    if($(this).attr('data')==1){
+         thisid=$(this).attr('id');
+     xuanzeimgboos.push(thisid);
+
+    }
+})
+    if(xuanzeimgboos==""){
+        alert("请选择照片");
+    }
+    else{
+
+ $.ajax({
+            type:"get",
+            url:"http://ppb.dhxdrawing.top/index.php/ppb/order/changeimage",
+            data:{order_id: localStorage.getItem('order'),number:xuanzeimgboos.join(",")},//数据
+            async : true,//同步
+            dataType : 'json',
+            success : function(data){
+                if (data.status==1) {
+                    alert("选择成功");
+                  location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
+           })
+}
+
+
+})
+
+//  合格
+    $("body").on("click",".qrhe",function(){
+        $.ajax({
+        type:"get",
+        url:"http://ppb.dhxdrawing.top/index.php/ppb/order/submineset",
+        dataType: 'JSON', //数据格式:JSON
+        data: {order_id:localStorage.getItem('order'),user_id:localStorage.getItem('user_id'),type:1},
+        success: function(data) {
+            if (data.status==0) {
+                alert(data.msg);
+            } else{
+                alert("提交成功")
+             location.reload();
+            }
+        }
+    })
+    })
+
+    $('.contentb,.contentc,.contenta').on('click', 'p', function () {
+        var this_ = $(this);
+        var images = this_.parents('.contentb,.contentc,.contenta').find('p');
+        var imagesArr = new Array();
+        $.each(images, function (i, image) {
+            imagesArr.push($(image).children('img').attr('src'));
+        });
+        $.pictureViewer({
+            images: imagesArr, //需要查看的图片，数据类型为数组
+            initImageIndex: this_.index() + 1, //初始查看第几张图片，默认1
+            scrollSwitch: true //是否使用鼠标滚轮切换图片，默认false
+        });
+    });
+    //卜合格
+    $("body").on("click",".qrbh",function(){
+        var judge = prompt("请输入驳回理由");
+            if (judge) {
+//              document.write("输入的内容为："+judge+"。");
+                $.ajax({
+                    type:"get",
+                    url:"http://ppb.dhxdrawing.top/index.php/ppb/order/submineset",
+                    dataType: 'JSON', //数据格式:JSON
+                    data: {order_id:localStorage.getItem('order'),user_id:localStorage.getItem('user_id'),type:0,msg:judge},
+                    success: function(data) {
+                        if (data.status==0) {
+                            alert(data.msg);
+                        } else{
+                            alert("提交成功")
+                            location.reload();
+                        }
+                    }
+                })
+            } else {
+             
+            }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预约下单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body{
+				position: relative;
+			}
+			.total{
+				margin-top: 45px;
+				/*margin-bottom: 50px;*/
+				width: 100%;
+				height: 100%;
+			}
+			.total-top{
+				margin-top: 15px;
+				padding: 15px 10px;
+				border-bottom: 2px solid gainsboro;
+				
+			}
+			.total-top p{
+				font-weight: 400;
+				font-size: 15px;
+				color: black;
+			}
+			.total-top button{
+				    width: 23%;
+    				margin-left: 1%;
+    				margin-top: 10px;
+				height: 30px;
+				color: gray;
+				border-radius: 5px;
+				border: 1px solid #91C9C0;
+			}
+			.a{
+				background: #91C9C0;
+				color: #fff !important;
+			}
+			.total-top2{
+				border-bottom: 2px solid gainsboro;
+				padding: 15px 15px;
+				line-height: 25px;
+			}
+			.total-top2-p{
+				color: #91C9C0;
+				font-size: 15px;
+				text-align: center;
+			}
+			.total-top2 span{
+				
+				font-size: 14px;
+				
+			}
+				footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .one{  
+                margin: 0;
+                padding: 0;
+                background-color: #ffbfc6;
+                width: 100%;
+                color: #fff;
+                padding: 15px 0;
+                border: none;
+                font-size: 16px;
+             }
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			  <a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: black;" href="javascript:history.go(-1)"></a>
+			  <button class="mui-btn mui-btn-link mui-btn-nav mui-pull-right" style="font-size: 27px; margin-top: -5px;color: black;">
+			    ...
+			   <span class="mui-icon mui-icon-right-nav"></span>
+			  </button>
+			  <h1 class="mui-title" style="color: black;">预约取件</h1>
+			  	</header>
+				  <div class="total" style="margin-bottom: 52px">
+				  	 <div class="total-top">
+				  	 	<p>选择保养类型</p>
+				  	 	<div class="baoyanglx">
+				  	 	</div>
+				  	 </div>
+				  	 <div class="total-top2">
+				  	 	<p class="total-top2-p">保养规则</p>
+				  	 	<span class="guoze">
+				  	
+				  	 	</span>
+				  	 </div>
+				  	 
+				  	</div>
+				  
+		  <footer>
+                <button class="one xiayibu">下一步</button>
+            </footer>
+	</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	localStorage.removeItem('yuyueid5');
+		$.ajax({
+			type:"get",
+			url:"http://ppb.dhxdrawing.top/index.php/ppb/index/maintenanceTypes",
+			dataType: 'JSON', //数据格式:JSON
+			data: {},
+			async:false,
+			success: function(data){
+			var leixing="";
+				for (var i=0;i<data.data.type.length;i++) {
+					leixing+=`
+						<button class="type" id5="${data.data.type[i].cat_id}">${data.data.type[i].cat_name}</button>
+					
+					`
+//				}
+				$(".baoyanglx").html(leixing);
+				
+				
+				
+			}
+				$(".guoze").html(data.data.content);
+				$(".baoyanglx").children("button:first").addClass("a");//默认第一个
+				
+	   				localStorage.setItem("yuyueid5",data.data.type[0].cat_id); //存第一个id
+				
+				$(".type").click(function(){
+				    $(this).addClass("a");
+				    $(this).siblings().removeClass("a");
+				    localStorage.removeItem('yuyueid5');
+	   				localStorage.setItem("yuyueid5",$(this).attr("id5"));
+	   				
+	   				
+	   		$.ajax({
+			type:"get",
+			url:"http://ppb.dhxdrawing.top/index.php/ppb/index/maintenanceTypes",
+			dataType: 'JSON', //数据格式:JSON
+			data: {cat2_id:localStorage.getItem("yuyueid5")},
+			async:false,
+			success: function(data){
+			
+				$(".guoze").html(data.data);
+			}
+			 
+				})
+	   				
+				})
+				
+			}
+		});
+	
+			
+			
+		
+		$("body").on("click",".xiayibu",function(){
+			var leiid=localStorage.getItem('yuyueid5');
+			if (leiid ==null) {
+				alert("请选择类型");
+			} else{
+				// alert(leiid)
+				window.location.href = "{:U('ppb/ppb/yyqj')}";
+			
+				
+			}
+		})
+</script>
+</html>

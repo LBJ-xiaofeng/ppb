@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>皮皮班</title>
+	<link rel="stylesheet" type="text/css" href="/ppb/fonts/iconfont.css"/>
+    <link href="/ppb/css/mui.min.css" rel="stylesheet" />
+    
+<link rel="stylesheet" type="text/css" href="/ppb/css/jgzx.css"/>
+		<style type="text/css">
+		#st20
+        {
+            opacity:0;
+            filter:alpha(opacity=0);
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+        .paixue{
+        	    margin-top: 20px;
+        	margin-left: 10px;
+        	    height: 55px;
+
+        }
+
+		</style>
+	</head>
+	
+	<body>
+		<!--头部  star-->
+		<header class="mui-bar mui-bar-nav" >
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: black;"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title" >评价</h1>
+	  </header>
+
+  <form style="margin-bottom: 50px;" action="http://ppb.dhxdrawing.top/index.php/ppb/order/add_comment" method="post" enctype="multipart/form-data" method="post" enctype="multipart/form-data" id="formLogin"  onsubmit = "return false"/> 
+
+<div class="all">
+    <p>评价图片</p>
+     <p style="margin-top: 50px">
+          <textarea rows="7" class="input"  name="content" placeholder="请输入评价内容" style="border:none;padding-left: 5%;padding-right: 5%"></textarea>
+        </p>
+    <div style="margin-top: 20px;width: 100%;">
+    <div class="fb_shangchuan" style="margin-top: 10px; display: block;">
+     <!-- <input type="submit" /> -->
+    <div class="album" style="margin-bottom: 15px;display: inline-block;width: 100%;"></div>
+      <img src="/ppb/image/xj.png"  class="clickpz" />
+      <div id="change" style="width: 100%;height: 300px;position: fixed;bottom: 0;left: 0;z-index: 99;color: #fff;text-align: center;line-height: 50px;font-size: 18px;display: none;">
+        <div class="closepage" style="height: 200px;border-bottom: 1px solid #fff;background:color;"></div>
+        <div id="phone" style="height: 50px;border-bottom: 1px solid #fff;background: pink;">拍照上传</div>
+        <div id="picture" style="background: pink;">图库选择</div>
+      </div>
+            <input id="changeimg" type="file" name="comment_img[]" onchange="previewImage(this,5)"  style="display: none">
+      <input id="takepicture" type="file" name="comment_img[]" accept="image/*" capture="camera" style="display: none">
+      <input type="hidden" name="user_id"  />
+        <input type="hidden" name="order_id"  />
+      <input type="submit" style="background-color: #ffbfc6;border: 0px;width: 80%;color: white;border-radius: 24px;margin-left: 10%;margin-top: 50px;padding: 6px 0px;font-size: 17px;" class="btn"  value="评价"></input>
+      
+    </div>
+
+</div>
+</form>
+		<!--内容 end-->
+        
+        <!--底部 star-->
+		
+        
+       <!--底部  end-->
+		
+	</body>
+	<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/ppb/js/formDate.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	 //拍照上传
+ $('.clickpz').click(function(){
+    $("#change").show();
+  })
+ $('.closepage').click(function(){
+    $("#change").hide();
+  })
+ $('#phone').click(function(){
+  $('#takepicture').click();
+  $("#change").hide();
+ })
+ $('#picture').click(function(){
+  $('#changeimg').click();
+  $("#change").hide();
+ })
+//图库选择
+  function previewImage(file,imgNum){
+    var reader = new FileReader();
+    reader.onload = function(event){
+    var imgnum=0
+    var div = $("<div style='display: inline-block;margin-left: 10px;width:30%;'></div>");
+    var img = $('<img style="width:100%;height:60px;margin-left:3%;"/>');
+    div.append(img);
+    $(".album").append(div);
+    $(".quedingsc").attr("data","2");
+    img.attr('src',event.target.result);
+    }
+    reader.readAsDataURL(file.files[0]);
+
+    }
+
+    var takePicture = document.getElementById('takepicture');
+  var takePictureUrl = function () {
+      takePicture.onchange = function (event) {
+          var files = event.target.files, file;
+         if (files && files.length > 0) {
+              file = files[0];
+              try {
+                var URL = window.URL || window.webkitURL;
+                 var blob = URL.createObjectURL(file);　　// 获取照片的文件流
+                 compressPicture(blob);　　// 压缩照片
+             }
+             catch (e) {
+                 try {
+                     var fileReader = new FileReader();
+                     fileReader.onload = function (event) {　　　　// 获取照片的base64编码
+
+                         // console.log(event.target.result);
+                        var imgnum=0
+                          var div = $("<div style='display: inline-block;margin-left: 10px;width:30%;'></div>");
+    var img = $('<img style="width:100%;height:60px;margin-left:3%;"/>');
+                    div.append(img);
+                     $(".album").append(div);
+                       img.attr('src',event.target.result);
+          
+                     };
+                     fileReader.readAsDataURL(file);
+                 }
+                 catch (e) {
+                   alert(common.MESSAGE.title.error, '拍照失败,请联系客服或尝试更换手机再试!');
+                 }
+             }
+        }
+   }
+ }();
+
+    
+	
+		$(".btn").click(function(){
+			$("input[name='user_id']").val(localStorage.getItem('user_id'));
+      $("input[name='order_id']").val(localStorage.getItem('order'));
+			var user_id=$("input[name='user_id']").val();
+			var order_id=$("input[name='order_id']").val();
+			var comment_img=$("input[name='comment_img']").val();
+			var content=$(".input").val();
+          if(user_id!==""&&order_id!==""&&content!==""){
+          	
+          	 $("#formLogin").submit();
+          	 $("#formLogin").ajaxForm(function(data){
+               if(JSON.parse(data).status=="1"){
+             alert("评价成功");
+              window.location.href="{:U('ppb/ppb/dpj')}";
+             } else{
+                alert(data.msg);
+             }
+            
+       });
+          
+          	}else{
+          		alert("请填写完整");
+          		return false;
+          	}
+        
+    	})
+	
+    
+   
+</script>
+</html>

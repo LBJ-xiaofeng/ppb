@@ -1,0 +1,626 @@
+body {
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    color: #333;
+    padding: 0;
+    font-family: "Microsoft Yahei";
+    text-align: center;
+}
+
+.container {
+    /*width: 100%;*/
+    border: 1px solid #ccc;
+}
+
+.swiper1 {
+    width: 100%;
+}
+
+.swiper1 .selected {
+    color: #ec5566;
+    border-bottom: 2px solid #ec5566;
+}
+
+.swiper1 .swiper-slide {
+    text-align: center;
+    font-size: 16px;
+    height: 50px;
+    width: 70px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.swiper2 {
+    width: 100%;
+}
+
+.swiper2 .swiper-slide {
+    height: calc(100vh - 50px);
+    background-color: #ccc;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+.wrap {
+    margin: 0 auto;
+}
+
+.tabs {
+    height: 32px;
+    width: 100%;
+    padding-top: 8px;
+    text-align: center
+}
+
+.tabs .part {
+    display: block;
+    float: left;
+    width: 25%;
+    color: #ffbfc6;
+    text-align: center;
+    height: 20px;
+}
+
+.left-boder {
+    border-right: 1px solid #ffbfc6;
+}
+
+.tabs a {
+    width: 70px;
+    height: 30px;
+    display: block;
+    color: black;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 15px;
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
+.tabs span.active a {
+    color: #ffbfc6;
+    border-bottom: 2px solid #ffbfc6;
+    font-size: 15px;
+}
+
+.swiper-container {
+    width: 100%;
+    border-top: 0;
+    margin-top: 10px!important
+}
+
+.swiper-slide {
+    width: 100%;
+    background: none;
+    color: #373737;
+}
+
+p {
+    text-align: center;
+}
+
+.a {
+    color: #91C9C0;
+    border-bottom: 1px solid #91C9C0;
+}
+
+.total {
+    margin-top: 45px;
+}
+
+.total-top {
+    height: 42px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.total-top div {
+    height: 100%;
+    line-height: 41px;
+}
+
+.list li {
+    height: 145px !important;
+}
+
+.left-img {
+    max-width: 105px !important;
+    width: 105px !important;
+    height: 110px !important;
+    border-radius: 7px !important;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0px -15px;
+    padding: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: inherit;
+}
+
+.list-p {
+    margin-top: 12px !important;
+    /*overflow: hidden !important;
+		  text-overflow: ellipsis !important;
+		  display: -webkit-box !important;
+		-webkit-line-clamp: 2 !important;
+		-webkit-box-orient: vertical !important;*/
+}
+
+.button {
+    float: right;
+    margin-top: 27px;
+    background-color: #ffbfc6;
+    color: #fff;
+    border: 0px;
+    border-radius: 7px;
+}
+
+.qian {
+    float: left;
+    display: block;
+    margin-top: 33px;
+    color: red;
+    font-size: 15px;
+}
+
+.title {
+    font-size: 15px;
+}
+
+.jian {
+    width: 18px;
+    height: 18px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 15px;
+    display: inline-block;
+}
+
+.jia {
+    width: 18px;
+    height: 18px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 15px;
+    display: inline-block;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: black;
+}
+
+body {
+    background-color: #fff;
+}
+
+.start {
+    margin-top: 55px;
+    margin-bottom: 50px;
+}
+
+
+/*底部导航start*/
+
+.chongyu-ul0 li {
+    float: left;
+    list-style: none;
+    margin-left: 2%;
+    width: 31%;
+    text-align: center;
+    padding-top: 9px
+}
+
+.chongyu-ul0 li img {
+    display: inline-block;
+    width: 38%;
+}
+
+.chongyu-ul0 {
+    height: auto;
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
+    padding-bottom: 9px;
+    border-top: 1px solid gainsboro;
+}
+
+.chongyu-ul0 img {
+    display: inline-block;
+    width: 75%;
+    padding-bottom: 6px;
+}
+
+.chongyu-ul0 p {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.chongyu-ul0 a {
+    color: #8D8D8D;
+}
+
+
+/*底部导航end*/
+
+
+/*内容start*/
+
+.dingdan-top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dingdan-top1 {
+    width: 65px;
+    height: 45px;
+    font-size: 15px;
+    color: #59D863;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 2px solid #59D863;
+}
+
+.dingdan-top2 {
+    width: 65px;
+    height: 45px;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.dingdan-top3 {
+    width: 65px;
+    height: 45px;
+    font-size: 15px;
+    line-height: 50px;
+    color: #59D863;
+    text-align: center;
+    border-bottom: 2px solid #59D863;
+}
+
+.dingdan-list-top {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dingdan-list-top1 {
+    font-size: 15px;
+    width: 50%;
+}
+
+.dingdan-list-top1 img {
+    width: 17px;
+    width: 17px;
+    vertical-align: middle;
+}
+
+.dingdan-list-top2 {
+    color: #59D863;
+    font-size: 15px;
+}
+
+.dingdan-list-middle {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 32px;
+    height: 80px;
+}
+
+.dingdan-list-middle1 {}
+
+.dingdan-list-middle1 img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.dingdan-list-middle2 {
+    width: 80px;
+    flex: 0.8;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.middle2-1 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.middle2-2 {
+    font-size: 12px;
+    color: gray;
+}
+
+.dingdan-list-middle3 {
+    flex: 2;
+    text-align: right;
+    width: 100px;
+    color: #FF6E17;
+    font-size: 15px;
+}
+
+.title {
+    color: black;
+}
+
+.jinnongchang {
+    width: 100px;
+    position: absolute;
+    right: 0%;
+    bottom: 10px;
+    text-align: center;
+    color: black;
+}
+
+.dingdan-list-botm {
+    width: 100%;
+    padding: 0 32px;
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.lvjianImg {
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+}
+
+.dingdan-list-but1 {
+    height: 40px;
+    width: 100%;
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    background-color: #42C44A;
+}
+
+.dingdan-list-but2 {
+    height: 40px;
+    width: 100%;
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    background-color: lightgray;
+}
+
+.dingdan-list-but {
+    padding: 25px 32px;
+}
+
+
+/*内容end*/
+
+.bottom {
+    z-index: 999;
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botom-top {
+    flex: 1;
+}
+
+.center {
+    flex: 3;
+    font-size: 14px;
+        text-align: left;
+}
+
+.center-span {
+    font-size: 14px;
+    color: red;
+}
+
+.xiadan {
+    flex: 2;
+    background-color: #ffbfc6;
+    width: 110px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+    margin-right: 0px;
+    font-size: 15px;
+}
+
+.wrap {
+    margin: 0 auto;
+}
+
+.tabs {
+    height: 32px;
+    width: 100%;
+    padding-top: 8px;
+    text-align: center
+}
+
+.tabs .part {
+    display: block;
+    float: left;
+    width: 25%;
+    color: #ffbfc6;
+    text-align: center;
+    height: 20px;
+}
+
+.left-boder {
+    border-right: 1px solid #ffbfc6;
+}
+
+.tabs a {
+    width: 70px;
+    height: 30px;
+    display: block;
+    color: black;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 15px;
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
+.tabs span.active a {
+    color: #ffbfc6;
+    border-bottom: 2px solid #ffbfc6;
+    font-size: 15px;
+}
+
+.swiper-container {
+    width: 100%;
+    border-top: 0;
+    margin-top: 10px!important
+}
+
+.swiper-slide {
+    width: 100%;
+    background: none;
+    color: #373737;
+}
+
+p {
+    text-align: center;
+}
+
+.a {
+    color: #91C9C0;
+    border-bottom: 1px solid #91C9C0;
+}
+
+.total {
+    margin-top: 45px;
+}
+
+.total-top {
+    height: 42px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.total-top div {
+    height: 100%;
+    line-height: 41px;
+}
+
+.list li {
+    height: 145px !important;
+}
+
+.left-img {
+    max-width: 105px !important;
+    width: 105px !important;
+    height: 110px !important;
+    border-radius: 7px !important;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0px -15px;
+    padding: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: inherit;
+}
+
+.list-p {
+    margin-top: 12px !important;
+    /*overflow: hidden !important;
+		  text-overflow: ellipsis !important;
+		  display: -webkit-box !important;
+		-webkit-line-clamp: 2 !important;
+		-webkit-box-orient: vertical !important;*/
+}
+
+.button {
+    float: right;
+    margin-top: 27px;
+    background-color: #ffbfc6;
+    color: #fff;
+    border: 0px;
+    border-radius: 7px;
+}
+
+.qian {
+    float: left;
+    display: block;
+    margin-top: 33px;
+    color: red;
+    font-size: 15px;
+}
+
+.title {
+    font-size: 15px;
+}
+
+.jian {
+    width: 18px;
+    height: 18px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 15px;
+    display: inline-block;
+}
+
+.jia {
+    width: 18px;
+    height: 18px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 15px;
+    display: inline-block;
+}

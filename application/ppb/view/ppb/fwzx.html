@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>服务中心</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <style type="text/css">
+        body,div,p,ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .all{
+            overflow: hidden;
+            padding: 10px 5%;
+            margin-bottom:  40px;
+        }
+        .all>p{
+            color: #121212;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .all>div>p{
+            padding: 2px 0;
+            font-size: 14px;
+        }
+        .all>div{
+            color: #484848;
+            margin-top: 10px;
+        }
+</style>
+</head>
+<body>
+
+<div>
+    <img  style="display: inline-block;width: 100%;" class="fwjsimg">
+</div>
+<div class="all">
+</div>
+
+</body>
+<script type='text/javascript' src='/ppb/js/jquery.min.js'></script>
+<script type="text/javascript">
+	$.ajax({
+		type: 'get', 
+		url:'http://ppb.dhxdrawing.top/index.php/ppb/index/serviceIsIntroduced', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {type:2},
+		success: function(data){
+			var all="";
+			all+=`
+				${data.data.content}
+			`
+			$(".all").html(all);
+			$(".fwjsimg").attr("src",data.data.img);
+		}
+	})
+			
+	
+	
+</script>
+
+</html>

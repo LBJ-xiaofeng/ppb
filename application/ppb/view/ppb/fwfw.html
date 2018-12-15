@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>服务范围</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body{
+				width: 100%;
+			}
+			.total-topimg img,
+			.total-botmimg img{
+				width: 100%;
+				height: 200px;
+			}
+			
+			.total{
+				margin-top: 45px;
+			}
+			.total-span{
+				margin-top: 10px;
+				display: block;
+				color: #91C9C0;
+				font-size: 14px;
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+				margin: 0 auto;
+				text-align: center;
+				
+			}
+			.total-span2{
+				width: 100%;
+				height: 100%;
+				display: block;
+				color: black;
+				font-size: 12px;
+			}
+			.div-total-span2{
+				padding: 0 20px;
+				margin-bottom: 20px;
+			}
+			.dingwei{
+				
+				margin-right: 20px;
+				float: right;
+			}
+			.sheng{
+				font-size: 13px;
+			}
+			.shi{
+				font-size: 12px;
+				color: grey;
+			}
+		</style>
+	</head>
+
+	<body>
+		  	<header class="mui-bar mui-bar-nav" style="background-color: #FE5F01">
+			    <a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;" href="javascript:history.go(-1)"></a>
+			  <button class="mui-btn mui-btn-link mui-btn-nav mui-pull-right" style="font-size: 27px; margin-top: -5px;color: #fff;">
+			    ...
+			    <span class="mui-icon mui-icon-right-nav"></span>
+			  </button>
+			  <h1 class="mui-title" style="color: #fff;">服务范围</h1>
+			</header>
+			<div class="total">
+				<div class="total-topimg"><img src="/ppb/img/topimg.png"/></div>
+				<div> 
+					<div><span class="total-span">具体范围</span></div>
+					<div class="div-total-span2">
+						<span class="total-span2">
+							
+							
+							 	 <span class="sheng"></span>
+							
+							 	 <span class="shi"> </span>
+							
+							
+							
+						</span>
+					</div>
+				</div>
+				<!-- <div class="dingwei"><img src="/ppb/img/dingwei.png"/></div> -->
+				<div class="total-botmimg"></div>
+			</div>
+	</body>
+	<script type='text/javascript' src='/ppb/js/jquery.min.js'></script>
+<script type="text/javascript">
+	$.ajax({
+		type: 'get', 
+		url:'http://ppb.dhxdrawing.top/index.php/ppb/index/ktCity', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {},
+		success: function(data){
+
+			var sheng="";
+			var shi="";
+			var num=0;
+			num=data.data.meun.length;
+			for (var i=0;i<data.data.meun.length;i++) {
+				
+				sheng+=`
+					<div>	
+					 	 <span class="sheng">${data.data.meun[i].name}</span>
+					</div>
+					 `
+					for(var j=0;j<data.data.meun[i].child.length;j++) { 
+						
+							sheng+=` 
+				
+					 	 <span class="shi">${data.data.meun[i].child[j].name} </span>
+					 	 </div>&#12288;
+					 
+					 `	
+						
+				
+				 }
+				$(".total-span2").html(sheng);
+				$('.total-botmimg').html(`<img src="${data.data.ad.ad_code}"/>`);
+			
+			}
+			
+		}
+	})
+	
+</script>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>价目中心</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <style type="text/css">
+        body,div,p,ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .all{
+            overflow: hidden;
+            padding: 10px 5%;
+        }
+         .mine-ul1{
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 20px;
+            margin-top: 60px;
+        }
+        .mine-ul1 li{
+            float: left;
+            width:24%;
+            text-align: center;
+            list-style: none;
+             font-size: 16px;
+        }
+        .mine-ul1 li p{
+            margin-top: 5px;
+        }
+      
+        .mine-ul1 li.active{
+            color: #ffbfc6;
+        }
+        thead>tr>td{
+               background: #ffbfc6;
+                width: 1%;
+                text-align: center;
+                color: #fff;
+                padding: 5px;
+        }
+        tr>td{
+               line-height: 36px;
+                width: 1%;
+                text-align: center;
+        }
+</style>
+</head>
+<body>
+     <ul class="mine-ul1">
+         <li class="active">
+            皮包
+        </li>
+             <li>
+            衣服
+        </li>
+            <li>
+          鞋子
+        </li>
+            <li>
+            箱包
+        </li>
+    </ul>
+<div class="all">
+    <table>
+        <thead>
+            <tr>
+                <td>品类</td>
+                <td>价格</td>
+                <td>周期</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+             <tr>
+                <td>真皮钱包</td>
+                <td>100元</td>
+                <td>4天</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+   
+</body>
+ <script type="text/javascript" src="/ppb/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(".mine-ul1 li").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+})
+</script>
+</html>

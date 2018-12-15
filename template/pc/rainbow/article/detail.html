@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-language" content="zh-cn"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <meta http-equiv="Cache-control" content="public" max-age="no-cache"/>
+    <title>详情-{$tpshop_config[0]['value']}</title>
+    <meta name="keywords" content="{$tpshop_config[2]['value']}"/>
+    <meta name="description" content="{$tpshop_config[3]['value']}"/>
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/help.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{$tpshop_config[1]['value']}" media="screen"/>
+</head>
+<body>
+
+<div id="pageContent" class="pageContent p">
+    <div class="hc-warp" id="page">
+        <div class="hc-crumbs"><a class="p-fb" href="" target="_blank">帮助中心</a>&gt; <a>{$cat_name}</a></div>
+        <div class="hc-column">
+                <foreach name="data" key="k" item="vo">
+                <div class="hc-column-box">
+                    <h2><a href="" target="_self">{$k}</a></h2>
+                    <ul>
+                        <foreach name="vo" item="data">
+                            <li><a href="{:U('Home/Article/detail',array('article_id'=>$data[article_id]))}">{$data[title]}</a></li>
+                        </foreach>
+                    </ul>
+                </div>
+            </foreach>
+        </div>
+        <!--可编辑区域开始-->
+        <div id="content"> <!--可编辑区域开始-->
+            <div style="width: 1050px; overflow: hidden; font-family: Verdana,Helvetica; float: right;">
+
+                <div style="border: 1px solid rgb(233, 234, 236); margin-bottom: 25px;">
+                    <h2 style="height: 34px; line-height: 34px; border-bottom-color: rgb(233, 234, 236); border-bottom-width: 1px; border-bottom-style: solid;">
+                        <span style="color: rgb(60, 60, 60); padding-top: 4px; padding-bottom: 4px; padding-left: 10px; font-size: 14px; font-weight: bold; border-left-color: rgb(242, 46, 0); border-left-width: 3px; border-left-style: solid;">{$article.title}</span>
+                       <div style="float: right;position: absolute;right: 12%;top: 6%;"> <span>发布时间:{$article.add_time|date="Y-m-d H:i",###}</span><br/>
+                       </div>
+                    </h2>
+                    <img src="{$article.thumb}"/>
+                    <div style="padding: 20px 30px 0px; color: rgb(60, 60, 60); font-size: 12px;">
+                        {$article.content|htmlspecialchars_decode}
+                    </div>
+                    <div style="float: right;position: absolute;right: 12%;"> <span>({$article.click}人阅读)</span></div>
+                </div>
+
+            </div>
+            <!--可编辑区域结束-->
+        </div>
+        <!--可编辑区域结束-->
+    </div>
+</div>
+<!--<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>-->
+<!--<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>-->
+</body>
+</html>

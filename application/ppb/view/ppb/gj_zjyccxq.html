@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>查看订单</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<link rel="stylesheet" href="/ppb/pictureViewer.css">
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.all{
+			padding: 10px 5%;
+		}
+		.all>p{
+			padding: 10px 0;
+			font-size: 16px;
+		}
+		.all>div>p{
+			padding: 4px 0;
+		}
+		.all>div{
+			font-size: 14px;
+			color: #484848;
+			padding: 0 5%;
+		}
+		 footer{
+        	position: fixed;
+        	bottom: 0;
+        	left: 0;
+        	width: 100%;
+        	text-align: right;
+        	
+        }
+        .one{ 
+        		 margin: 0;
+			    padding: 0;
+			    background-color: #73E96E;
+			    width: 27%;
+			    color: #fff;
+			    padding: 9px 0;
+			    border: none;
+			    font-size: 14px;
+			    margin-right: -5px;
+        }
+        .two{
+        		margin: 0;
+        		padding: 0;
+        	    background-color: #FD9D13;
+			    width: 27%;
+			    color: #fff;
+			    padding: 9px 0;
+			    border: none;
+			    font-size: 14px;
+        }
+        /*.start{
+        	margin-bottom: 50px;
+        }*/
+        .album {
+            width: 100%;
+           
+            height: auto;
+            min-height: 50px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            
+
+        }
+        .albumboss{
+        	display: none;
+        }
+        .album>div {
+            width: 23%;
+
+            height: auto;
+            margin-right: 5px;
+            margin-top:7px;
+        }
+        
+        .album>div>img {
+            width: 50px;
+            height: 70px
+            border-radius: 5px;
+        }
+        .kyzezp{
+        	display: 
+        }
+       .yishangchuan,.yixuanze,.zhijian{
+       	width: 100%;
+       	 display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+       }
+        .yishangchuan div,.yixuanze div,.zhijian div{
+        	 width: 23%;
+
+        	 margin-right: 5px;
+            margin-top:7px;
+        }
+       .yishangchuan div img,.yixuanze div img,.zhijian div img{
+       	 width: 50px;
+            height: 70px;
+            border-radius:5px;
+       }
+	</style>
+</head>
+<body>
+	<div class="start"></div>
+	<form action="http://ppb.dhxdrawing.top/index.php/ppb/admin/checkimage" method="post" enctype="multipart/form-data" id="formLogin"  onsubmit = "return false"/>
+
+<div class="all">
+		<p>上传质检照片</p>
+		 <div class="albumboss"><div class="album"></div></div>
+		<div class="fb_shangchuan" style="margin-top: 10px; display: block;">
+    	<div class="album" style="margin-bottom: 15px;"></div>
+			<img src="/ppb/img/1_03.png"  class="clickpz" />
+			<input id="takepicture" type="file" name="img[]"  accept="image/*" capture="camera" style="display: none">
+			<input type="button" style="margin-bottom: 30px;display: block;border: 1px solid;border-radius: 5px;background-color: #fff; height: 26px;display: none;" class="quedingsc"  value="确定上传" data="1" />
+		</div>
+
+</div>
+<input type="text" hidden="hidden" value="" name="order_id" class="shangcimg"></input>
+</form>
+ <footer>
+            	 <button class="one">合格</button>
+                 <button class="two">驳回</button>
+            </footer>
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="/ppb/js/formDate.js"></script>
+<!-- <script src="/ppb/jquery.min.js"></script> -->
+<script src="/ppb/jquery.mousewheel.min.js"></script>
+ <script src="/ppb/pictureViewer.js"></script>
+<script type="text/javascript">
+//拍照上传
+ $('.clickpz').click(function(){
+    $("#takepicture").click();
+  })
+
+var takePicture = document.getElementById('takepicture');
+  var takePictureUrl = function () {
+      takePicture.onchange = function (event) {
+          var files = event.target.files, file;
+         if (files && files.length > 0) {
+              file = files[0];
+              try {
+                var URL = window.URL || window.webkitURL;
+                 var blob = URL.createObjectURL(file);　　// 获取照片的文件流
+                 compressPicture(blob);　　// 压缩照片
+             }
+             catch (e) {
+                 try {
+                     var fileReader = new FileReader();
+                     fileReader.onload = function (event) {　　　　// 获取照片的base64编码
+
+                         // console.log(event.target.result);
+                        var imgnum=0
+                          var div = $("<div></div>");
+            			var img = $('<img/>');
+            			  div.append(img);
+            			   $(".album").append(div);
+            			   $(".quedingsc").attr("data","2");
+            			   	 img.attr('src',event.target.result);
+            			   	$(".quedingsc").css("display","block");
+            			   		$(".clickpz").css("display","none");
+          
+                     };
+                     fileReader.readAsDataURL(file);
+                 }
+                 catch (e) {
+                   alert(common.MESSAGE.title.error, '拍照失败,请联系客服或尝试更换手机再试!');
+                 }
+             }
+        }
+   }
+ }();
+
+
+$("body").on("click",".quedingsc",function(){
+	if ($(this).attr('data')==1) {
+			alert("请先拍摄图片")
+          }else{
+          	
+          	$(".shangcimg").val(localStorage.getItem('gjddid'));
+          	$("#formLogin").submit();
+          	 $("#formLogin").ajaxForm(function(data){
+          	 	 var jsonObj =  JSON.parse(data)
+               if(jsonObj.status==1){
+
+             alert("上传成功");
+             		$(".quedingsc").css("display","none");
+            		$(".clickpz").css("display","block");
+            		location.reload();
+             } else{
+                alert(jsonObj.msg);
+             }
+          })
+        }
+        return false;
+    });
+
+
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/qualityInspectionDetail",
+		dataType: 'JSON', //数据格式:JSON
+		data: {order_id:localStorage.getItem('zjid')},
+		success: function(data) {
+			html="";
+			html1="";
+			yisc="";
+			yxz="";
+			yisc1="";
+			html+=`
+				<div class="all">
+						<p>订单信息</p>
+						<div>
+							<p><span>订单号：</span><span>${data.data.order.order_sn}</span></p>
+							<!--<p><span>商品名称：</span><span>${data.data.order.parent_name}</span></p>-->
+							<p><span>下单时间：</span><span>${data.data.order.add_time}</span></p>
+						</div>
+					</div>
+					<div class="all">
+						<p>基本信息</p>
+						<div>
+							<p><span>寄件人：</span><span>${data.data.order.consignee}</span></p>
+							<p><span>寄件人电话：</span><span>${data.data.order.mobile}</span></p>
+							<p><span>寄件人地址：</span><span>${data.data.order.province} ${data.data.order.city} ${data.data.order.address}</span></p>
+
+						</div>
+					</div>
+					<div class="all">
+						<p>订单进度</p>
+						<div style="color: #FD9D13">
+							${data.data.order.order_status}  · · ·
+						</div>
+					</div>
+					
+					<div class="all">
+						<p>物品信息</p>
+						<div>
+						<p>${data.data.order.mobile_name}   	 ${data.data.order.attr_name}		${data.data.order.brand_name}</p>
+							
+						</div>
+					</div>
+					<div class="all test">
+						<p>定损照片</p>
+						 <div class="kyzezp yishangchuan">
+
+						 </div>
+					</div>
+
+					<div class="all">
+						<p>客户已选照片</p>
+						 <div class="kyzezp yixuanze"></div>
+					</div>
+					<div class="all">
+						<p>已上传质检照片</p>
+						 <div class="kyzezp zhijian"></div>
+					</div>
+					<div class="bh"></div>
+					
+					
+			
+			`
+			$(".start").html(html);
+			
+			html1+=`
+				<div class="all">
+						<p>查验信息</p>
+			`
+			for (var i=0;i<data.data.action.length;i++) {
+				html1+=`
+					
+						<div style="font-size: 14px;padding: 0 5%;margin-top: 15px;border: 1px solid #eee;">
+							<p><span>${data.data.action[i].admin_name}</span><span  style="font-size: 15px; color:black;margin-left: 30%;">${data.data.action[i].add_time}</span></p>
+							<p><span style="vertical-align: top">查验意见：</span><span >${data.data.action[i].action_note}</span></p>
+						</div>
+					
+				`
+				}
+				html1+=`
+				</div>
+				`
+				$(".bh").html(html1)
+
+			if(data.data.order.checkedimg.length>0){
+				for (var i = 0; i<data.data.order.checkedimg.length;i++) {
+
+				yxz+=`
+				<div class="sc2"><img src="${data.data.order.checkedimg[i]}" ></div>
+
+				`
+				}
+				$(".yixuanze").html(yxz);
+			}else{
+				$(".yixuanze").html(`<span style="margin-left:10px;">暂未选择</span>`);
+			}
+			
+			if(data.data.order.order_prom_type.length>0){
+			for (var i = 0; i<data.data.order.order_prom_type.length;i++) {
+
+			yisc+=`
+			<div class="sc1"><img src="${data.data.order.order_prom_type[i]}" ></div>
+
+			`
+			}
+			$(".yishangchuan").html(yisc);
+			}else{
+				$(".yishangchuan").html(`<span style="margin-left:10px;">暂未选择</span>`);
+			}
+
+			if(data.data.order.integral.length>0){
+			for (var i = 0; i<data.data.order.integral.length;i++) {
+
+			yisc1+=`
+			<div class="sc3"><img src="${data.data.order.integral[i]}" ></div>
+
+			`
+			}
+			$(".zhijian").html(yisc1);
+			}else{
+				$(".zhijian").html(`<span style="margin-left:10px;">暂未选择</span>`);
+			}
+			
+		}
+			
+	});
+//	合格
+	$("body").on("click",".one",function(){
+		$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/qualityInspectionResult",
+		dataType: 'JSON', //数据格式:JSON
+		data: {order_id:localStorage.getItem('zjid'),admin_id:localStorage.getItem('admin_id'),type:1},
+		success: function(data) {
+			if (data.status==0) {
+				alert(data.msg);
+			} else{
+				alert("提交成功")
+				location.reload();
+			}
+		}
+	})
+	})
+	//卜合格
+	$("body").on("click",".two",function(){
+		var judge = prompt("请输入驳回理由");
+            if (judge) {
+//              document.write("输入的内容为："+judge+"。");
+                $.ajax({
+					type:"get",
+					url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/qualityInspectionResult",
+					dataType: 'JSON', //数据格式:JSON
+					data: {order_id:localStorage.getItem('zjid'),admin_id:localStorage.getItem('admin_id'),type:0,msg:judge},
+					success: function(data) {
+						if (data.status==0) {
+							alert(data.msg);
+						} else{
+							alert("提交成功")
+							location.reload();
+						}
+					}
+				})
+            } else {
+             
+            }
+	})
+		$('body').on('click','.sc1 img,.sc2 img,.sc3 img', function () {
+        var this_ = $(this);
+        var images = this_.parents('.yishangchuan,.yixuanze,.zhijian').find('div');
+        var imagesArr = new Array();
+        $.each(images, function (i, image) {
+            imagesArr.push($(image).children('img').attr('src'));
+        });
+        $.pictureViewer({
+            images: imagesArr, //需要查看的图片，数据类型为数组
+            initImageIndex: this_.index() + 1, //初始查看第几张图片，默认1
+            scrollSwitch: true //是否使用鼠标滚轮切换图片，默认false
+        });
+    });
+</script>
+</html>

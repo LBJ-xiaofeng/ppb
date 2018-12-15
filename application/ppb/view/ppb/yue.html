@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的钱包</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		 body{
+            background-color: #fff;
+        }
+		.you_ul1{
+			overflow: hidden;
+		}
+		.you_ul1 li{
+			float: left;
+		    text-align: center;
+		    width: 49%;
+		    padding: 10px 0;
+		  
+		}
+		.you_ul1 li:first-child{
+			  border-right:  1px solid #CFCFCF;
+		}
+		.you_ul1 li img{
+			display: inline-block;
+			width: 18%;
+		}
+		.lan{
+			background-color: #ffbfc6;
+			height: 100px;
+			width: 100%;
+			padding-top: 1px;
+		}
+		.lan p{
+			color: #fff;
+			padding-left: 5%;
+			margin-top: 10px;
+		}
+		.lan p:last-child{
+			font-size: 25px;
+		}
+		.chong{
+			padding: 10px 5%;
+		}
+		.hang{
+			overflow: hidden;
+		}
+		.hang li{
+			  float: left;
+    border: 1px solid #ffbfc6;
+    margin-left: 3%;
+    width: 20.5%;
+    text-align: center;
+    padding: 5px 0;
+}
+		.hang li span:last-child{
+			color: #8E8E8E;
+			font-size: 13px;
+		}
+		.hang li span:first-child{
+			color: #ffbfc6;
+		}
+		.shu{
+			padding-left: 5%;
+			padding-right: 5%;
+			margin: 28px 0;
+		}
+		.shu input{
+			border:none;
+		}
+		.shu span:first-child{
+			float: left;
+		}
+		.shu span:last-child{
+			float: right;
+		}
+		 .btn{
+		     clear: both;
+    background-color: #ffbfc6;
+    border: 0px;
+    width: 40%;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 0px;
+    font-size: 14px;
+    margin-left: 28%;
+    margin-top: 57px;
+    font-size: 17px;
+}
+a{
+	color: #121212;
+	
+}
+.active{
+	color: #ffbfc6;
+}
+.hang li.active1{
+	border:2px solid #ffbfc6;
+	/*chocolate*/
+}
+</style>
+</head>
+<body>
+<ul class="you_ul1">
+	<a href="{:U('ppb/ppb/youhui1')}">
+	<li>
+		<span><img src="/ppb/image/bao (2).jpg"></span>
+		<br>
+		<span>优惠券</span>
+	</li>
+	</a>
+	<a href="{:U('ppb/ppb/yue')}">
+	<li style="border: 0 !important;">
+		<span><img src="/ppb/image/bao (1).jpg"></span>
+		<br>
+		<span class="active">余额</span>
+	</li>
+	</a>
+</ul>
+<div class="lan">
+	<p>账户余额(元)</p>
+	<p><span>¥</span><span class="jine"></span></p>
+</div>
+ <p class="chong">充值金额</p>
+ <ul class="hang">
+ 	<li class="chong" data="30"><span>30元</span></li>
+ 	<li data="50" class="chong"><span>50元</span></li>
+ 	<li data="70" class="chong"><span>70元</span></li>
+ 	<li data="100" class="chong"><span>100元</span></li>
+ </ul>
+ <p class="shu">
+ 	<span><input type="number" name="" class="shuru" placeholder="手动输入金额"></span><span>元</span>
+ </p>
+	<button class="btn chongzhi">充值</button>
+</div>
+
+</body>
+<script src="/ppb/js/jquery.min.js"></script>
+<script type='text/javascript'>
+	localStorage.removeItem('jine');
+	
+	$(".hang li").click(function(){
+		$(this).addClass("active1").siblings().removeClass("active1");
+		localStorage.removeItem('jine');
+    	localStorage.setItem("jine",$(this).attr("data"));
+	})
+	
+	$.ajax({
+        type: 'post', 
+        url: 'http://ppb.dhxdrawing.top/index.php/ppb/user/getinfo', //目标地址
+        dataType: 'JSON', //数据格式:JSON
+        data: {user_id:localStorage.getItem('user_id')},
+        success: function(data) {
+             console.log(data);
+             $('.jine').html(data.data.user_money);
+        }
+    })
+	
+	$(".shuru").focus(function(){
+		localStorage.removeItem('jine');
+		$(".hang li").removeClass("active1");
+	})
+	$(".shuru").bind("input propertychange",function(){
+		localStorage.removeItem('jine');
+   		var shuruval=$(".shuru").val();
+   		localStorage.setItem("jine",shuruval);
+	})
+	
+	$("body").on("click",".chongzhi",function(){
+	console.log(localStorage.getItem('jine'));
+	        		if (localStorage.getItem('jine')==null ){
+	        			alert("请选择充值金额")
+	        		} else{
+	        			window.location.href="http://ppb.dhxdrawing.top/index.php/ppb/order/topUp/user_id/"+localStorage.getItem('user_id')+"/money/"+localStorage.getItem('jine');
+
+	        			// $.ajax({
+				        // type: 'post', 
+				        // url: 'http://ppb.dhxdrawing.top/index.php/ppb/order/topUp', //目标地址
+				        // dataType: 'JSON', //数据格式:JSON
+				        // data: {user_id:localStorage.getItem('user_id'),money:localStorage.getItem('jine')},
+				        // success: function(data) {
+				        	
+				        // }
+				        // })
+	        	}
+			
+	})
+</script>
+</html>

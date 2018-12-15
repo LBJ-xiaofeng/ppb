@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预约取件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.total{
+				margin-top: 45px;
+			}
+			.title-bt{
+				font-size: 15px;
+			}
+			.list-p{
+				font-size: 14px;
+				margin-top: 10px;
+			}
+		
+			.total-ul li{
+				height: 75px !important;
+			}
+			.butn{
+				width: 100%;
+				height: 45px;
+				color: #fff;
+				background-color: #ffbfc6;
+				text-align: center;
+				line-height: 45px;
+				position: absolute;
+   				 bottom: 0;
+			}
+			.a{
+				border: 1px solid #ffbfc6;
+			}
+		</style>
+	</head>
+
+	<body>
+			<header class="mui-bar mui-bar-nav" >
+			  <a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: black;" href="javascript:history.go(-1)"></a>
+			  <button class="mui-btn mui-btn-link mui-btn-nav mui-pull-right" style="font-size: 27px; margin-top: -5px;color: black;">
+			    
+			   <span class="mui-icon mui-icon-right-nav"></span>
+			  </button>
+			  <h1 class="mui-title" style="color: black;">选择地址</h1>
+			  	</header>
+			  	
+			  	<div class="total">
+			  		<ul class="mui-table-view total-ul">
+					  
+					</ul>
+				<div class="butn">完成</div>
+			  
+			  	</div>
+	</body>
+	<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		  localStorage.removeItem('name');
+				    localStorage.removeItem('mobile');
+				    localStorage.removeItem('province');
+				    localStorage.removeItem('city');
+				    localStorage.removeItem('twon');
+				    localStorage.removeItem('address');
+				      localStorage.removeItem('dizhi_id');
+		$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/user/address_list', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {user_id:localStorage.getItem('user_id')},
+		success: function(data) {
+			var html="";
+       console.log(data);
+
+       if(data.msg=='暂无收货地址'){
+        $('.add-address').html("<a href={:U('ppb/ppb/tianjia')} class='goAdd'>去添加收货地址</a>");
+          $('.add-address').css('marginTop','60px');
+            $('.add-address').css('textAlign','center');
+
+       }else{
+       	for (var i=0;i<data.data.length;i++) {
+       		html+=`
+       			<li class="mui-table-view-cell xuanzhong" dizhi_id="${data.data[i].address_id}" name="${data.data[i].consignee}" mobile="${data.data[i].mobile}" province="${data.data[i].province}" city="${data.data[i].city}" twon="${data.data[i].twon}" address="${data.data[i].address}" >
+					    <a class="title-bt">
+					     	 ${data.data[i].consignee}&#12288; ${data.data[i].mobile}
+					    </a>
+					     <p class=" mui-navigate-right list-p">${data.data[i].province}${data.data[i].city}${data.data[i].twon}${data.data[i].address}</p>
+					  </li>
+       		`
+       		$(".total-ul").html(html);
+       	}
+       	$(".xuanzhong").click(function(){
+				    $(this).addClass("a");
+				    $(this).siblings().removeClass("a");
+				    localStorage.removeItem('name');
+				    localStorage.removeItem('mobile');
+				    localStorage.removeItem('province');
+				    localStorage.removeItem('city');
+				     localStorage.removeItem('dizhi_id');
+				    localStorage.removeItem('twon');
+				    localStorage.removeItem('address');
+	   				localStorage.setItem("name",$(this).attr("name"));
+	   				localStorage.setItem("mobile",$(this).attr("mobile"));
+	   				localStorage.setItem("province",$(this).attr("province"));
+	   				localStorage.setItem("city",$(this).attr("city"));
+	   				localStorage.setItem("dizhi_id",$(this).attr("dizhi_id"));
+	   				localStorage.setItem("twon",$(this).attr("twon"));
+	   				localStorage.setItem("address",$(this).attr("address"));
+	   				
+			})
+       }
+		}
+	})
+		
+		$("body").on("click",".butn",function(){
+			var leiid=localStorage.getItem('name');
+			var leiid2=localStorage.getItem('mobile');
+			var leiid3=localStorage.getItem('province');
+			var leiid4=localStorage.getItem('city');
+			var leiid5=localStorage.getItem('twon');
+			var leiid6=localStorage.getItem('address');
+			var shangpinid=localStorage.getItem('shangpinid');
+			if (leiid ==null&&leiid2 ==null&&leiid3 ==null&&leiid4 ==null&&leiid5 ==null&&leiid6 ==null) {
+				alert("请您的选择地址");
+			} else{
+				alert(leiid)
+				window.location.href = "{:U('ppb/ppb/zjjc')}";
+//				$.ajax({
+//					type:"get",
+//					url:"http://ppb.dhxdrawing.top/index.php/ppb/index/edit_data",
+//					data : {
+//						goods_num:1,
+//						user_id:localStorage.getItem('user_id'),
+//						wid:localStorage.getItem('wpid'),
+//						did:localStorage.getItem('dizhi_id'),
+//						goods_id:shangpinid
+//						},//数据
+//		            async : false,//同步
+//		            dataType : 'json',
+//		            success : function(data){
+//		            	if (data.status==0) {
+//		            		alert(data.msg)
+//		            	} else{
+//		            		alert(data.msg);
+//		            		window.location.href = "yycg.html";
+//		            	}
+//		            }	
+//				});
+				
+			
+				
+			}
+		})
+	</script>
+
+</html>

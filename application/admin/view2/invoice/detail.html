@@ -1,0 +1,199 @@
+<include file="public/layout" />
+
+<style type="text/css">
+    html, body {
+        overflow: visible;
+    }
+
+    a.btn {
+        background: #fff none repeat scroll 0 0;
+        border: 1px solid #f5f5f5;
+        border-radius: 4px;
+        color: #999;
+        cursor: pointer !important;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: normal;
+        height: 20px;
+        letter-spacing: normal;
+        line-height: 20px;
+        margin: 0 5px 0 0;
+        padding: 1px 6px;
+        vertical-align: top;
+    }
+
+    a.red:hover {
+        background-color: #e84c3d;
+        border-color: #c1392b;
+        color: #fff;
+    }
+
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>审核查看发票</h3>
+                <h5>管理员在后台审核查看发票</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" action="{:U('Admin/Invoice/detail')}" id="order-add" method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em></em>发票编号</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="invoice_id" id="name" class="input-txt" value="{$data.invoice_id}"/>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="consignee"><em>*</em>客户姓名</label>
+                </dt>
+                <dd class="opt">
+                    {$data.invoice_title}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="consignee"><em>*</em>客户电话</label>
+                </dt>
+                <dd class="opt">
+                    {$data.phone}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="consignee"><em>*</em>客户地址</label>
+                </dt>
+                <dd class="opt">
+                    {$data.address}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="consignee"><em>*</em>订单号码</label>
+                </dt>
+                <dd class="opt">
+                    {$data.order_id}
+                    <input type="hidden" name="order_id" value="{$data.order_id}">
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="shop"><em>*</em>商品名称</label>
+                </dt>
+                <dd class="opt">
+                    <foreach name=":getOrderGoods($data.order_id)" item="val">
+                        <div>{$val.goods_name}</div>
+                    </foreach>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">
+                    <label for="pay_status"><em>*</em>开票金额</label>
+                </dt>
+                <dd class="opt">
+                    ￥{:getOrder($data.order_id)}
+                    <!--<input type="text" name="invoice_money"  class="input-txt" value=""/>-->
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="shipping_status"><em>*</em>申请备注</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="invoice_desc"  class="input-txt" value="{$data.invoice_desc}"/>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="order_status"><em>*</em>发票税率</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="invoice_rate"  class="input-txt" value="{$data.invoice_rate}"/>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">
+                    <label for="payment"><em>*</em>纳税人识别号</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="taxpayer"  class="input-txt" value="{$data.taxpayer}"/>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="invoice_title">发票状态</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$data.status eq 0">
+                        待开票
+                        <elseif condition="$data.status eq 1"/>
+                        已开票
+                        <elseif condition="$data.status eq 2"/>
+                        已作废
+                    </if>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="payment"><em>*</em>提交时间</label>
+                </dt>
+                <dd class="opt">
+                    {$data.atime|date='Y-m-d H:i:s',###}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="payment"><em>*</em>审核时间</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$data.ctime">
+                        {$data.ctime|date='Y-m-d H:i:s',###}
+                        <else/>
+                         暂未审核
+                    </if>
+
+                </dd>
+            </dl>
+            <if condition="$data.status eq 0">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="payment"><em>*</em>审核结果</label>
+                </dt>
+                <dd class="opt">
+                    <input type="radio" name="status" value="1" checked>通过审核
+                    <input type="radio" name="status" value="2">废弃申请
+                </dd>
+            </dl>
+                </if>
+            <if condition="$data.status eq 0">
+                <input class="no-print ncap-btn-big ncap-btn-green" type="submit" value="提交审核">
+                <else/>
+                    <a href="javascript:printDiv();" style="float:center" class="ncap-btn-big ncap-btn-green" ><i class="fa fa-print"></i>打印发票</a>
+            </if>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+    function printDiv()
+    {
+        var oldStr = document.body.innerHTML;
+        $('.no-print').hide();
+        window.print();
+        document.body.innerHTML = oldStr;
+    }
+</script>
+</body>
+</html>

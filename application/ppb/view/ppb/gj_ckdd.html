@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>查看订单</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.all{
+			padding: 10px 5%;
+		}
+		.all>p{
+			padding: 10px 0;
+			font-size: 17px;
+		}
+		.all>div>p{
+			padding: 4px 0;
+		}
+		.all>div{
+			color: #484848;
+		}
+		 footer{
+        	position: absolute;
+        	bottom: 0;
+        	left: 0;
+        	width: 100%;
+        	text-align: right;
+        }
+        .one{ 
+        		 margin: 0;
+			    padding: 0;
+			    background-color: #73E96E;
+			    width: 27%;
+			    color: #fff;
+			    padding: 9px 0;
+			    border: none;
+			    font-size: 14px;
+			    margin-right: -5px;
+        }
+        .two{
+        		margin: 0;
+        		padding: 0;
+        	    background-color: #FD9D13;
+			    width: 27%;
+			    color: #fff;
+			    padding: 9px 0;
+			    border: none;
+			    font-size: 14px;
+        }
+	</style>
+</head>
+<body>
+	<div class="start">
+
+</div>
+ <footer>
+            	 <button class="one">合格</button>
+                 <button class="two">驳回</button>
+            </footer>
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$.ajax({
+		type:"get",
+		url:"http://ppb.dhxdrawing.top/index.php/ppb/admin/editOrder",
+		dataType: 'JSON', //数据格式:JSON
+		data: {order_id:localStorage.getItem('gjddid')},
+		success: function(data) {
+			html="";
+			html+=`
+				<div class="all">
+						<p>订单信息</p>
+						<div>
+							<p><span>订单号：</span><span>${data.data.order.order_sn}</span></p>
+							<p><span>商品名称：</span><span>${data.data.order.mobile_name}-${data.data.order.attr_name}-${data.data.order.brand_name}</span></p>
+							<p><span>下单时间：</span><span>${data.data.order.add_time}</span></p>
+						</div>
+					</div>
+					<div class="all">
+						<p>基本信息</p>
+						<div>
+							<p><span>寄件人：</span><span>${data.data.order.consignee}</span></p>
+							<p><span>寄件人电话：</span><span>${data.data.order.mobile}</span></p>
+							<p><span>寄件人地址：</span><span>${data.data.order.province} ${data.data.order.city} ${data.data.order.address}</span></p>
+
+						</div>
+					</div>
+					<div class="all">
+						<p>订单进度</p>
+						<div style="color: #FD9D13">
+							${data.data.order.order_status}  · · ·
+						</div>
+					</div>
+					<div class="all">
+						<p>物流信息</p>
+						<div>
+							<p>寄件时间:  ${data.data.order.send_shipping_time}</p>
+							<p>快递公司:  ${data.data.order.send_shipping_code}</p>
+							<p>快递单号:  ${data.data.order.send_shipping_name}</p>
+							
+						</div>
+					</div>
+					<div class="all">
+						<p>物品信息</p>
+						<div>
+						<p>${data.data.order.mobile_name}   	 ${data.data.order.attr_name}		${data.data.order.brand_name}</p>
+							
+						</div>
+					</div>
+			
+			`
+			$(".start").html(html);
+		}
+			
+	});
+</script>
+</html>

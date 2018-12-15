@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预约付款</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/ppb/css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,html{
+				height: 100%;
+				position: relative;
+			}
+			.total{
+					margin-top: 50px;
+			}
+			.total-xinxi{
+				
+				border-bottom: 2px solid gainsboro;
+				padding: 7px;
+			}
+			.total-xinxi ul{
+				list-style:none;
+				font-size: 16px;
+				
+				
+			}
+			.total-xinxi ul li{
+				font-size: 13px;
+				height: 30px;
+				color: gray;
+			}
+			.total-xinxi ul li:first-child{
+				margin-top: 15px;
+				
+				}
+				.total-wupin{
+				
+							padding: 7px;
+			}
+			.total-wupin ul{
+				list-style:none;
+				font-size: 16px;
+				
+				
+			}
+			.total-wupin ul li{
+				font-size: 13px;
+				height: 30px;
+				color: gray;
+			}
+			.total-wupin ul li:first-child{
+				margin-top: 15px;
+				
+				}
+				.wupin-button{
+				
+					width: 70%;
+					height: 60px;
+					margin: 52% auto;
+				}
+			
+			.buttom{
+				width: 100%;
+				position: absolute;
+				left: 0px;
+				bottom: 0px;
+				border-top: 1px solid gainsboro;
+				display: flex;
+				justify-content:flex-end;
+				align-items: center;
+				height: 50px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+			<header class="mui-bar mui-bar-nav" >
+				  <a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: black;" href="javascript:history.go(-1)"></a>
+				  <button class="mui-btn mui-btn-link mui-btn-nav mui-pull-right" style="font-size: 27px; margin-top: -5px;color: #fff;">
+				    
+				   <span class="mui-icon mui-icon-right-nav"></span>
+				  </button>
+				  <h1 class="mui-title">预约付款</h1>
+			</header>
+			<div class="total">
+				<div class="total-xinxi">
+					<ul>基本信息
+					
+						<li class="name">姓名：张三</li>
+						<li class="mobile">手机：123456789123</li>
+						<li>数量：1件</li>
+						<li class="province">地址：北京北京北京北京</li>
+						
+						<!--<li>皮皮班地址：北京北京北京北京</li>-->
+					</ul>
+					
+				</div>
+				<div class="total-wupin">
+					<ul>物品信息
+						
+						<li class="pinpai">巴宝莉皮衣</li>
+						
+					</ul>
+					
+				</div>
+				<div  class="buttom">
+				  		<div style="width: 40%;"><span style="font-size: 13px;">支付金额：&nbsp;&nbsp;</span><span style="color: red;font-size:13px ;">¥100.00</span></div>
+				  		<button style="border: 0; background-color: #ffbfc6;color: #fff; display: block; height: 100%; " class="fukuan">确认付款</button>
+				  		
+				  	</div>
+			</div>
+			
+	</body>
+	<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		
+		var name =localStorage.getItem('name');
+		var mobile =localStorage.getItem('mobile');
+		var province =localStorage.getItem('province');
+		var city =localStorage.getItem('city');
+		var twon =localStorage.getItem('twon');
+		var address =localStorage.getItem('address');
+		var pinpai =localStorage.getItem('pinpai');
+		var yuyuename =localStorage.getItem('yuyuename');
+		
+		
+		$(".name").html(name);
+		$(".mobile").html(mobile);
+		
+		var dizhi="";
+		var pinpai2="";
+		dizhi+=`
+			地址：${province}${city}${twon}${address}
+		`
+		$(".province").html(dizhi);
+		pinpai2+=`
+			${pinpai}${yuyuename}
+		`
+		$(".pinpai").html(pinpai2);
+		
+		
+		
+		$("body").on("click",".fukuan",function(){
+			location.href="{:U('ppb/ppb/yycg')}"
+		})
+	</script>
+
+</html>

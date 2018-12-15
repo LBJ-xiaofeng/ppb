@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>用户协议</title>
+		<link rel="stylesheet" href="/ppb/css/new_file.css" type="text/css"/>
+		<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="/ppb/css/mui.css"/>
+		<style type="text/css">
+			body{
+				background-color: #fff;
+			}
+			.title{
+	            text-align: center;
+			    padding: 20px;
+			    font-size: 17px;
+            }
+            .img{
+            	width: 100%;
+            	height: 170px;
+            }
+            .xieyi{
+            	margin-top: 45px;
+            }
+		</style>
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href='javascript:history.go(-1)' style="color: black;"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title" >用户协议</h1>
+	  </header>
+		<!--头部  star-->
+		 
+		<!--头部 end-->
+        <!--内容 star-->
+        <div class="xieyi">
+	</div>
+	<img src=""/>
+		<!--内容 end-->
+        
+        <!--底部 star-->
+		
+        
+       <!--底部  end-->
+		
+	</body>
+<script type="text/javascript">
+$.ajax({
+        type: 'get', 
+        url: 'http://ppb.dhxdrawing.top/index.php/ppb/index/serviceIsIntroduced', //目标地址
+        dataType: 'JSON', //数据格式:JSON
+        data: {type:4},
+        success: function(data) {
+        	var xieyi="";
+	        console.log(data);
+	        xieyi+=`
+	        <img src="${data.data.img}" class="img"/>
+	        <p class='title'>${data.data.cat_name}</p>
+	        <div style="margin-top: 20px;padding-left: 5%;padding-right: 5%" class="all">
+		    	${data.data.content}
+		    </div>
+	        `
+	        $(".xieyi").html(xieyi)	
+        }
+    })
+</script>
+</html>

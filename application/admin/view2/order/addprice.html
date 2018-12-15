@@ -1,0 +1,46 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>价格明细</h3>
+        <h5>价格添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="priceHanlde" action="{:U('admin/order/priceHanlde')}" method="post">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>价格简述</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="简述" class="input-txt" name="title" value="{$data.title}">
+		  <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+            <p class="notic"></p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="ac_name">金额</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="金额" class="input-txt" name="money" value="{$data.money}">
+		  <span  class="err" id="err_url" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>      
+      <div class="bot"><input style="width: 100px;height: 30px;color:#fff;background-color: #4fc0e8;border-color: #3aa8cf;border-radius: 5px;font-size: 14px;line-height: 30px;font-weight: bold;text-align: center;display: inline-block;cursor: pointer;" type="submit" value="确认提交"/></div>
+    </div>
+        <input type="hidden" name="id" value="{$id}">
+        <input type="hidden" name="oid" value="{$oid}">   
+  </form>
+</div>
+<script>
+
+
+</script>
+</body>
+</html>

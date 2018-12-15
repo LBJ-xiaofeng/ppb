@@ -1,0 +1,198 @@
+<include file="public/layout" />
+<style>
+    td{height:40px;line-height:40px; padding-left:20px;}
+    .span_1{
+        float:left;
+        margin-left:0px;
+        width:25%;
+        line-height:130px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .span_1 ul{list-style:none;padding:0px;}
+    .span_1 ul li{
+        border:1px solid #CCC;
+        height:40px;
+        padding:0px 10px;
+        margin-left:-1px;
+        margin-top:-1px;
+        line-height:40px;
+    }
+    .span_2{
+        float:left;
+        margin-left:0px;
+        width:25%;
+        text-align: center;
+        font-weight: bold;
+        line-height:130px;
+        font-size: 14px;
+    }
+    .span_2 ul{list-style:none;padding:0px;}
+    .span_2 ul li{
+        border:1px solid #CCC;
+        height:40px;
+        padding:0px 10px;
+        margin-left:-1px;
+        margin-top:-1px;
+        line-height:40px;
+    }
+    h1{
+        font-size: 18px;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>会员管理 - 会员信息</h3>
+                <h5>网站系统会员管理会员信息</h5>
+            </div>
+        </div>
+    </div>
+        <div class="ncap-form-default">
+            <h1>个人资料</h1>
+            <dl class="row">
+                <dt class="tit">
+                </dt>
+                <dd class="opt">
+                    <div>
+                        <span class="span_2">
+                            <ul>
+                                <li>用户ID</li>
+                                <!--<li>电子邮箱</li>-->
+                                <li>手机号码</li>
+                                <li>近期登陆时间</li>
+                                <li>最后登录IP</li>
+                                <li>邀请人</li>
+                            </ul>
+                        </span>
+                        <span class="span_2">
+                            <ul>
+                                <li>{$user.user_id}</li>
+                                <!--<li>{$user.email}</li>-->
+                                <li>{$user.mobile}</li>
+                                <li>{$user.last_login|date='Y-m-d H:i',###}</li>
+                                <li>
+                                    <if condition="empty($user.last_ip)">
+                                        暂无
+                                        <else/>
+                                    {$user.last_ip}
+                                    </if>
+                                </li>
+                                <li>{:getNickname($user.first_leader)}</li>
+                            </ul>
+                        </span>
+                        <span class="span_2">
+                            <ul>
+                                <li>用户昵称</li>
+                                <!--<li>QQ</li>-->
+                                <li>累计消费(元)</li>
+                                <li>钱包余额</li>
+                                <li>性别</li>
+                            </ul>
+                        </span>
+                        <span class="span_2">
+                            <ul>
+                                <li>{$user.nickname}</li>
+                                <!--<li>{$user.qq}</li>-->
+                                <li>{$user.pay_points}</li>
+                                <li>{$user.user_money}</li>
+                                <li>
+                                    <if condition="$user['sex'] eq 0">
+                                        保密
+                                        <elseif condition="$user['sex'] eq 1" />
+                                            男
+                                        <else/>
+                                        女
+                                    </if>
+
+                                </li>
+                            </ul>
+                        </span>
+                        <div style="clear:both;"></div>
+                    </div>
+                </dd>
+            </dl>
+            <h1>个人订单</h1>
+            <div class="bDiv" style="height: auto;">
+                <div id="flexigrid" >
+                    <table cellpadding="0" cellspacing="0" border="1" style="width: 100%">
+                        <tr  style="height: 40px;" align="center">
+                            <th align="center" abbr="article_title" style="width: 3.8%">
+                                <div style=" " class="">订单ID</div>
+                            </th>
+                            <th align="center" abbr="ac_id" style="width: 12%">
+                                <div style="" class="">订单号</div>
+                            </th>
+                            <th align="center" abbr="ac_id" style="width: 15%">
+                                <div style="" class="">订单信息</div>
+                            </th>
+                            <th align="center" abbr="article_show" style="width: 5%">
+                                <div style="text-align: center;width: 100px;" class="">订单状态</div>
+                            </th>
+                            <th align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center;" class="">支付状态</div>
+                            </th>
+                            <th align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center;" class="">金额</div>
+                            </th>
+                            <th align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center; " class="">订单人</div>
+                            </th>
+                            <th align="center" abbr="article_time" style="width: 10%">
+                                <div style="text-align: center; " class="">联系方式</div>
+                            </th>
+                            <th align="center" abbr="article_time" style="width: 10%">
+                                <div style="text-align: center;width: 150px;" class="">下单时间</div>
+                            </th>
+                            <th align="center" axis="col1" class="handle">
+                                <div style="text-align: center;">操作</div>
+                            </th>
+                        </tr>
+                        <foreach name="order" item="val">
+                        <tr  style="height: 40px;" align="center">
+                            <td align="center" abbr="article_title" style="width: 3.8%">
+                                <div style=" " class="">{$val.order_id}</div>
+                            </td>
+                            <td align="center" abbr="ac_id" style="width: 12%">
+                                <div style="" class="">{$val.order_sn}</div>
+                            </td>
+                            <td align="center" abbr="ac_id" style="width: 15%">
+                                <div style="" class="">{$val['mobile_name']}/{$val['attr_name']}/{$val['brand_name']}/{$val['cat_name']}</div>
+                            </td>
+                            <td align="center" abbr="article_show" style="width: 5%">
+                                <div style="text-align: center;width: 100px;" class="">{:getOrderStatus($val.order_status)}</div>
+                            </td>
+                            <td align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center;" class="">{:getPayStatus($val.pay_status)}</div>
+                            </td>
+                            <td align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center;" class="">{$val.goods_price}</div>
+                            </td>
+                            <td align="center" abbr="article_time" style="width: 5%">
+                                <div style="text-align: center; " class="">{$val.consignee}</div>
+                            </td>
+                            <td align="center" abbr="article_time" style="width: 10%">
+                                <div style="text-align: center; " class="">{$val.mobile}</div>
+                            </td>
+                            <td align="center" abbr="article_time" style="width: 10%">
+                                <div style="text-align: center;width: 150px;" class="">{$val.add_time|date='Y-m-d H:i:s',###}</div>
+                            </td>
+                            <td align="center" axis="col1" class="handle">
+                                <a class="btn green"  href="{:U('admin/Order/detail',array('order_id'=>$val[order_id]))}" data-url=""><i class="fa fa-pencil-square-o"></i>查看详情</a>
+                            </td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div>
+                <div class="iDiv" style="display: none;"></div>
+            </div>
+          </div>
+</div>
+</body>
+</html>

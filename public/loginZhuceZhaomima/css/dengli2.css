@@ -1,0 +1,172 @@
+
+
+body{
+	/*width: 100%;
+	height: 100%;*/
+
+	
+
+	
+}
+header{
+
+}
+
+.boos-boos{
+	
+	width: 100%;
+	height: 100%;
+}
+.boos{
+	
+	width: 75%;
+	margin: 0 auto;
+	height: 57%;
+	padding-top: 10%;
+}
+.wangjhi{
+	color: red;
+	
+}
+.inpu-bot span{
+	font-size: 12px;
+	
+}
+.inpu-bot{
+	
+	float: right;
+}
+
+
+.sjh{
+		
+	width:100% ;
+		font-size-adjust: 15px;
+	margin:  0 auto;
+}
+.sjh-div{
+	width: 100%;
+	height: 40px;
+	border-radius: 30px;
+	border: 1px solid gainsboro;
+	
+}
+
+.sjh-div-span{
+	color: black;
+	display: inline-block;
+	height: 20px;
+	
+	width: 20px;
+	float: left;
+	line-height: 52px;
+
+}
+.sjh-div input{
+	width:87% ; 
+	float: right;
+	font-size: 14px;
+	border: 0px;
+	background-color: #fff !important;
+	height: 38px;
+	margin-right: 1px;
+	border-radius: 30px;
+}
+
+.yzm{
+		
+	width:100% ;
+		font-size-adjust: 15px;
+	margin:  20px auto;
+}
+.yzm-div{
+	width: 100%;
+	height: 40px;
+	border-radius: 30px;
+	border: 1px solid gainsboro;
+	
+}
+
+.yzm-div-span{
+	color: black;
+	display: inline-block;
+	height: 20px;
+	
+	width: 20px;
+	float: left;
+	line-height: 45px;
+
+}
+.yzm-div input{
+	width:87% ; 
+	float: right;
+	font-size: 14px;
+	border: 0px;
+	background-color: #fff !important;
+	height: 38px;
+	margin-right: 1px;
+	border-radius: 30px;
+}
+.but{
+	margin-bottom: 30px;
+	width: 100%;
+}
+.div-but{
+	width: 60%;
+	margin: 0 auto;
+}
+.but button{
+	background-color: #019934;
+	border: 0px;
+	width: 100%;	
+	margin: 0 auto;
+	border-radius: 30px;
+	color:#fff;
+	margin-bottom: 10px;
+		
+}
+.qita{
+	width: 100%;
+	height: 50px;
+/*border-bottom:solid 1px  black;*/
+	text-align: center;
+
+	color:darkgray;
+	margin: 130px 0px auto;
+}
+.tubiao-1{
+	color:deepskyblue;
+	flex: 1;
+	
+}
+
+.tubiao-2{
+	color:limegreen;
+	
+	flex: 1;
+	
+}
+.tubiao-3{
+	color: red;
+	flex: 1;
+	
+}
+.tubiao{
+	margin-top: 20px;
+	width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+vertical-align: middle;
+text-align: center;
+}
+.inpu-bot{
+	width: 100%;
+	
+}
+.denglu-logo{
+	width: 115px;
+    height: 61px;
+	margin: 50px auto;
+	margin-bottom: 50px;
+}

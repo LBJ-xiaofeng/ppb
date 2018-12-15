@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>邀请有奖</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<style type="text/css">
+		body,div,p,ul,li{
+			padding: 0;
+			margin: 0;
+		}
+		.qing_div img{
+			display: inline-block;
+			width: 100%;
+			height: 200px;
+		}
+		.qing_p1{
+			padding: 10px 5%;
+			overflow: hidden;
+		}
+		.qing_p1 span:first-child{
+			float: left;
+		}
+		.qing_p1 span:last-child{
+			float: right;
+			font-size: 14px;
+			color: #BADDC2;
+		}
+		.qing_ul1{
+			overflow: hidden;
+		}
+		.qing_ul1 li{
+			    list-style: none;
+			    float: left;
+			    width: 19%;
+			    text-align: center;
+			    margin-left: 5%;
+		}
+		.qing_ul1 li img{
+			display: inline-block;
+			width: 100%;
+			height: 50px;
+		}
+		.qing_ul1 li p{
+			font-size: 12px;
+		}
+		.empty{
+			    background-color: #E3E3E3;
+			    height: 5px;
+			    width: 100%;
+			    margin: 10px 0;
+		}
+		.qing_div1{
+			    padding: 10px 5%;
+    			font-size: 12px;
+    			line-height: 20px;
+		}
+		#clickhide{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 999;
+			background: rgba(0,0,0,0.6);
+		}
+		.jiantou{
+			position: absolute;
+			right: 20%;
+		}
+		.fenxiangcq{
+			position: absolute;
+			left: 20%;
+			top: 30%;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+<div id="clickhide">
+<div><img class="jiantou" src="/ppb/img/fenx.png"></div>
+<div><img class="fenxiangcq" src="/ppb/img/fx.png"></div>
+</div>
+<div class="qing_div">
+</div>
+<p class="qing_p1"><span>邀请奖励</span></p>
+<ul class="qing_ul1">
+</ul>
+<div class="empty"></div>
+<p class="qing_p1">活动规则</p>
+<div class="qing_div1">
+</div>
+</body>
+<script src="/ppb/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$.ajax({
+		type: 'get', 
+		url: 'http://ppb.dhxdrawing.top/index.php/ppb/index/recommended', //目标地址
+		dataType: 'JSON', //数据格式:JSON
+		data: {},
+		success: function(data) {
+			var img="";
+			var center="";
+			img+=`
+			<img src="${data.data.img}" class="top-img">
+			`			
+			$(".qing_div").html(img);
+			for (var i=0;i<data.data.image.length;i++) {
+			center+=`
+				<li><img src="${data.data.image[i].attr_image}"><p>${data.data.image[i].attr_name}</p></li>
+			`
+			}
+			$(".qing_ul1").html(center);
+			$(".qing_div1").html(data.data.content);
+		}
+	})
+	$('#clickhide').click(function(){
+		$('#clickhide').hide();
+	})
+</script>
+	<script src="/ppb/js/jquery.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+	<script>
+		wx.config({ 
+            debug: false, 
+            appId: "{$data.appId}", 
+            timestamp: '{$data["timestamp"]}', 
+            nonceStr: '{$data["nonceStr"]}', 
+            signature: '{$data["signature"]}', 
+            jsApiList: [ 
+               'checkJsApi',
+	            'openLocation',
+	            'getLocation',
+	            'onMenuShareTimeline',
+	            'onMenuShareAppMessage'
+	            ] 
+        	}); 
+        wx.ready(function() { 
+            wx.onMenuShareTimeline({ 
+                title: '{$data.title}', // 分享标题 
+                link: '{$data.link}', // 分享链接 
+                imgUrl: '{$data.img}', // 分享图标 
+                desc: '{$data.desc}',
+                success: function() { 
+                    // 用户确认分享后执行的回调函数 
+                   alert('成功')
+                }, 
+                cancel: function() { 
+                    // 用户取消分享后执行的回调函数 
+                    alert('已取消')
+                } 
+            }); 
+			wx.onMenuShareAppMessage({
+			     title: '{$data.title}', // 分享标题 
+                link: '{$data.link}', // 分享链接 
+                imgUrl: '{$data.img}', // 分享图标 
+                desc: '{$data.desc}',
+			    success: function () {
+			       alert('分享成功');
+			    },
+			    cancel: function () {
+			      // 用户取消分享后执行的回调函数
+			      alert('取消分享');
+			    }
+  });
+        }); 
+
+        	
+    </script> 
+</html>

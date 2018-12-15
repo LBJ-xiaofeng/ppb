@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head >
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=.mian-ul1 li, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>皮皮班</title>
+        <link href="/ppb/css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/ppb/css/shop.css" />
+        <link rel="stylesheet" type="text/css" href="/ppb/css/aui.css"/>
+        <link rel="stylesheet" type="text/css" href="/ppb/css/style.css">
+         <style type="text/css">
+         body{
+            background-color: #fff;
+        }
+        .mine-ul1{
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 20px;
+            margin-top: 60px;
+        }
+        .mine-ul1 li{
+            float: left;
+            width:24%;
+            text-align: center;
+            list-style: none;
+             font-size: 16px;
+        }
+        .mine-ul1 li p{
+            margin-top: 5px;
+        }
+      
+        .mine-ul1 li.active{
+            color: #ffbfc6;
+        }
+        .left{
+               
+    display: inline-block;
+    margin-top: 6px;
+        }
+        .list-inset{
+        	margin-bottom: 30px;
+        	    height: 135px;
+        }
+        .names{
+        	display: block;
+  
+overflow: hidden; 
+  
+text-overflow: ellipsis; 
+    
+-o-text-overflow: ellipsis;
+
+white-space:nowrap;
+   
+width:213px;
+      
+height:24px;
+ 
+display:block;
+        }
+    </style>
+</head>
+<body>
+  <header class="mui-bar mui-bar-nav" >
+		
+		<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+		<h1 class="mui-title" >订单</h1>
+  </header>
+     <ul class="mine-ul1">
+       <!--  <li>
+          
+            全部
+        </li> -->
+         <a href="{:U('ppb/ppb/daifahuo')}">
+         <li class="active">
+            定损中
+        </li>
+        </a>
+        <a href="{:U('ppb/ppb/baoyang')}">
+             <li>
+            保养中
+        </li>
+        </a>
+        <a href="{:U('ppb/ppb/dsh')}">
+            <li>
+          待送回
+        </li>
+        </a>
+        <a href="{:U('ppb/ppb/dpj')}">
+            <li>
+            待评价
+        </li>
+        </a>
+    </ul>
+    <div id="content2">
+      </div>
+</div>
+<p style="margin-bottom: 100px"></p>
+        <footer class='aui-bar aui-bar-tab aui-bar-tab-cl aui-border-t gddw' id='footer'>
+            
+            <a href="{:U('ppb/ppb/index')}" class='aui-bar-tab-item ' tapmode>
+                <i><img src="/ppb/image/mine(2).png"></i>
+                
+            </a>
+            
+            <a class='aui-bar-tab-item' tapmode href="{:U('ppb/ppb/daifahuo')}">
+                
+                <i><img src="/ppb/image/mine(3).jpg"></i>
+            </a>
+                <a class='aui-bar-tab-item' tapmode href="{:U('ppb/ppb/member')}">
+                
+                <i><img src="/ppb/image/mine (5).jpg"></i>
+            </a>
+            
+        
+        </footer>
+    <script src="/ppb/js/jquery.min.js"></script>
+
+<script type="text/javascript">
+	if(localStorage.getItem('user_id')==null){
+       		alert("请先登录")
+       		location.href="{:U('ppb/ppb/login')}";
+       	}else{
+       		
+  
+     $.ajax({
+            type : 'POST',
+             url : 'http://ppb.dhxdrawing.top/index.php/ppb/Order/orderList',
+            data : {user_id:localStorage.getItem('user_id'),type:0},//数据
+            async : true,//同步
+            dataType : 'json',
+            success : function(data){
+                console.log(data);  
+                var html = '';
+                if(data.data.length==0){
+                      $('#content2').html('暂无订单！');
+                       $('#content2').css('textAlign','center');
+                }else{
+                   
+                  for(var i=0;i<data.data.length;i++){
+                    html+=`
+            <ul class="list list-inset">
+                <p class="dfk_p1"><span style="float: left;">${data.data[i].add_time}</span><span style="float: right;">定损中</span></p>
+             
+
+        <li class="item item-icon-left item-icon-right">
+       
+            <p><span class="names">${data.data[i].mobile_name}</p>
+             <p><span class="">${data.data[i].brand_name}/${data.data[i].attr_name}/${data.data[i].mobile_name}</span></p>
+              <p style="margin-top: -41px;float:right;">
+	           
+	              <span class="prices">¥${data.data[i].goods_price} </span>
+	            	<span class="num">x${data.data[i].goods_num} &nbsp; </span> 
+            </p>
+
+        </li>
+        <button class="btn chakan" order="${data.data[i].order_id}">查看详情</button>
+        <!--<button class="btn quxiao" order="${data.data[i].order_id}">取消订单</button>-->
+         
+         </ul>
+                    `
+  }
+     
+                $('#content2').html(html);
+            }
+            }
+
+        })
+     $('body').on('click' , '.pingjia' , function(){
+            localStorage.setItem('goods_id',$(this).attr('data'))
+              localStorage.setItem('order_id',$(this).attr('id'))
+                 window.location.href="{:U('ppb/ppb/pingjia')}";
+         })
+    $('body').on('click','.tiao',function(){
+        localStorage.setItem('order_id',$(this).attr('data'));
+        window.location.href="{:U('ppb/ppb/order_details')}";
+    })
+    $('body').on('click','.chakan',function(){
+        localStorage.setItem('order',$(this).attr('order'));
+        window.location.href="{:U('ppb/ppb/ddxq')}";
+    })
+    $('body').on('click','.quxiao',function(){
+    	if (confirm("确认取消")) {
+    		  var quxiao=$(this).attr('order');
+		        $.ajax({
+		        	type:"get",
+		        	url:"http://ppb.dhxdrawing.top/index.php/ppb/order/cancel_order",
+		        	data : {user_id:localStorage.getItem("user_id"),order_id:quxiao},//数据
+		            async : true,//同步
+		            dataType : 'json',
+		            success : function(data){
+		            	if (data.status==0) {
+		            		alert(data.msg)
+		            	} else{
+		            		
+		            		alert("删除成功")
+		            		location.reload();
+		            	}
+		            }
+		        });
+    	} else{
+    		return;
+    	}
+      
+    })
+         	}
+</script>
+</body>
+</html>

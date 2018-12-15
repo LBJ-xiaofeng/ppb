@@ -1,0 +1,67 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+header a{
+	color: #000000;
+}
+.youhui{
+	width: 95%;
+	height: 5rem;
+	border: 1px solid #C0C0C0;
+	margin: 1rem auto;
+	border-radius: 8px;
+	display: flex;
+	justify-content: space-between;
+}
+.you_t{
+	width: 30%;
+	height: 5rem;
+	
+	text-align: center;
+	
+}
+.you_t img{
+	width: 90%;
+	height: 3rem;
+	border-radius: 8px;
+	margin-top: 1rem;
+}
+.you_m{
+	width: 45%;
+	display: flex;
+	flex-direction: column;
+}
+.you_mt{
+	font-size: .8rem;
+	color: #C0C0C0;
+	margin-top: .7rem;
+}
+.you_ml{
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+.span_l{
+	color: red;
+	font-size: 1.1rem;
+}
+.span_r{
+	color: red;
+	font-size: .6rem;
+	margin-left: 1rem;
+}
+.you_r{
+	width: 20%;
+	background-color:red ;
+	height: 100%;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	text-align: center;
+	line-height: 5rem;
+}
+.you_r span{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: white;
+}

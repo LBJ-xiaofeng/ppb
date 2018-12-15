@@ -1,0 +1,158 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>拼团促销管理</h3>
+                <h5>网站系统优惠促销与管理</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>优惠促销管理</li>
+        </ul>
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>团购促销拼团列表</h3>
+                <h5>(共{$count}条记录)</h5>
+            </div>
+            <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+        </div>
+            <div class="hDiv" style="">
+                <div class="hDivBox">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr>
+                            <th align="left" abbr="article_title" axis="col3" class="">
+                                <div style="text-align: center; width: 140px;" class="">客户姓名</div>
+                            </th>
+                            <th align="left" abbr="ac_id" axis="col4" class="">
+                                <div style="text-align: center; width: 140px;" class="">订单号</div>
+                            </th>
+                            <th align="center" abbr="article_time" axis="col6" class="">
+                                <div style="text-align: center; width: 140px;" class="">商品名称</div>
+                            </th>
+                            <th align="center" abbr="article_time" axis="col6" class="">
+                                <div style="text-align: center; width: 140px;" class="">商品属性</div>
+                            </th>
+                            <th align="center" abbr="article_time" axis="col6" class="">
+                                <div style="text-align: center; width: 140px;" class="">下单时间</div>
+                            </th>
+                            <th align="center" abbr="article_time" axis="col6" class="">
+                                <div style="text-align: center; width: 140px;" class="">支付状态</div>
+                            </th>
+                            <th align="center" abbr="article_time" axis="col6" class="">
+                                <div style="text-align: center; width: 140px;" class="">发货状态</div>
+                            </th>
+                            <th align="left" axis="col1" class="handle">
+                                <div style="text-align: center; width: 200px;">操作</div>
+                            </th>
+                            <th style="width:100%" axis="col7">
+                                <div></div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="bDiv"  style="">
+                <div id="flexigr" cellpadding="0" cellspacing="0" border="0">
+                    <table>
+                        <tbody>
+                        <foreach name="order" item="vo" key="k" >
+                            <tr>
+                                <td align="left" class="">
+                                    <div style="text-align: center; width: 140px;">
+                                        {:getNickname($vo['user_id'])}
+                                    </div>
+                                </td>
+                                <td align="left" class="">
+                                    <div style="text-align: center; width: 140px;">{$vo.order_sn}</div>
+                                </td>
+                                <td align="left" class="">
+                                    <div style="text-align: center; width: 140px;">{:getOrderGoodsname($vo.order_sn)}</div>
+                                </td>
+                                <td align="left" class="">
+                                    <div style="text-align: center; width: 140px;">{$vo.spec_key_name}</div>
+                                </td>
+                                <td align="left" class="">
+                                    <div style="text-align: center; width: 140px;">{$vo.pay_time|date='Y-m-d H:i:s',###}</div>
+                                </td>
+                                <td align="center" class="">
+                                    <div style="text-align: center; width: 140px;">
+                                        <if condition="$vo['pay_status'] eq 1">
+                                            <span style="color: green">支付成功</span>
+                                            <else/>
+                                            <span style="color: red">支付失败</span>
+                                        </if>
+
+                                    </div>
+                                </td>
+                                <td align="center" class="">
+                                    <div style="text-align: center; width: 140px;">
+                                        <if condition="$vo['shipping_status'] eq 0">
+                                            <span style="color: red">待发货</span>
+                                            <else/>
+                                            <span style="color:green ">已发货</span>
+                                        </if>
+
+                                    </div>
+                                </td>
+                                <td align="left" class="handle">
+                                    <div style="text-align: left; width: 220px; max-width:170px;">
+                                        <a class="btn blue" href="{:U('Admin/order/detail',array('order_id'=>$vo['order_id']))}" data-tid="{$vo['id']}"><i class="fa fa-search"></i>查看订单</a>
+                                        <if condition="$vo.pay_status eq 1">
+                                            <a class="btn blue" href="{:U('Admin/order/delivery_info',array('order_id'=>$vo['order_id']))}" data-tid="{$vo['id']}"><i class="fa fa-search"></i>去发货</a>
+                                        </if>
+
+                                    </div>
+                                </td>
+                                <td align="" class="" style="width: 100%;">
+                                    <div>&nbsp;</div>
+                                </td>
+                            </tr>
+                        </foreach>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        <!--分页位置-->
+         </div>
+</div>
+<script>
+//    $('#open').click(function(){
+//        alert(111);
+////        $('#self').removeClass('showHide');
+//    })
+//    $('.down').click(function(){
+//        $('#self').addClass('showHide');
+//    })
+    $(document).ready(function(){
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function(){
+            $(this).toggleClass('trSelected');
+        });
+
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+    });
+
+
+</script>
+</body>
+</html>

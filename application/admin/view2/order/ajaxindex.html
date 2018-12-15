@@ -1,0 +1,218 @@
+<table>
+ 	<tbody>
+ 	<if condition="empty($orderList) eq true">
+ 		<tr data-id="0">
+	        <td class="no-data" align="center" axis="col0" colspan="50">
+	        	<i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+	        </td>
+	     </tr>
+	<else/>
+ 	<volist name="orderList" id="list">
+  	<tr data-order-id="{$list.order_id}" id="{$list.order_id}">
+        <td class="sign" axis="col0">
+          <div style="width: 24px;"><i class="ico-check"></i></div>
+        </td>
+        <td align="center" abbr="order_id" axis="col3" class="">
+            <div style="text-align: center; width: 40px;" class="">{$list.order_id}</div>
+        </td>
+        <td align="center" abbr="order_sn" axis="col3" class="">
+          <div style="text-align: center; width: 140px;" class="">{$list.order_sn}</div>
+        </td>
+        <td align="center" abbr="consignee" axis="col4" class="">
+          <div style="text-align: center; width: 100px;" class="">{$list.consignee}</div>
+        </td>
+        <td align="center" abbr="consignee" axis="col4" class="">
+          <div style="text-align: center; width: 150px;" class="">{$list.mobile_name}-{$list.attr_name}-{$list.brand_name}</div>
+        </td>
+        <td align="center" abbr="consignee" axis="col4" class="">
+          <div style="text-align: center; width: 100px;" class="">{$list.mobile}</div>
+        </td>
+        <td align="center" abbr="article_time" axis="col6" class="">
+            <div style="text-align: center; width: 100px;" class="">{$order_status[$list[order_status]]}</div>
+        </td>
+        <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width:200px;" class="">{$list.province}{$list.city}{$list.twon}{$list.address}</div>
+        </td>
+        <td align="center" abbr="article_show" axis="col5" class="">
+            <div style="text-align: center; width: 60px;" class="">
+                <if condition="!empty($list.six_content)">
+                {$list.six_content}
+                <elseif condition="!empty($list.five_content)"/>
+                {$list.five_content}
+                <elseif condition="!empty($list.four_content)"/>
+                {$list.four_content}
+                <elseif condition="!empty($list.third_content)"/>
+                {$list.third_content}
+                <elseif condition="!empty($list.seacond_content)"/>
+                {$list.seacond_content}
+                <elseif condition="!empty($list.first_content)"/>
+                {$list.first_content}
+            </if>
+            </div>
+        </td>
+        <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width: 80px;" class=""><a style="width: 50px;height: 30px;display: inline-block;text-decoration: none;background: limegreen;line-height: 30px;text-align: center;color: #fff;font-weight: bold;border-radius: 5px;">{$list.adminName}</a></div>
+        </td>
+        <!-- <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width: 60px;" class="">{$list.goods_price}</div>
+        </td> -->
+        <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width: 120px;" class="">
+          {$list.pay_time|date='Y-m-d H:i',###}
+          </div>
+        </td>
+        <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width: 120px;" class="">
+          {$list.shipping_time|date='Y-m-d H:i',###}
+          </div>
+        </td>
+        <td align="center" abbr="article_time" axis="col6" class="">
+          <div style="text-align: center; width: 120px;" class="">
+          {$list.add_time|date='Y-m-d H:i',###}
+          </div>
+        </td>
+        <td align="left" axis="col1" class="handle" align="center">
+        		<div style="text-align: left; ">
+        			<a class="btn red" href="{:U('Admin/order/detail',array('order_id'=>$list['order_id']))}"><i class="fa fa-list-alt"></i>查看</a>
+                    
+                    <a class="btn blue" id="open" dataoid="{$list.order_id}" datasn="{$list.order_sn}" onclick="opendir(this)" href="javascript:void(0);"><i class="fa fa-list-alt"></i>分配客服</a>
+
+                    <if condition="$list['order_status'] eq 0">
+                        <a class="btn green" onclick="submineOrder(this)" daOid="{$list['order_id']}" href="javaScript:void(0);"><i class="fa fa-list-alt"></i>确认已取/已收到</a>
+                    </if>
+        		</div>
+        </td>
+		<td style="width: 100%;">
+          <div></div>
+        </td>
+      </tr>
+      </volist>
+      </if>
+    </tbody>
+</table>
+<div id="fenpei" style="width: 30%;height: 250px;background: #fff;border-radius: 10px;border:1px solid #333;position: absolute;top: 10%;left: 30%;display: none;">
+    <div style="width: 20px;height: 20px;font-size: 20px;font-weight: bold;float: right;cursor: pointer" id="guanbi" onclick="colse()">✘</div>
+    <form action="" method="post" id="myform">
+        <dl class="row" style="height: 50px;margin-top: 20px;padding-left: 50px;">
+            <dt class="tit" style="width: 100%;">
+                <label for="order_id">订单id</label>
+            </dt>
+            <dd class="opt">
+                <input type="text" readonly name="order_id" id="order_id" value="" class="input-txt"/>
+            </dd>
+         </dl>
+        <!--<dl class="row" style="height: 50px;margin-top: 5px;padding-left: 50px;">-->
+            <!--<dt class="tit" style="width: 100%;">-->
+                <!--<label for="order_sn">订单号</label>-->
+            <!--</dt>-->
+            <!--<dd class="opt">-->
+                <!--<input type="text" readonly name="order_sn" id="order_sn" value="" class="input-txt"/>-->
+            <!--</dd>-->
+        <!--</dl>-->
+        <dl class="row" style="position: absolute;right: 15%;top: 20px;">
+            <dt class="tit" style="width: 100%;">
+                <label for="order_sn">业务员</label>
+            </dt>
+            <dd class="opt">
+                <select name="ywy_id">
+                    <foreach name="admin" item="val">
+                        <option value="{$val.admin_id}">{$val.user_name}</option>
+                    </foreach>
+
+                </select>
+            </dd>
+        </dl>
+        <a href="javascript:void(0);" onclick="submineYwy(this)" style="color: #fff;text-decoration: none;margin-top: 50px;margin-left: 40%;" class="ncap-btn-big ncap-btn-green" >提交分配</a>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-6 text-left"></div>
+    <div class="col-sm-6 text-right">{$page}</div>
+</div>
+
+<script>
+    function colse(){
+        $('#fenpei').hide();
+    }
+    function opendir(e){
+        var oid=$(e).attr('dataoid');
+        var sn=$(e).attr('datasn');
+        $('#order_id').val(oid);
+        $('#order_sn').val(sn);
+        $('#fenpei').show();
+    }
+    function submineYwy(e){
+        $.ajax({
+            url:"{:U('Admin/order/submineYwy')}",
+            type : "POST",
+            data:$('#myform').serialize(),
+            dataType:'json',
+            async:false,
+            success: function(data){
+                if(data.status ==1){
+                    layer.alert(data.msg, {icon: 1});
+                    $('#fenpei').hide();
+                    location.href=location.href;
+                }else{
+                    layer.alert(data.msg, {icon: 2});
+                }
+            },
+            error:function(){
+                layer.alert('网络异常，请稍后重试',{icon: 2});
+            }
+        })
+    }
+    function submineOrder(e){
+        var oid=$(e).attr('daOid');
+        $.ajax({
+            url:"{:U('Admin/order/submineOrder')}",
+            type : "POST",
+            data:{order_id:oid},
+            dataType:'json',
+            async:false,
+            success: function(data){
+                if(data.status ==1){
+                    layer.alert(data.msg, {icon: 1});
+                    location.href=location.href;
+                }else{
+                    layer.alert(data.msg, {icon: 2});
+                }
+            },
+            error:function(){
+                layer.alert('网络异常，请稍后重试',{icon: 2});
+            }
+        })
+    }
+
+    $(".pagination  a").click(function(){
+        var page = $(this).data('p');
+        ajax_get_table('search-form2',page);
+    });
+    
+ // 删除操作
+    function del(obj) {
+        layer.confirm('确定要删除吗?', function(){
+            var id=$(obj).data('order-id');
+            $.ajax({
+                type : "POST",
+                url: "{:U('Admin/order/delete_order')}",
+                data:{order_id:id},
+                dataType:'json',
+                async:false,
+                success: function(data){
+                    if(data.status ==1){
+                        layer.alert(data.msg, {icon: 1});
+                        $('#'+id).remove();
+                    }else{
+                        layer.alert(data.msg, {icon: 2});
+                    }
+                },
+                error:function(){
+                    layer.alert('网络异常，请稍后重试',{icon: 2});
+                }
+            });
+		});
+	}
+    
+    $('.ftitle>h5').empty().html("(共{$pager->totalRows}条记录)");
+</script>
